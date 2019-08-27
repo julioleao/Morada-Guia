@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MoradaGuia.API.Data;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace MoradaGuia.API.Controllers
 {
@@ -19,18 +18,18 @@ namespace MoradaGuia.API.Controllers
         }
         // GET api/values
         [HttpGet]
-        public IActionResult GetValues()
+        public async Task<IActionResult> GetValues()
         {
-            var values = _Context.Values.ToList();
+            var values = await _Context.Values.ToListAsync();
 
             return Ok(values);
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public IActionResult GetValue(int id)
+        public async Task<IActionResult> GetValue(int id)
         {
-            var value = _Context.Values.FirstOrDefault(x => x.Id == id);
+            var value = await _Context.Values.FirstOrDefaultAsync(x => x.Id == id);
 
             return Ok(value);
         }
