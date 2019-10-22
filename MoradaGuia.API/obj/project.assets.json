@@ -12218,23 +12218,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\samue\\.nuget\\packages\\": {},
+    "C:\\Users\\alexa\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\samue\\Documents\\CODIGOS\\MORADA_GUIA\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
+      "projectUniqueName": "c:\\Users\\alexa\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
       "projectName": "MoradaGuia.API",
-      "projectPath": "c:\\Users\\samue\\Documents\\CODIGOS\\MORADA_GUIA\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
-      "packagesPath": "C:\\Users\\samue\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\samue\\Documents\\CODIGOS\\MORADA_GUIA\\Morada-Guia\\MoradaGuia.API\\obj\\",
+      "projectPath": "c:\\Users\\alexa\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
+      "packagesPath": "C:\\Users\\alexa\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\alexa\\Morada-Guia\\MoradaGuia.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\samue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\alexa\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
