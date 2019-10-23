@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MoradaGuia.API.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -9,9 +10,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MoradaGuia.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20191022172240_editUsers")]
+    partial class editUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,28 +84,32 @@ namespace MoradaGuia.API.Migrations
 
             modelBuilder.Entity("MoradaGuia.API.Models.User", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
                     b.Property<string>("Email")
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(30);
 
+                    b.Property<int>("Id");
+
                     b.Property<byte[]>("PasswordHash")
+                        .IsRequired()
                         .HasMaxLength(20);
 
                     b.Property<byte[]>("PasswordSalt")
+                        .IsRequired()
                         .HasMaxLength(20);
 
                     b.Property<string>("Username")
+                        .IsRequired()
                         .HasMaxLength(20);
 
                     b.Property<string>("sobrenome")
+                        .IsRequired()
                         .HasMaxLength(40);
 
                     b.Property<int>("telefone")
                         .HasMaxLength(15);
 
-                    b.HasKey("Id");
+                    b.HasKey("Email");
 
                     b.ToTable("Users");
                 });
