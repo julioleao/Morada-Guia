@@ -36,4 +36,4 @@ npm uninstall angular-cli
 npm install @angular/cli --save-dev
 ```
 
-**6** Utilize o link (http://localhost:4200/) para ter acesso ao *Front-end* junto ao *Back-end*.
+**6.** Utilize o link (http://localhost:4200/) para ter acesso ao *Front-end* junto ao *Back-end*.
