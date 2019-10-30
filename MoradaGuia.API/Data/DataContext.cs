@@ -11,5 +11,6 @@ namespace MoradaGuia.API.Data
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Imovel> Imovel { get; set; }
         public DbSet<Comentario> Comentario { get; set; }
+        public DbSet<Photo> Photos { get; set; }
     }
 }

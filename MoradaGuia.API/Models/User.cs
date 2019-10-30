@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace MoradaGuia.API.Models
@@ -17,6 +19,9 @@ namespace MoradaGuia.API.Models
         public string sobrenome { get; set; }
         [MaxLength(15)]
         public int telefone { get; set; }
+        public DateTime Criado { get; set; }
+        public DateTime UltimoLogin { get; set; }
+        public ICollection<Photo> Fotos { get; set; }
         
     }
 }
