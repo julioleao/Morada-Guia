@@ -1,30 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alexa\\MoradaGuia\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj": {}
+    "C:\\Users\\julio\\Documents\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alexa\\MoradaGuia\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj": {
+    "C:\\Users\\julio\\Documents\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alexa\\MoradaGuia\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
+        "projectUniqueName": "C:\\Users\\julio\\Documents\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
         "projectName": "MoradaGuia.API",
-        "projectPath": "C:\\Users\\alexa\\MoradaGuia\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
-        "packagesPath": "C:\\Users\\alexa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alexa\\MoradaGuia\\Morada-Guia\\MoradaGuia.API\\obj\\",
+        "projectPath": "C:\\Users\\julio\\Documents\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
+        "packagesPath": "C:\\Users\\julio\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\julio\\Documents\\Morada-Guia\\MoradaGuia.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\alexa\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\julio\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -41,6 +39,10 @@
       "frameworks": {
         "netcoreapp2.2": {
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "Microsoft.AspNetCore.App": {
               "suppressParent": "All",
               "target": "Package",
