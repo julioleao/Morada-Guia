@@ -21,7 +21,7 @@ namespace MoradaGuia.API.Models
         public int telefone { get; set; }
         public DateTime Criado { get; set; }
         public DateTime UltimoLogin { get; set; }
-        public ICollection<Photo> Fotos { get; set; }
+        public ICollection<Imovel> Imovels { get; set; }
         
     }
 }

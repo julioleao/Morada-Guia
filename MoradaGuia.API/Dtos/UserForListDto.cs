@@ -9,6 +9,5 @@ namespace MoradaGuia.API.Dtos
         public string sobrenome { get; set; }
         public string Email { get; set; }
         public int telefone { get; set; }
-        public string UrlFoto { get; set; }
     }
 }

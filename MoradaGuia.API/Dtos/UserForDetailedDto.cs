@@ -13,8 +13,6 @@ namespace MoradaGuia.API.Dtos
         public int telefone { get; set; }
         public DateTime Criado { get; set; }
         public DateTime UltimoLogin { get; set; }
-        public string UrlFoto { get; set; }
-        public ICollection<PhotosForDetailedDto> Fotos { get; set; }
 
     }
 }

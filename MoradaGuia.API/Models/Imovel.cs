@@ -32,5 +32,6 @@ namespace MoradaGuia.API.Models
         [ForeignKey("Email_FK")]
 
         public Usuario Usuario { get; set; }
+        public int UserId { get; set; }
     }
 }
