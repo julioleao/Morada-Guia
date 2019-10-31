@@ -11,5 +11,7 @@ namespace MoradaGuia.API.Data
          Task<bool> SaveAll();
          Task<IEnumerable<User>> GetUsers();
          Task<User> GetUser(int id);
+         Task<IEnumerable<Imovel>> GetImoveis();
+         Task<Imovel> GetImovel(int id);
     }
 }
