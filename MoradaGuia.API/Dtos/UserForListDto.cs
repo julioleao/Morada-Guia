@@ -8,6 +8,6 @@ namespace MoradaGuia.API.Dtos
         public string Username { get; set; }
         public string sobrenome { get; set; }
         public string Email { get; set; }
-        public int telefone { get; set; }
+        public string telefone { get; set; }
     }
 }

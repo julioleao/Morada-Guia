@@ -32,7 +32,7 @@ namespace MoradaGuia.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetImovel(int id)
         {
-            var imovel = await _repo.GetUser(id);
+            var imovel = await _repo.GetImovel(id);
             var imovelToReturn = _mapper.Map<UserForDetailedDto>(imovel);
             return Ok(imovelToReturn);
         }
