@@ -7,10 +7,10 @@ export interface Imovel {
     numero: number;
     bairro: string;
     valor: number;
-    qtd_quarto: number;
-    qtd_banheiro: number;
+    qtdQuarto: number;
+    qtdBanheiro: number;
     garagem: number;
     data: Date;
-    photoUrl: string;
-    photos?: Photo[];
+    urlFoto: string;
+    fotos?: Photo[];
 }

@@ -1,0 +1,50 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <img class="card-img-top img-thumbnail" src="{{imovel.urlFoto}}" alt="{{imovel.tipo}}">
+        <div class="card-body">
+          <div>
+            <strong>Localização: </strong>
+            <p>{{imovel.rua}}, {{imovel.numero}} - {{imovel.bairro}}</p>
+          </div>
+          <div>
+            <strong>Tipo: </strong>
+            <p>{{imovel.tipo}}</p>
+          </div>
+          <div>
+            <strong>Data: </strong>
+            <p>{{imovel.data}}</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="btn-group d-flex">
+              <button class="btn btn-primary w-100">Favoritar</button>
+              <button class="btn btn-success w-100">Mensagem</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="tab-panel">
+          <tabset class="member-tabset"> 
+            <tab heading="Informações sobre:">
+              <h4>Quantidade de quartos: </h4>
+              <p>{{imovel.qtdQuarto}}</p>
+              <h4>Quantidade de banheiros:</h4>
+              <p>{{imovel.qtdBanheiro}}</p>
+              <h4>Garagem: </h4>
+              <p>{{imovel.garagem}}</p>
+              <h2>Valor: R$ {{imovel.valor}}</h2>
+            </tab>
+            <tab heading="Fotos">
+              <p>fotos aqui</p>
+            </tab>
+            <tab heading="Mensagens">
+              <p>Mensagens aqui</p>
+            </tab>
+          </tabset>
+        </div>
+    </div>
+  </div>
+</div>

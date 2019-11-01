@@ -9,13 +9,13 @@ using MoradaGuia.API.Dtos;
 namespace MoradaGuia.API.Controllers
 {
     [Authorize]
-    [Route("api/imoveis")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class ImovelController : ControllerBase
+    public class ImoveisController : ControllerBase
     {
         private readonly IMoradaRepository _repo;
         private readonly IMapper _mapper;
-        public ImovelController(IMoradaRepository repo, IMapper mapper)
+        public ImoveisController(IMoradaRepository repo, IMapper mapper)
         {
             _mapper = mapper;
             _repo = repo;
@@ -33,7 +33,7 @@ namespace MoradaGuia.API.Controllers
         public async Task<IActionResult> GetImovel(int id)
         {
             var imovel = await _repo.GetImovel(id);
-            var imovelToReturn = _mapper.Map<UserForDetailedDto>(imovel);
+            var imovelToReturn = _mapper.Map<ImovelForDetailedDto>(imovel);
             return Ok(imovelToReturn);
         }
     }

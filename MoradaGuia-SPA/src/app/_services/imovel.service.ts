@@ -4,11 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Imovel } from '../_models/imovel';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    Authorization: 'Bearer ' + localStorage.getItem('token')
-  })
-};
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +14,11 @@ export class ImovelService {
   constructor(private http: HttpClient) {}
 
   getImoveis(): Observable<Imovel[]> {
-    return this.http.get<Imovel[]>(this.baseUrl + 'imoveis', httpOptions);
+    return this.http.get<Imovel[]>(this.baseUrl + 'imoveis');
   }
 
   getImovel(id): Observable<Imovel> {
-    return this.http.get<Imovel>(this.baseUrl + 'imoveis/' + id, httpOptions);
+    return this.http.get<Imovel>(this.baseUrl + 'imoveis/' + id);
   }
 
 }
