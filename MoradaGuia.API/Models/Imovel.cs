@@ -13,8 +13,8 @@ namespace MoradaGuia.API.Models
         public int Numero { get; set; }
         public string Bairro { get; set; }
         public float Valor { get; set; }
-        public int Qtd_Quarto { get; set; }
-        public int Qtd_Banheiro { get; set; }
+        public int QtdQuarto { get; set; }
+        public int QtdBanheiro { get; set; }
         public int Garagem { get; set; }
         public DateTime Data { get; set; }
         public ICollection<Photo> Fotos { get; set; }
