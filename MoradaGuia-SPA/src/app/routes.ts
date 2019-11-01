@@ -6,6 +6,7 @@ import { ListsComponent } from './lists/lists.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { ImovelDetailComponent } from './imoveis/imovel-detail/imovel-detail.component';
 import { ImovelDetailResolver } from './_resolvers/imovel-detail.resolver';
+import { ImovelListResolver } from './_resolvers/imovel-list.resolver';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -14,7 +15,7 @@ export const appRoutes: Routes = [
         runGuardsAndResolvers: 'always',
         canActivate: [AuthGuard],
         children: [
-            { path: 'imoveis', component: ImovelListComponent},
+            { path: 'imoveis', component: ImovelListComponent, resolve: {imoveis: ImovelListResolver}},
             { path: 'imoveis/:id', component: ImovelDetailComponent, resolve: {imovel: ImovelDetailResolver}},
             { path: 'messages', component: MessagesComponent},
             { path: 'lists', component: ListsComponent},

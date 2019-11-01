@@ -1,10 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -21,11 +22,19 @@ import { ImoveisCardComponent } from './imoveis/imoveis-card/imoveis-card.compon
 import { ImovelDetailComponent } from './imoveis/imovel-detail/imovel-detail.component';
 import { ImovelService } from './_services/imovel.service';
 import { ImovelDetailResolver } from './_resolvers/imovel-detail.resolver';
+import { ImovelListResolver } from './_resolvers/imovel-list.resolver';
 
 
 
 export function tokenGetter() {
    return localStorage.getItem('token');
+}
+
+export class CustomHammerConfig extends HammerGestureConfig  {
+   overrides = {
+       pinch: { enable: false },
+       rotate: { enable: false }
+   };
 }
 
 @NgModule({
@@ -47,6 +56,7 @@ export function tokenGetter() {
       BsDropdownModule.forRoot(),
       TabsModule.forRoot(),
       RouterModule.forRoot(appRoutes),
+      NgxGalleryModule,
       JwtModule.forRoot({
          config: {
             tokenGetter,
@@ -60,7 +70,9 @@ export function tokenGetter() {
       ErrorInterceptorProvider,
       AlertifyService,
       ImovelService,
-      ImovelDetailResolver
+      ImovelDetailResolver,
+      ImovelListResolver,
+      { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],
    bootstrap: [
       AppComponent
