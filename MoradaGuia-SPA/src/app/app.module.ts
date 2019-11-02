@@ -24,7 +24,6 @@ import { ImovelService } from './_services/imovel.service';
 import { ImovelDetailResolver } from './_resolvers/imovel-detail.resolver';
 import { ImovelListResolver } from './_resolvers/imovel-list.resolver';
 import { ImovelEditComponent } from './imoveis/imovel-edit/imovel-edit.component';
-import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { ImovelEditResolver } from './_resolvers/imovel-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 
@@ -50,8 +49,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MessagesComponent,
       ImoveisCardComponent,
       ImovelDetailComponent,
-      ImovelEditComponent,
-      UserEditComponent
+      ImovelEditComponent
    ],
    imports: [
       BrowserModule,
