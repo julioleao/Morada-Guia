@@ -1,0 +1,71 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-4">
+      <h1>Sua Moradia</h1>
+    </div>
+    <div class="col-sm-8">
+      <div *ngIf="editForm.dirty" class="alert alert-info">
+        <strong>Informação:</strong> Voce editou seu perfil. Salve antes de sair!
+      </div>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <img class="card-img-top img-thumbnail" src="{{imovel.urlFoto}}" alt="{{imovel.tipo}}">
+          <div class="card-body">
+            <div>
+              <strong>Localização: </strong>
+              <p>{{imovel.rua}}, {{imovel.numero}} - {{imovel.bairro}}</p>
+            </div>
+            <div>
+              <strong>Tipo: </strong>
+              <p>{{imovel.tipo}}</p>
+            </div>
+            <div>
+              <strong>Data: </strong>
+              <p>{{imovel.data}}</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-primary btn-block">Salvar</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+          <div class="tab-panel">
+            <tabset class="member-tabset"> 
+              <tab heading="Editar moradia:">
+                <form #editForm="ngForm" id="editForm" (ngSubmit)="updateImovel()">
+                  <h4>Detalhes da Localização</h4>
+                  <div class="form-inline">
+                    <label for="rua">Rua</label>
+                    <input class="form-control" type="text" name="rua" [(ngModel)]="imovel.rua">
+                    <label for="numero">Numero</label>
+                    <input class="form-control" type="number" name="numero" [(ngModel)]="imovel.numero">
+                    <label for="bairro">Bairro</label>
+                    <input class="form-control" type="text" name="bairro" [(ngModel)]="imovel.bairro">
+                  </div>
+                  <h4>Tipo da moradia: </h4>
+                  <select name="tipo" class="form-control" [(ngModel)]="imovel.tipo">
+                    <option value="Casa">Casa</option>
+                    <option value="Pensionato">Pensionato</option>
+                  </select>
+                  <h4>Quantidade de quartos: </h4>
+                  <input type="number" name="qtdQuarto" class="form-control" [(ngModel)]="imovel.qtdQuarto">
+                  <h4>Quantidade de banheiros:</h4>
+                  <input type="number" name="qtdBanheiro" class="form-control" [(ngModel)]="imovel.qtdBanheiro">
+                  <h4>Garagem: </h4>
+                  <input type="number" name="garagem" class="form-control" [(ngModel)]="imovel.garagem">
+                  <h2>Valor: R$ </h2>
+                  <input type="number" name="valor" class="form-control" [(ngModel)]="imovel.valor">
+                </form>
+              </tab>
+              <tab heading="Editar fotos">
+                  <p>Editor de foto vai aqui</p>
+              </tab>
+            </tabset>
+          </div>
+      </div>
+    </div>
+  </div>

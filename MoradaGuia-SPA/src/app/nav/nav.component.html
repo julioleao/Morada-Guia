@@ -29,6 +29,15 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i>Sair</a>
             </div>
+        <div *ngIf="loggedIn()" class="dropdown" dropdown>
+          <a class="dropdown-toggle text-light" dropdownToggle>
+            Bem vindo, {{authService.decodedToken.unique_name | titlecase}}
+          </a>
+          <div class="dropdown-menu mt-3" *dropdownMenu>
+            <a class="dropdown-item" [routerLink]="['/user/edit']"><i class="fa fa-user mr-1"></i>Editar perfil</a>
+            <a class="dropdown-item" [routerLink]="['/imovel/edit']"><i class="fa fa-home mr-1"></i>Meus Imóveis</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i>Sair</a>
           </div>
           <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
             <input class="form-control mr-sm-2" type="text" name="username" placeholder="Username" required [(ngModel)]="model.username">

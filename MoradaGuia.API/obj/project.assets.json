@@ -12321,11 +12321,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\julio\\Documents\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
+      "projectUniqueName": "C:\\Users\\julio\\Documents\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
       "projectName": "MoradaGuia.API",
-      "projectPath": "c:\\Users\\julio\\Documents\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
+      "projectPath": "C:\\Users\\julio\\Documents\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
       "packagesPath": "C:\\Users\\julio\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\julio\\Documents\\Morada-Guia\\MoradaGuia.API\\obj\\",
+      "outputPath": "C:\\Users\\julio\\Documents\\Morada-Guia\\MoradaGuia.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -12398,5 +12398,13 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema ao ler o arquivo de cache C:\\Users\\julio\\Documents\\Morada-Guia\\MoradaGuia.API\\obj\\MoradaGuia.API.csproj.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

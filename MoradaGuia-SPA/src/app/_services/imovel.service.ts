@@ -21,4 +21,8 @@ export class ImovelService {
     return this.http.get<Imovel>(this.baseUrl + 'imoveis/' + id);
   }
 
+  updateImovel(id: number, imovel: Imovel) {
+    return this.http.put(this.baseUrl + 'imoveis/' + id, imovel);
+  }
+
 }
