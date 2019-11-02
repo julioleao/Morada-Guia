@@ -16,7 +16,7 @@ namespace MoradaGuia.API.Helpers
                 .ForMember(dest => dest.UrlFoto, opt => opt.MapFrom(src =>
                     src.Fotos.FirstOrDefault(p => p.Principal).Url));
             CreateMap<Photo, PhotosForDetailedDto>();
-            
+            CreateMap<ImovelForUpdateDto, Imovel>();
         }
     }
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Imovel } from 'src/app/_models/imovel';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { NgForm } from '@angular/forms';
+import { ImovelService } from 'src/app/_services/imovel.service';
 
 @Component({
   selector: 'app-imovel-edit',
@@ -18,19 +19,23 @@ export class ImovelEditComponent implements OnInit {
       $event.returnValue = true;
     }
   }
-  constructor(private route: ActivatedRoute, private alertify: AlertifyService) { }
+  constructor(private route: ActivatedRoute, private alertify: AlertifyService,
+              private imovelService: ImovelService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.imovel = data['imovel'];
+      this.imovel = data.imovel;
       console.log(this.imovel);
     });
   }
 
   updateImovel() {
-    console.log(this.imovel);
-    this.alertify.success('Atualizado com sucesso');
-    this.editForm.reset(this.imovel);
+    this.imovelService.updateImovel(1, this.imovel).subscribe(next => {
+      this.alertify.success('Atualizado com sucesso');
+      this.editForm.reset(this.imovel);
+    }, error => {
+      this.alertify.error(error);
+    });
   }
 
 }
