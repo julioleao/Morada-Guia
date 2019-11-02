@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -35,6 +36,22 @@ namespace MoradaGuia.API.Controllers
             var imovel = await _repo.GetImovel(id);
             var imovelToReturn = _mapper.Map<ImovelForDetailedDto>(imovel);
             return Ok(imovelToReturn);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateImovel(int id, ImovelForUpdateDto imovelForUpdateDto)
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var imovelFromRepo = await _repo.GetImovel(id);
+
+            _mapper.Map(imovelForUpdateDto, imovelFromRepo);
+
+            if (await _repo.SaveAll())
+                return NoContent();
+
+            throw new System.Exception($"Updating imovel {id} failed on save");
         }
     }
 }
