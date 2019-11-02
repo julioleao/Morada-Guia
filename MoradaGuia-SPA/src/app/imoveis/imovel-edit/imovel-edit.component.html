@@ -37,14 +37,6 @@
             <tabset class="member-tabset"> 
               <tab heading="Editar moradia:">
                 <form #editForm="ngForm" id="editForm" (ngSubmit)="updateImovel()">
-                  <h4>Quantidade de quartos: </h4>
-                  <input type="number" name="qtdQuarto" class="form-control" [(ngModel)]="imovel.qtdQuarto">
-                  <h4>Quantidade de banheiros:</h4>
-                  <input type="number" name="qtdBanheiro" class="form-control" [(ngModel)]="imovel.qtdBanheiro">
-                  <h4>Garagem: </h4>
-                  <input type="number" name="garagem" class="form-control" [(ngModel)]="imovel.garagem">
-                  <h2>Valor: R$ </h2>
-                  <input type="number" name="valor" class="form-control" [(ngModel)]="imovel.valor">
                   <h4>Detalhes da Localização</h4>
                   <div class="form-inline">
                     <label for="rua">Rua</label>
@@ -54,6 +46,19 @@
                     <label for="bairro">Bairro</label>
                     <input class="form-control" type="text" name="bairro" [(ngModel)]="imovel.bairro">
                   </div>
+                  <h4>Tipo da moradia: </h4>
+                  <select name="tipo" class="form-control" [(ngModel)]="imovel.tipo">
+                    <option value="Casa">Casa</option>
+                    <option value="Pensionato">Pensionato</option>
+                  </select>
+                  <h4>Quantidade de quartos: </h4>
+                  <input type="number" name="qtdQuarto" class="form-control" [(ngModel)]="imovel.qtdQuarto">
+                  <h4>Quantidade de banheiros:</h4>
+                  <input type="number" name="qtdBanheiro" class="form-control" [(ngModel)]="imovel.qtdBanheiro">
+                  <h4>Garagem: </h4>
+                  <input type="number" name="garagem" class="form-control" [(ngModel)]="imovel.garagem">
+                  <h2>Valor: R$ </h2>
+                  <input type="number" name="valor" class="form-control" [(ngModel)]="imovel.valor">
                 </form>
               </tab>
               <tab heading="Editar fotos">
