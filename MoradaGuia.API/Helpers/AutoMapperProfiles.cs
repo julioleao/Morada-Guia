@@ -9,13 +9,14 @@ namespace MoradaGuia.API.Helpers
     {
         public AutoMapperProfiles()
         {
-            CreateMap<User, UserForListDto>()
+            CreateMap<Imovel, ImovelForListDto>()
                 .ForMember(dest => dest.UrlFoto, opt => opt.MapFrom(src =>
                     src.Fotos.FirstOrDefault(p => p.Principal).Url));
-            CreateMap<User, UserForDetailedDto>()
+            CreateMap<Imovel, ImovelForDetailedDto>()
                 .ForMember(dest => dest.UrlFoto, opt => opt.MapFrom(src =>
                     src.Fotos.FirstOrDefault(p => p.Principal).Url));
             CreateMap<Photo, PhotosForDetailedDto>();
+            CreateMap<ImovelForUpdateDto, Imovel>();
         }
     }
 }

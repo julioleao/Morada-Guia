@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MoradaGuia.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191029230949_ExtendedUserClass")]
-    partial class ExtendedUserClass
+    [Migration("20191031190535_newdb2")]
+    partial class newdb2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,18 +46,11 @@ namespace MoradaGuia.API.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Bairro")
-                        .IsRequired()
-                        .HasMaxLength(30);
+                    b.Property<string>("Bairro");
 
                     b.Property<DateTime>("Data");
 
-                    b.Property<string>("Email_FK");
-
                     b.Property<int>("Garagem");
-
-                    b.Property<byte[]>("Imagem")
-                        .IsRequired();
 
                     b.Property<int>("Numero");
 
@@ -65,19 +58,17 @@ namespace MoradaGuia.API.Migrations
 
                     b.Property<int>("Qtd_Quarto");
 
-                    b.Property<string>("Rua")
-                        .IsRequired()
-                        .HasMaxLength(40);
+                    b.Property<string>("Rua");
 
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasMaxLength(20);
+                    b.Property<string>("Tipo");
+
+                    b.Property<int>("UserId");
 
                     b.Property<float>("Valor");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email_FK");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Imovel");
                 });
@@ -87,19 +78,15 @@ namespace MoradaGuia.API.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DataAdded");
-
-                    b.Property<string>("Descricao");
+                    b.Property<int>("ImovelId");
 
                     b.Property<bool>("Principal");
 
                     b.Property<string>("Url");
 
-                    b.Property<int>("UserId");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ImovelId");
 
                     b.ToTable("Photos");
                 });
@@ -111,25 +98,17 @@ namespace MoradaGuia.API.Migrations
 
                     b.Property<DateTime>("Criado");
 
-                    b.Property<string>("Email")
-                        .HasMaxLength(30);
+                    b.Property<string>("Email");
 
-                    b.Property<byte[]>("PasswordHash")
-                        .HasMaxLength(20);
+                    b.Property<byte[]>("PasswordHash");
 
-                    b.Property<byte[]>("PasswordSalt")
-                        .HasMaxLength(20);
+                    b.Property<byte[]>("PasswordSalt");
 
                     b.Property<DateTime>("UltimoLogin");
 
-                    b.Property<string>("Username")
-                        .HasMaxLength(20);
+                    b.Property<string>("Username");
 
-                    b.Property<string>("sobrenome")
-                        .HasMaxLength(40);
-
-                    b.Property<int>("telefone")
-                        .HasMaxLength(15);
+                    b.Property<string>("telefone");
 
                     b.HasKey("Id");
 
@@ -166,18 +145,6 @@ namespace MoradaGuia.API.Migrations
                     b.ToTable("Usuario");
                 });
 
-            modelBuilder.Entity("MoradaGuia.API.Models.Value", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Values");
-                });
-
             modelBuilder.Entity("MoradaGuia.API.Models.Comentario", b =>
                 {
                     b.HasOne("MoradaGuia.API.Models.Usuario", "Usuario")
@@ -192,16 +159,17 @@ namespace MoradaGuia.API.Migrations
 
             modelBuilder.Entity("MoradaGuia.API.Models.Imovel", b =>
                 {
-                    b.HasOne("MoradaGuia.API.Models.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("Email_FK");
+                    b.HasOne("MoradaGuia.API.Models.User", "User")
+                        .WithMany("Imovels")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("MoradaGuia.API.Models.Photo", b =>
                 {
-                    b.HasOne("MoradaGuia.API.Models.User", "User")
+                    b.HasOne("MoradaGuia.API.Models.Imovel", "Imovel")
                         .WithMany("Fotos")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("ImovelId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
