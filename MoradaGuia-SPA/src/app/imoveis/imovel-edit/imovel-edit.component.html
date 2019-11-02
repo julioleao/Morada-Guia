@@ -4,8 +4,8 @@
       <h1>Sua Moradia</h1>
     </div>
     <div class="col-sm-8">
-      <div class="alert alert-info">
-        <p><strong>Informação:</strong> Voce editou seu perfil. Salve antes de sair!</p>
+      <div *ngIf="editForm.dirty" class="alert alert-info">
+        <strong>Informação:</strong> Voce editou seu perfil. Salve antes de sair!
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@
             </div>
           </div>
           <div class="card-footer">
-            <button class="btn btn-primary btn-block">Salvar</button>
+            <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-primary btn-block">Salvar</button>
           </div>
         </div>
       </div>
@@ -36,11 +36,11 @@
           <div class="tab-panel">
             <tabset class="member-tabset"> 
               <tab heading="Editar moradia:">
-                <form>
+                <form #editForm="ngForm" id="editForm" (ngSubmit)="updateImovel()">
                   <h4>Quantidade de quartos: </h4>
-                  <input type="number" name="quartos" class="form-control" [(ngModel)]="imovel.qtdQuarto">
+                  <input type="number" name="qtdQuarto" class="form-control" [(ngModel)]="imovel.qtdQuarto">
                   <h4>Quantidade de banheiros:</h4>
-                  <input type="number" name="banheiros" class="form-control" [(ngModel)]="imovel.qtdBanheiro">
+                  <input type="number" name="qtdBanheiro" class="form-control" [(ngModel)]="imovel.qtdBanheiro">
                   <h4>Garagem: </h4>
                   <input type="number" name="garagem" class="form-control" [(ngModel)]="imovel.garagem">
                   <h2>Valor: R$ </h2>
