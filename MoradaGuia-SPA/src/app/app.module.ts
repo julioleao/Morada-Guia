@@ -23,8 +23,9 @@ import { ImovelDetailComponent } from './imoveis/imovel-detail/imovel-detail.com
 import { ImovelService } from './_services/imovel.service';
 import { ImovelDetailResolver } from './_resolvers/imovel-detail.resolver';
 import { ImovelListResolver } from './_resolvers/imovel-list.resolver';
-
-
+import { ImovelEditComponent } from './imoveis/imovel-edit/imovel-edit.component';
+import { UserEditComponent } from './user/user-edit/user-edit.component';
+import { ImovelEditResolver } from './_resolvers/imovel-edit.resolver';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -47,7 +48,9 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       ListsComponent,
       MessagesComponent,
       ImoveisCardComponent,
-      ImovelDetailComponent
+      ImovelDetailComponent,
+      ImovelEditComponent,
+      UserEditComponent
    ],
    imports: [
       BrowserModule,
@@ -72,6 +75,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       ImovelService,
       ImovelDetailResolver,
       ImovelListResolver,
+      ImovelEditResolver,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],
    bootstrap: [
