@@ -1,0 +1,31 @@
+[
+  '{{repeat(5)}}',
+  {
+    Username: '{{firstName("female")}}',
+    Email: '{{email([random])}}',
+    Password: '1234',
+    Telefone: '{{phone()}}',
+    Criado: '{{date(new Date(2017,0,1), new Date(2017, 7, 31), "YYYY-MM-dd")}}',
+    UltimoLogin: function(){return this.Criado; },
+    Imovels: [
+      {
+    Tipo: 'Casa',
+    Rua: '{{street()}}',
+    Numero: '{{integer(0, 1000)}}',
+    Bairro: 'Centro',
+    Valor: '{{floating(250, 1000, 2)}}',
+    Qtd_Quarto: '{{integer(2, 6)}}',
+    Qtd_Banheiro: '{{integer(1, 3)}}',
+    Garagem: '{{integer(0, 4)}}',
+    Data: '{{date(new Date(2019,0,1), new Date(2019, 10, 31), "YYYY-MM-dd")}}',
+        Photo: [
+            {
+              Url: 'https://images.pexels.com/photos/463996/pexels-photo-463996.jpeg?cs=srgb&dl=architecture-country-daylight-463996.jpg&fm=jpg',
+
+            Principal: true
+          }
+        ]
+      }
+    ]
+  }
+]

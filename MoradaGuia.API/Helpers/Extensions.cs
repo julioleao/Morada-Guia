@@ -11,5 +11,6 @@ namespace MoradaGuia.API.Helpers
             response.Headers.Add("Access-Control-Allow-Origin","*");
         }
         
+        
     }
 }
