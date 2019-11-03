@@ -18,7 +18,8 @@ namespace MoradaGuia.API.Models
         public int Garagem { get; set; }
         public DateTime Data { get; set; }
         public ICollection<Photo> Fotos { get; set; }
-        public User User { get; set; }
         public int UserId { get; set; }
+        [ForeignKey("UserId")]
+        public User User { get; set; }
     }
 }

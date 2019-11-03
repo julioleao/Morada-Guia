@@ -15,7 +15,7 @@ using MoradaGuia.API.Models;
 namespace MoradaGuia.API.Controllers
 {
     [Authorize]
-    [Route("api/imoveis/{imovelId}/photos")]
+    [Route("api/[controller]")]
     public class PhotosController : ControllerBase
     {
         private readonly IMoradaRepository _repo;
