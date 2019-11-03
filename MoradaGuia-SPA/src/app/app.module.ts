@@ -6,6 +6,7 @@ import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -26,6 +27,7 @@ import { ImovelListResolver } from './_resolvers/imovel-list.resolver';
 import { ImovelEditComponent } from './imoveis/imovel-edit/imovel-edit.component';
 import { ImovelEditResolver } from './_resolvers/imovel-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { PhotoEditorComponent } from './imoveis/photo-editor/photo-editor.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -49,7 +51,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MessagesComponent,
       ImoveisCardComponent,
       ImovelDetailComponent,
-      ImovelEditComponent
+      ImovelEditComponent,
+      PhotoEditorComponent
    ],
    imports: [
       BrowserModule,
@@ -59,6 +62,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       TabsModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       NgxGalleryModule,
+      FileUploadModule,
       JwtModule.forRoot({
          config: {
             tokenGetter,
