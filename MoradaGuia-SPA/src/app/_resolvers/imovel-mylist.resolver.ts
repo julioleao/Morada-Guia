@@ -5,17 +5,15 @@ import { ImovelService } from '../_services/imovel.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AuthService } from '../_services/auth.service';
 
 @Injectable()
-export class ImovelEditResolver implements Resolve<Imovel[]> {
-    constructor(private imovelService: ImovelService, private authService: AuthService,
-                private router: Router, private alertify: AlertifyService) {}
+export class ImovelMyListResolver implements Resolve<Imovel[]> {
+    constructor(private imovelService: ImovelService, private router: Router, private alertify: AlertifyService) {}
     resolve(route: ActivatedRouteSnapshot): Observable<Imovel[]> {
-        return this.imovelService.getImovel(route.params.id).pipe(
+        return this.imovelService.getImoveis().pipe(
             catchError(error => {
-                this.alertify.error('Problem retrieving data from imoveis');
-                this.router.navigate(['/imoveis']);
+                this.alertify.error('Problem retrieving data list');
+                this.router.navigate(['/home']);
                 return of(null);
             })
         );
