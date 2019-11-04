@@ -34,6 +34,13 @@ namespace MoradaGuia.API.Data
             return imovel;
         }
 
+        public async Task<Photo> GetPhoto(int id)
+        {
+            var photo = await _context.Photos.FirstOrDefaultAsync(p => p.Id == id);
+
+            return photo;
+        }
+
         public async Task<User> GetUser(int id)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);

@@ -49,6 +49,12 @@
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "type": "npm",
+            "script": "ng",
+            "path": "MoradaGuia-SPA/",
+            "problemMatcher": []
         }
     ]
 }
