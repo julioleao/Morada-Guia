@@ -56,14 +56,10 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       ImoveisCardComponent,
       ImovelDetailComponent,
       ImovelEditComponent,
-<<<<<<< HEAD
-      PhotoEditorComponent,
-      ImovelListToEditComponent
-=======
       MyimoveisComponent,
       ImoveisCardUserComponent,
-      PhotoEditorComponent
->>>>>>> 2b190af7b8fa6854e36287da9b12874b691ed87e
+      PhotoEditorComponent,
+      ImovelListToEditComponent
    ],
    imports: [
       BrowserModule,
