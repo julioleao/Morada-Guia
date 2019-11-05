@@ -21,7 +21,6 @@ export class ImovelListComponent implements OnInit {
     });
   }
 
-
   // loadImoveis() {
   //   this.imovelService.getImoveis().subscribe((imoveis: Imovel[]) => {
   //     this.imoveis = imoveis;
