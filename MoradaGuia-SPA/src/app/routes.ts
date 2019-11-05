@@ -12,6 +12,7 @@ import { ImovelEditResolver } from './_resolvers/imovel-edit.resolver';
 import { ImovelMyListResolver } from './_resolvers/imovel-mylist.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { MyimoveisComponent } from './imoveis/myimoveis/myimoveis.component';
+import { ImovelListToEditComponent } from './imoveis/imovel-listToEdit/imovel-listToEdit.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},

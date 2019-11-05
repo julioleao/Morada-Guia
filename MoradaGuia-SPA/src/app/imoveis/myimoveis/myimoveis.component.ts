@@ -19,21 +19,25 @@ export class MyimoveisComponent implements OnInit {
               private authService: AuthService) { }
 
   ngOnInit() {
-    let pos = 0;
+    this.route.data.subscribe(data => {
+      this.imoveis = data['imoveis'];
+    });
+
+    /*let pos = 0;
     this.userId = this.authService.decodedToken.nameid;
 
     this.route.data.subscribe(data => {
       this.imoveis = data.imoveis;
 
+      // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.imoveis.length; i++) {
-        if (this.imoveis[i].id == this.userId) {
+        if (this.imoveis[i].id === this.userId) {
           this.arrImoveis[pos] = this.imoveis[i];
           pos++;
         }
       }
 
       this.imoveis = this.arrImoveis;
-    });
+    });*/
   }
-
 }
