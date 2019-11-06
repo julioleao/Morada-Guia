@@ -7,5 +7,6 @@ export interface User {
     telefone: string;
     criado: Date;
     ultimoLogin: Date;
+
     imovels?: Imovel[];
 }

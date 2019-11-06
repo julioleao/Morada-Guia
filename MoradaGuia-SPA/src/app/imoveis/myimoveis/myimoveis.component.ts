@@ -6,11 +6,11 @@ import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
-  selector: 'app-imovel-list',
-  templateUrl: './imovel-list.component.html',
-  styleUrls: ['./imovel-list.component.css']
+  selector: 'app-myimoveis',
+  templateUrl: './myimoveis.component.html',
+  styleUrls: ['./myimoveis.component.css']
 })
-export class ImovelListComponent implements OnInit {
+export class MyimoveisComponent implements OnInit {
   userId: any;
   imoveis: Imovel[];
   arrImoveis: Imovel[] = new Array();
@@ -19,17 +19,25 @@ export class ImovelListComponent implements OnInit {
               private authService: AuthService) { }
 
   ngOnInit() {
-    console.log('component');
+    this.route.data.subscribe(data => {
+      this.imoveis = data['imoveis'];
+    });
+
+    /*let pos = 0;
+    this.userId = this.authService.decodedToken.nameid;
+
     this.route.data.subscribe(data => {
       this.imoveis = data.imoveis;
-    });
-  }
 
-  // loadImoveis() {
-  //   this.imovelService.getImoveis().subscribe((imoveis: Imovel[]) => {
-  //     this.imoveis = imoveis;
-  //   }, error => {
-  //     this.alertify.error(error);
-  //   });
-  // }
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.imoveis.length; i++) {
+        if (this.imoveis[i].id === this.userId) {
+          this.arrImoveis[pos] = this.imoveis[i];
+          pos++;
+        }
+      }
+
+      this.imoveis = this.arrImoveis;
+    });*/
+  }
 }

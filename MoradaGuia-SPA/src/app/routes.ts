@@ -9,11 +9,13 @@ import { ImovelDetailResolver } from './_resolvers/imovel-detail.resolver';
 import { ImovelListResolver } from './_resolvers/imovel-list.resolver';
 import { ImovelEditComponent } from './imoveis/imovel-edit/imovel-edit.component';
 import { ImovelEditResolver } from './_resolvers/imovel-edit.resolver';
+import { ImovelMyListResolver } from './_resolvers/imovel-mylist.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
+import { MyimoveisComponent } from './imoveis/myimoveis/myimoveis.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -25,8 +27,9 @@ export const appRoutes: Routes = [
             { path: 'members', component: MemberListComponent, resolve: {users: MemberListResolver}},
             { path: 'members/:id', component: MemberDetailComponent, resolve: {user: MemberDetailResolver}},
             { path: 'imoveis', component: ImovelListComponent, resolve: {imoveis: ImovelListResolver}},
+            { path: 'myimoveis', component: MyimoveisComponent, resolve: {imoveis: ImovelMyListResolver}},
             { path: 'imoveis/:id', component: ImovelDetailComponent, resolve: {imovel: ImovelDetailResolver}},
-            { path: 'imovel/edit', component: ImovelEditComponent,
+            { path: 'imovel/edit/:id', component: ImovelEditComponent,
                 resolve: {imovel: ImovelEditResolver}, canDeactivate: [PreventUnsavedChanges]},
             { path: 'messages', component: MessagesComponent},
             { path: 'lists', component: ListsComponent},

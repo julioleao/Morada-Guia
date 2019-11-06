@@ -27,6 +27,9 @@ import { ImovelListResolver } from './_resolvers/imovel-list.resolver';
 import { ImovelEditComponent } from './imoveis/imovel-edit/imovel-edit.component';
 import { ImovelEditResolver } from './_resolvers/imovel-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { ImovelMyListResolver } from './_resolvers/imovel-mylist.resolver';
+import { MyimoveisComponent } from './imoveis/myimoveis/myimoveis.component';
+import { ImoveisCardUserComponent } from './imoveis/imoveis-card-user/imoveis-card-user.component';
 import { PhotoEditorComponent } from './imoveis/photo-editor/photo-editor.component';
 import { UserService } from './_services/user.service';
 import { MemberListComponent } from './members/member-list/member-list.component';
@@ -61,6 +64,9 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       ImovelEditComponent,
       MemberCardComponent,
       MemberDetailComponent,
+      PhotoEditorComponent,
+      MyimoveisComponent,
+      ImoveisCardUserComponent,
       PhotoEditorComponent
    ],
    imports: [
@@ -92,6 +98,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberDetailResolver,
       MemberListResolver,
       UserService,
+      ImovelMyListResolver,
       PreventUnsavedChanges,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],

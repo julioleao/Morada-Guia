@@ -10,6 +10,7 @@ import { catchError } from 'rxjs/operators';
 export class ImovelListResolver implements Resolve<Imovel[]> {
     constructor(private imovelService: ImovelService, private router: Router, private alertify: AlertifyService) {}
     resolve(route: ActivatedRouteSnapshot): Observable<Imovel[]> {
+        console.log('resolver');
         return this.imovelService.getImoveis().pipe(
             catchError(error => {
                 this.alertify.error('Problem retrieving data list');
