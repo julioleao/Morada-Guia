@@ -26,7 +26,9 @@ namespace MoradaGuia.API.Data
         {
             var imoveis = await _context.Imovel.Include(p => p.Fotos).ToListAsync();
 
-            return imoveis;        }
+            return imoveis;        
+            
+        }
 
         public async Task<Imovel> GetImovel(int id)
         {
@@ -49,7 +51,8 @@ namespace MoradaGuia.API.Data
 
         public async Task<IEnumerable<User>> GetUsers()
         {
-            var users = await _context.Users.ToListAsync();
+               
+            var users = await _context.Users.Include(p => p.Imovels).ToListAsync();;
 
             return users;
         }

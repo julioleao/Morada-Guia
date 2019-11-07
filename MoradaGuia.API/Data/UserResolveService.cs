@@ -16,10 +16,10 @@ namespace MoradaGuia.API.Data
 
     public async Task<string> GetCurrentSessionUserId(IdentityDbContext dbContext)
     {
-        var currentSessionUserEmail = httpContextAccessor.HttpContext.User.Identity.Name;
+        var currentSessionUserId = httpContextAccessor.HttpContext.User.Identity.Name;
 
         var user = await dbContext.Users                
-            .SingleAsync(u => u.Email.Equals(currentSessionUserEmail));
+            .SingleAsync(u => u.Id.Equals(currentSessionUserId));
         return user.Id;
     }
 }

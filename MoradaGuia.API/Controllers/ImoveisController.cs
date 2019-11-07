@@ -16,8 +16,11 @@ namespace MoradaGuia.API.Controllers
     {
         private readonly IMoradaRepository _repo;
         private readonly IMapper _mapper;
-        public ImoveisController(IMoradaRepository repo, IMapper mapper)
+        private readonly IAuthRepository _repoauth;
+
+        public ImoveisController(IMoradaRepository repo, IMapper mapper, IAuthRepository repoauth)
         {
+            _repoauth = repoauth;
             _mapper = mapper;
             _repo = repo;
         }
@@ -25,6 +28,8 @@ namespace MoradaGuia.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetImoveis()
         {
+            UserForLoginDto userForLoginDto = new UserForLoginDto();
+            var userFromRepo = await _repoauth.Login(userForLoginDto.Username, userForLoginDto.Password);
             var imoveis = await _repo.GetImoveis();
             var imoveisToReturn = _mapper.Map<IEnumerable<ImovelForListDto>>(imoveis);
             return Ok(imoveisToReturn);
