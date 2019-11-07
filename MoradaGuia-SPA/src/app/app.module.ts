@@ -31,6 +31,12 @@ import { ImovelMyListResolver } from './_resolvers/imovel-mylist.resolver';
 import { MyimoveisComponent } from './imoveis/myimoveis/myimoveis.component';
 import { ImoveisCardUserComponent } from './imoveis/imoveis-card-user/imoveis-card-user.component';
 import { PhotoEditorComponent } from './imoveis/photo-editor/photo-editor.component';
+import { UserService } from './_services/user.service';
+import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberCardComponent } from './members/member-card/member-card.component';
+import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
+import { MemberListResolver } from './_resolvers/member-list.resolver';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -50,11 +56,15 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       HomeComponent,
       RegisterComponent,
       ImovelListComponent,
+      MemberListComponent,
       ListsComponent,
       MessagesComponent,
       ImoveisCardComponent,
       ImovelDetailComponent,
       ImovelEditComponent,
+      MemberCardComponent,
+      MemberDetailComponent,
+      PhotoEditorComponent,
       MyimoveisComponent,
       ImoveisCardUserComponent,
       PhotoEditorComponent
@@ -85,6 +95,9 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       ImovelDetailResolver,
       ImovelListResolver,
       ImovelEditResolver,
+      MemberDetailResolver,
+      MemberListResolver,
+      UserService,
       ImovelMyListResolver,
       PreventUnsavedChanges,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
