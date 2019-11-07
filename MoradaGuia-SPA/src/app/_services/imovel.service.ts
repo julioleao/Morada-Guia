@@ -25,4 +25,12 @@ export class ImovelService {
     return this.http.put(this.baseUrl + 'imoveis/' + id, imovel);
   }
 
+  setMainPhoto(imovelId: number, id: number) {
+    return this.http.post(this.baseUrl + 'imoveis/' + imovelId + '/photos/' + id + '/principal', {});
+  }
+
+  deletePhoto(imovelId: number, id: number) {
+    return this.http.delete(this.baseUrl + 'imoveis/' + imovelId + '/photos/' + id);
+  }
+
 }

@@ -87,12 +87,80 @@ namespace MoradaGuia.API.Controllers
                 {
                     var photoToReturn = _mapper.Map<PhotoForReturnDto>(photo);
 
-                    return CreatedAtRoute("GetPhoto", new { id = photo.Id}, photoToReturn);
+                    return CreatedAtRoute("GetPhoto", new {id = photo.Id}, photoToReturn);
                 }
 
                 return BadRequest("Não foi possível inserir esta imagem!");
             }
-
         }
+
+        [HttpPost("{id}/principal")]
+        public async Task<IActionResult> SetMainPhoto(int imovelId, int id)
+        {
+            if (imovelId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            return Unauthorized();
+
+            var imovel = await _repo.GetImovel(imovelId);
+
+            if (!imovel.Fotos.Any(p => p.Id == id))
+            {
+                return Unauthorized();
+            }
+            var photoFromRepo = await _repo.GetPhoto(id);
+
+            if (photoFromRepo.Principal)
+                return BadRequest ("Esta já é a foto principal!");
+            
+            var currentMainPhoto = await _repo.GetMainPhotoForImovel(imovelId);
+            currentMainPhoto.Principal = false;
+
+            photoFromRepo.Principal = true;
+
+            if (await _repo.SaveAll())
+                return NoContent();
+
+            return BadRequest("Foto não pode ser a principal");
+        }
+
+        [HttpDelete("{id}")]
+
+        public async Task<IActionResult> DeletePhoto(int imovelId, int id)
+        {
+            if (imovelId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            return Unauthorized();
+
+            var imovel = await _repo.GetImovel(imovelId);
+
+            if (!imovel.Fotos.Any(p => p.Id == id))
+            {
+                return Unauthorized();
+            }
+            var photoFromRepo = await _repo.GetPhoto(id);
+
+            if (photoFromRepo.Principal)
+                return BadRequest ("Foto principal não pode ser apagada!");
+
+            if (photoFromRepo.Principal != null)
+            {
+                var deleteParams = new DeletionParams(photoFromRepo.PublicId);
+
+                var result = _cloudinary.Destroy(deleteParams);
+
+                if (result.Result == "ok") {
+                    _repo.Delete(photoFromRepo);
+                }
+
+            }
+
+            if (photoFromRepo.PublicId == null) {
+                _repo.Delete(photoFromRepo);
+            }
+
+            if (await _repo.SaveAll())
+                return Ok();
+
+            return BadRequest("Falha ao deletar a foto!");
+        }
+
     }
 }

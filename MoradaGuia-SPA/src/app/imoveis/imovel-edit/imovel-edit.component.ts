@@ -38,4 +38,8 @@ export class ImovelEditComponent implements OnInit {
     });
   }
 
+  updateMainPhoto(photoUrl) {
+    this.imovel.urlFoto = photoUrl;
+  }
+
 }
