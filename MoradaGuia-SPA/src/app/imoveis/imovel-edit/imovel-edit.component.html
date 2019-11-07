@@ -62,7 +62,8 @@
                 </form>
               </tab>
               <tab heading="Editar fotos">
-                  <app-photo-editor [photos]="imovel.fotos"></app-photo-editor>
+                  <app-photo-editor [photos]="imovel.fotos"
+                  (getImovelPhotoChange)="updateMainPhoto($event)"></app-photo-editor>
               </tab>
             </tabset>
           </div>

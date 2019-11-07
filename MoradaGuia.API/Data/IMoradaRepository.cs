@@ -14,5 +14,6 @@ namespace MoradaGuia.API.Data
          Task<IEnumerable<Imovel>> GetImoveis();
          Task<Imovel> GetImovel(int id);
          Task<Photo> GetPhoto(int id);
+         Task<Photo> GetMainPhotoForImovel(int imovelId);
     }
 }

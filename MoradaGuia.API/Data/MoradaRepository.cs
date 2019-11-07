@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoradaGuia.API.Models;
@@ -34,6 +35,11 @@ namespace MoradaGuia.API.Data
         {
             var imovel = await _context.Imovel.Include(p => p.Fotos).FirstOrDefaultAsync(u => u.Id == id);
             return imovel;
+        }
+        // Função Where sendo utilizada
+        public async Task<Photo> GetMainPhotoForImovel(int imovelId)
+        {
+            return await _context.Photos.Where(i => i.ImovelId == imovelId).FirstOrDefaultAsync(p => p.Principal);
         }
 
         public async Task<Photo> GetPhoto(int id)
