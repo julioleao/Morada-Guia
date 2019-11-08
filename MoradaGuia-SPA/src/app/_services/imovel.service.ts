@@ -33,4 +33,8 @@ export class ImovelService {
     return this.http.delete(this.baseUrl + 'imoveis/' + imovelId + '/photos/' + id);
   }
 
+  getImoveisFromUser(userId: number): Observable<Imovel[]> {
+    return this.http.get<Imovel[]>(this.baseUrl + 'imoveis/user/' + userId);
+  }
+
 }

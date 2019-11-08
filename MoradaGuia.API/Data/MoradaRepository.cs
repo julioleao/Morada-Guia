@@ -34,6 +34,12 @@ namespace MoradaGuia.API.Data
             var imovel = await _context.Imovel.Include(p => p.Fotos).FirstOrDefaultAsync(u => u.Id == id);
             return imovel;
         }
+        // Mostar imoveis do usuário logado
+        public async Task<IEnumerable<Imovel>> GetImovelFromUser(int userId)
+        {
+            return await _context.Imovel.Where(i => i.UserId == userId).Include(i => i.Fotos).ToListAsync();
+        }
+
         // Função Where sendo utilizada
         public async Task<Photo> GetMainPhotoForImovel(int imovelId)
         {

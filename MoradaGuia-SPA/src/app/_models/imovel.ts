@@ -1,4 +1,5 @@
 import { Photo } from './photo';
+import { User } from './user';
 
 export interface Imovel {
     id: number;
@@ -12,5 +13,7 @@ export interface Imovel {
     garagem: number;
     data: Date;
     urlFoto: string;
+    userId: number;
+    user: User;
     fotos?: Photo[];
 }

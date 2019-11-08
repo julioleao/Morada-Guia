@@ -10,6 +10,8 @@ import { ImovelListResolver } from './_resolvers/imovel-list.resolver';
 import { ImovelEditComponent } from './imoveis/imovel-edit/imovel-edit.component';
 import { ImovelEditResolver } from './_resolvers/imovel-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { ImovelFromUserResolver } from './_resolvers/imovel-from-user.resolver';
+import { ImovelFromUserComponent } from './imoveis/ImovelFromUser/ImovelFromUser.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -18,8 +20,12 @@ export const appRoutes: Routes = [
         runGuardsAndResolvers: 'always',
         canActivate: [AuthGuard],
         children: [
-            { path: 'imoveis', component: ImovelListComponent, resolve: {imoveis: ImovelListResolver}},
-            { path: 'imoveis/:id', component: ImovelDetailComponent, resolve: {imovel: ImovelDetailResolver}},
+            { path: 'imoveis', component: ImovelListComponent,
+                resolve: {imoveis: ImovelListResolver}},
+            { path: 'imoveis/:id', component: ImovelDetailComponent,
+                resolve: {imovel: ImovelDetailResolver}},
+            { path: 'imoveis/user/:id', component: ImovelFromUserComponent,
+                resolve: {imoveis: ImovelFromUserResolver}},
             { path: 'imovel/edit', component: ImovelEditComponent,
                 resolve: {imovel: ImovelEditResolver}, canDeactivate: [PreventUnsavedChanges]},
             { path: 'messages', component: MessagesComponent},

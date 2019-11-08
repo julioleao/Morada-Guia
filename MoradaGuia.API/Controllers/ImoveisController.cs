@@ -37,6 +37,16 @@ namespace MoradaGuia.API.Controllers
             var imovelToReturn = _mapper.Map<ImovelForDetailedDto>(imovel);
             return Ok(imovelToReturn);
         }
+        [HttpGet("user/{id}")]
+        public async Task<IActionResult> GetImovelFromUser(int id)
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+                
+            var imovel = await _repo.GetImovelFromUser(id);
+            var imovelToReturn = _mapper.Map<IEnumerable<ImovelFromUserDto>>(imovel);
+            return Ok(imovelToReturn);
+        }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateImovel(int id, ImovelForUpdateDto imovelForUpdateDto)

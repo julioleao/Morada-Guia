@@ -28,6 +28,8 @@ import { ImovelEditComponent } from './imoveis/imovel-edit/imovel-edit.component
 import { ImovelEditResolver } from './_resolvers/imovel-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './imoveis/photo-editor/photo-editor.component';
+import { ImovelFromUserResolver } from './_resolvers/imovel-from-user.resolver';
+import { ImovelFromUserComponent } from './imoveis/ImovelFromUser/ImovelFromUser.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -52,6 +54,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       ImoveisCardComponent,
       ImovelDetailComponent,
       ImovelEditComponent,
+      ImovelFromUserComponent,
       PhotoEditorComponent
    ],
    imports: [
@@ -79,6 +82,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       ImovelDetailResolver,
       ImovelListResolver,
       ImovelEditResolver,
+      ImovelFromUserResolver,
       PreventUnsavedChanges,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],
