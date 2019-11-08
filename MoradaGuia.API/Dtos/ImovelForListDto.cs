@@ -19,5 +19,6 @@ namespace MoradaGuia.API.Dtos
         public string UrlFoto { get; set; }
         public ICollection<PhotosForDetailedDto> Fotos { get; set; }
         public User User { get; set; }
+        public int UserId { get; set; }
     }
 }
