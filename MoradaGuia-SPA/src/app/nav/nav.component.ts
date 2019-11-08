@@ -11,6 +11,7 @@ import { User } from '../_models/user';
 })
 export class NavComponent implements OnInit {
   model: any = {};
+  @Input() user: User;
 
   constructor(public authService: AuthService, private alertify: AlertifyService, private router: Router) { }
 
