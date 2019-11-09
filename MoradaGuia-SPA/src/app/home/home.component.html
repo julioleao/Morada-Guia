@@ -1,16 +1,42 @@
-<div class="container mt-5">
-  <div *ngIf="!registerMode" style="text-align: center">
-    <h1>Encontre sua moradia</h1>
-    <div class="text-center">
-      <button class="btn btn-primary btn-lg" (click)="registerToggle()">Cadastrar</button>
+<carousel>
+  <slide>
+    <img src="https://res.cloudinary.com/dpyt7xsiy/image/upload/v1572813405/carousel1_qtpuiu.png" alt="first slide" style="display: block; width: 100%;">
+    <div class="carousel-caption d-none d-md-block">
+      <h3>Quartos de todos os tipos</h3>
+      <p>Individual, compartilhado, tem para todos os gostos e bolso.</p>
     </div>
-  </div>
+  </slide>
+  <slide>
+    <img src="https://res.cloudinary.com/dpyt7xsiy/image/upload/v1572813405/carousel3_ysote3.jpg" alt="second slide" style="display: block; width: 100%;">
+    <div class="carousel-caption d-none d-md-block">
+      <h3>É reservado?</h3>
+      <p>Há um lugar para você aqui!</p>
+    </div>
+  </slide>
+      
+  <slide>
+    <img src="https://res.cloudinary.com/dpyt7xsiy/image/upload/v1572813404/carousel2_pynlsb.jpg" alt="third slide" style="display: block; width: 100%;">
+    <div class="carousel-caption d-none d-md-block">
+      <h3>Conheça gente nova</h3>
+      <p>Ganhe novos amigos com a galera da rep.</p>
+    </div>
+  </slide> 
+</carousel>
 
-  <div *ngIf="registerMode" class="container">
-    <div class="row justify-content-center">
-      <div class="col-4">
-        <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
-      </div>
+<div class="jumbotron justify-content-center" *ngIf="!registerMode" style="text-align: center">
+  <h1 class="display-4">Encontre sua moradia</h1>
+  <p class="lead">Casas, repúblicas, pensionatos, apartamentos e quitinetes.</p>
+  <hr class="my-4">
+  <p>Encontre o melhor preço, o melhor lugar e as melhores pessoas.</p>
+  <p class="lead">
+    <button class="btn btn-primary btn-lg" (click)="registerToggle()">Cadastra-se aqui</button>
+  </p>
+</div>
+
+<div class="jumbotron" *ngIf="registerMode" style="text-align: center">
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
     </div>
   </div>
 </div>

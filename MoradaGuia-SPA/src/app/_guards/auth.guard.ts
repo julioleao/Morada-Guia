@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
     if (this.authService.loggedIn()) {
       return true;
     }
-    this.alertify.error('You are not permitted to do that!!!');
+    this.alertify.error('Acesso negado');
     this.router.navigate(['/home']);
     return false;
   }

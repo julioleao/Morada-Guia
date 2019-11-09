@@ -27,7 +27,8 @@ namespace MoradaGuia.API.Data
         {
             var imoveis = await _context.Imovel.Include(p => p.Fotos).ToListAsync();
 
-            return imoveis;        }
+            return imoveis;        
+        }
 
         public async Task<Imovel> GetImovel(int id)
         {

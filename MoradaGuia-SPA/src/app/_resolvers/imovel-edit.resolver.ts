@@ -14,7 +14,7 @@ export class ImovelEditResolver implements Resolve<Imovel[]> {
     resolve(route: ActivatedRouteSnapshot): Observable<Imovel[]> {
         return this.imovelService.getImovel(1).pipe(
             catchError(error => {
-                this.alertify.error('Problem retrieving data from imoveis');
+                this.alertify.error('Problema para receber dados de imóveis');
                 this.router.navigate(['/imoveis']);
                 return of(null);
             })

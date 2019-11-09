@@ -12,7 +12,7 @@ export class ImovelDetailResolver implements Resolve<Imovel> {
     resolve(route: ActivatedRouteSnapshot): Observable<Imovel> {
         return this.imovelService.getImovel(route.params.id).pipe(
             catchError(error => {
-                this.alertify.error('Problem retrieving data details');
+                this.alertify.error('Problemas para receber os dados');
                 this.router.navigate(['/imoveis']);
                 return of(null);
             })

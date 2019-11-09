@@ -18,7 +18,6 @@ export const appRoutes: Routes = [
     {
         path: '',
         runGuardsAndResolvers: 'always',
-        canActivate: [AuthGuard],
         children: [
             { path: 'imoveis', component: ImovelListComponent,
                 resolve: {imoveis: ImovelListResolver}},

@@ -9,7 +9,7 @@ using MoradaGuia.API.Dtos;
 
 namespace MoradaGuia.API.Controllers
 {
-    [Authorize]
+    // [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ImoveisController : ControllerBase

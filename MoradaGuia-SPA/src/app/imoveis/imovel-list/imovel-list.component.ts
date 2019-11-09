@@ -17,7 +17,7 @@ export class ImovelListComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.imoveis = data['imoveis'];
+      this.imoveis = data.imoveis;
     });
   }
 
