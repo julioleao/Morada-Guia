@@ -77,5 +77,10 @@ namespace MoradaGuia.API.Data
         {
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task<Like> GetLike(int userId, int imovelId)
+        {
+            return await _context.Likes.FirstOrDefaultAsync(i => i.LikerId == userId && i.ImovelLikeId == imovelId);
+        }
     }
 }

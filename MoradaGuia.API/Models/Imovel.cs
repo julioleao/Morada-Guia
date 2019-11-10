@@ -20,5 +20,6 @@ namespace MoradaGuia.API.Models
         public ICollection<Photo> Fotos { get; set; }
         public User User { get; set; }
         public int UserId { get; set; }
+        public ICollection<Like> Liker { get; set; }
     }
 }
