@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using MoradaGuia.API.Helpers;
 using MoradaGuia.API.Models;
 
 namespace MoradaGuia.API.Data
@@ -23,11 +25,15 @@ namespace MoradaGuia.API.Data
             _context.Remove(entity);
         }
 
-        public async Task<IEnumerable<Imovel>> GetImoveis()
+        public async Task<PagedList<Imovel>> GetImoveis(ImovelParams imovelParams)
         {
-            var imoveis = await _context.Imovel.Include(p => p.Fotos).ToListAsync();
+            var imoveis = _context.Imovel.Include(p => p.Fotos).AsQueryable();
 
-            return imoveis;        
+            //imoveis = imoveis.Where(i => i.Id != imovelParams.ImovelId);
+            imoveis = imoveis.Where(i => i.Tipo == imovelParams.Tipo);
+            imoveis = imoveis.Where(i => i.Valor >= imovelParams.ValorMin && i.Valor <= imovelParams.ValorMax);
+
+            return await PagedList<Imovel>.CreateAsync(imoveis, imovelParams.PageNumber, imovelParams.PageSize);        
         }
 
         public async Task<Imovel> GetImovel(int id)

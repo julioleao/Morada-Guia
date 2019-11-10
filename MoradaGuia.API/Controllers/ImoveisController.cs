@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MoradaGuia.API.Data;
 using MoradaGuia.API.Dtos;
+using MoradaGuia.API.Helpers;
 
 namespace MoradaGuia.API.Controllers
 {
@@ -23,10 +24,24 @@ namespace MoradaGuia.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetImoveis()
+        public async Task<IActionResult> GetImoveis([FromQuery]ImovelParams imovelParams)
         {
-            var imoveis = await _repo.GetImoveis();
+            //var currentImovelId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            var imovelFromRepo = await _repo.GetImovel(2);
+            
+            
+            if (string.IsNullOrEmpty(imovelParams.Tipo))
+            {
+                imovelParams.Tipo = imovelFromRepo.Tipo == "Pensionato" ? "Casa" : "Casa";
+            }
+
+            var imoveis = await _repo.GetImoveis(imovelParams);
             var imoveisToReturn = _mapper.Map<IEnumerable<ImovelForListDto>>(imoveis);
+
+            Response.AddPagination(imoveis.CurrentPage, imoveis.PageSize,
+                imoveis.TotalCount, imoveis.TotalPages);
+
             return Ok(imoveisToReturn);
         }
 

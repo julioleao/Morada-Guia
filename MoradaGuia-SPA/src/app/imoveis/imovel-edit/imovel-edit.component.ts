@@ -4,6 +4,7 @@ import { Imovel } from 'src/app/_models/imovel';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { NgForm } from '@angular/forms';
 import { ImovelService } from 'src/app/_services/imovel.service';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-imovel-edit',
@@ -21,7 +22,7 @@ export class ImovelEditComponent implements OnInit {
     }
   }
   constructor(private route: ActivatedRoute, private alertify: AlertifyService,
-              private imovelService: ImovelService) { }
+              private imovelService: ImovelService, private authService: AuthService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
