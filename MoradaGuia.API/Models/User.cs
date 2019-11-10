@@ -15,6 +15,6 @@ namespace MoradaGuia.API.Models
         public DateTime Criado { get; set; }
         public DateTime UltimoLogin { get; set; }
         public ICollection<Imovel> Imovels { get; set; }
-        
+        public ICollection<Like> ImovelLike { get; set; }
     }
 }
