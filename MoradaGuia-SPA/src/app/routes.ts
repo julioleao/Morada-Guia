@@ -11,25 +11,22 @@ import { ImovelEditComponent } from './imoveis/imovel-edit/imovel-edit.component
 import { ImovelEditResolver } from './_resolvers/imovel-edit.resolver';
 import { ImovelMyListResolver } from './_resolvers/imovel-mylist.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
-import { MemberListComponent } from './members/member-list/member-list.component';
-import { MemberDetailComponent } from './members/member-detail/member-detail.component';
-import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
-import { MemberListResolver } from './_resolvers/member-list.resolver';
-import { MyimoveisComponent } from './imoveis/myimoveis/myimoveis.component';
+import { ImovelFromUserResolver } from './_resolvers/imovel-from-user.resolver';
+import { ImovelFromUserComponent } from './imoveis/ImovelFromUser/ImovelFromUser.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
     {
         path: '',
         runGuardsAndResolvers: 'always',
-        canActivate: [AuthGuard],
         children: [
-            { path: 'members', component: MemberListComponent, resolve: {users: MemberListResolver}},
-            { path: 'members/:id', component: MemberDetailComponent, resolve: {user: MemberDetailResolver}},
-            { path: 'imoveis', component: ImovelListComponent, resolve: {imoveis: ImovelListResolver}},
-            { path: 'myimoveis', component: MyimoveisComponent, resolve: {imoveis: ImovelMyListResolver}},
-            { path: 'imoveis/:id', component: ImovelDetailComponent, resolve: {imovel: ImovelDetailResolver}},
-            { path: 'imovel/edit/:id', component: ImovelEditComponent,
+            { path: 'imoveis', component: ImovelListComponent,
+                resolve: {imoveis: ImovelListResolver}},
+            { path: 'imoveis/:id', component: ImovelDetailComponent,
+                resolve: {imovel: ImovelDetailResolver}},
+            { path: 'imoveis/user/:id', component: ImovelFromUserComponent,
+                resolve: {imoveis: ImovelFromUserResolver}},
+            { path: 'imovel/edit', component: ImovelEditComponent,
                 resolve: {imovel: ImovelEditResolver}, canDeactivate: [PreventUnsavedChanges]},
             { path: 'messages', component: MessagesComponent},
             { path: 'lists', component: ListsComponent},

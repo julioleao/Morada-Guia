@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { Router } from '@angular/router';
-import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
-import { Imovel } from '../_models/imovel';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-nav',
@@ -13,6 +12,7 @@ import { Imovel } from '../_models/imovel';
 export class NavComponent implements OnInit {
   imoveis: Imovel[];
   model: any = {};
+  @Input() user: User;
 
   constructor(public authService: AuthService, private alertify: AlertifyService, private router: Router, private route: ActivatedRoute) { }
 
@@ -25,7 +25,7 @@ export class NavComponent implements OnInit {
 
   login() {
     this.authService.login(this.model).subscribe(next => {
-      this.alertify.success('Logged in successfully');
+      this.alertify.success('Login realizado com sucesso!!');
     }, error => {
       this.alertify.error(error);
     }, () => {

@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MoradaGuia.API.Data;
 using MoradaGuia.API.Dtos;
+using MoradaGuia.API.Helpers;
 
 namespace MoradaGuia.API.Controllers
 {
-    [Authorize]
+    // [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ImoveisController : ControllerBase
@@ -26,12 +27,24 @@ namespace MoradaGuia.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetImoveis()
+        public async Task<IActionResult> GetImoveis([FromQuery]ImovelParams imovelParams)
         {
-            UserForLoginDto userForLoginDto = new UserForLoginDto();
-            var userFromRepo = await _repoauth.Login(userForLoginDto.Username, userForLoginDto.Password);
-            var imoveis = await _repo.GetImoveis();
+            //var currentImovelId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            var imovelFromRepo = await _repo.GetImovel(2);
+            
+            
+            if (string.IsNullOrEmpty(imovelParams.Tipo))
+            {
+                imovelParams.Tipo = imovelFromRepo.Tipo == "Pensionato" ? "Casa" : "Casa";
+            }
+
+            var imoveis = await _repo.GetImoveis(imovelParams);
             var imoveisToReturn = _mapper.Map<IEnumerable<ImovelForListDto>>(imoveis);
+
+            Response.AddPagination(imoveis.CurrentPage, imoveis.PageSize,
+                imoveis.TotalCount, imoveis.TotalPages);
+
             return Ok(imoveisToReturn);
         }
 
@@ -40,6 +53,16 @@ namespace MoradaGuia.API.Controllers
         {
             var imovel = await _repo.GetImovel(id);
             var imovelToReturn = _mapper.Map<ImovelForDetailedDto>(imovel);
+            return Ok(imovelToReturn);
+        }
+        [HttpGet("user/{id}")]
+        public async Task<IActionResult> GetImovelFromUser(int id)
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+                
+            var imovel = await _repo.GetImovelFromUser(id);
+            var imovelToReturn = _mapper.Map<IEnumerable<ImovelFromUserDto>>(imovel);
             return Ok(imovelToReturn);
         }
 
