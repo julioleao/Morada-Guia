@@ -2,27 +2,31 @@ using System;
 using System.Threading.Tasks;
 using MoradaGuia.API.Models;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace MoradaGuia.API.Data
 {
+
     public class AuthRepository : IAuthRepository
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
         private readonly DataContext _context;
-        public AuthRepository(DataContext context)
+        public AuthRepository(DataContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
-
+            _httpContextAccessor = httpContextAccessor;
         }
         public async Task<User> Login(string username, string password)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Username == username);
 
-            if(user == null)
+            if (user == null)
                 return null;
-            
-            if(!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
-            return null;
+
+            if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+                return null;
 
             return user;
         }
@@ -61,7 +65,7 @@ namespace MoradaGuia.API.Data
                 passwordSalt = hmac.Key;
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
-            
+
         }
 
         public async Task<bool> UserExists(string username)
@@ -70,6 +74,15 @@ namespace MoradaGuia.API.Data
                 return true;
 
             return false;
+        }
+
+        public async Task<string> GetCurrentSessionUserId(IdentityDbContext dbContext)
+        {
+            var currentSessionUserId = _httpContextAccessor.HttpContext.User.Identity.Name;
+
+            var user = await dbContext.Users
+                .SingleAsync(u => u.Id.Equals(currentSessionUserId));
+            return user.Id;
         }
     }
 }

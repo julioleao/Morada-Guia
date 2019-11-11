@@ -1,8 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { Photo } from 'src/app/_models/photo';
-import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/_services/auth.service';
+import { environment } from 'src/environments/environment';
+import { ImovelService } from 'src/app/_services/imovel.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { OutletContext } from '@angular/router';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-photo-editor',
@@ -11,11 +15,13 @@ import { AuthService } from 'src/app/_services/auth.service';
 })
 export class PhotoEditorComponent implements OnInit {
   @Input() photos: Photo[];
+  @Output() getImovelPhotoChange = new EventEmitter();
   uploader: FileUploader;
   hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
+  currentMain: Photo;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private imovelService: ImovelService, private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.initializeUploader();
@@ -24,11 +30,11 @@ export class PhotoEditorComponent implements OnInit {
   public fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
   }
-
+  // Verificar rotas da imagem
   initializeUploader() {
     this.uploader = new FileUploader({
       url: this.baseUrl + 'imoveis/' + this.authService.decodedToken.nameid + '/photos',
-      authToken: 'Bearer' + localStorage.getItem('token'),
+      authToken: 'Bearer ' + localStorage.getItem('token'),
       isHTML5: true,
       allowedFileType: ['image'],
       removeAfterUpload: true,
@@ -51,4 +57,25 @@ export class PhotoEditorComponent implements OnInit {
     };
   }
 
+  setMainPhoto(photo: Photo) {
+    this.imovelService.setMainPhoto(this.authService.decodedToken.nameid, photo.id).subscribe(() => {
+      this.currentMain = this.photos.filter(p => p.principal === true)[0];
+      this.currentMain.principal = false;
+      photo.principal = true;
+      this.getImovelPhotoChange.emit(photo.url);
+    }, error => {
+      this.alertify.error(error);
+    });
+  }
+
+  deletePhoto(id: number) {
+    this.alertify.confirm('Tem certeza que deseja apagar a foto?', () => {
+      this.imovelService.deletePhoto(this.authService.decodedToken.nameid, id).subscribe(() => {
+        this.photos.splice(this.photos.findIndex(p => p.id === id), 1);
+        this.alertify.success('Foto apagada com sucesso');
+      }, error => {
+        this.alertify.error('Falha ao apagar a foto');
+      });
+    });
+  }
 }
