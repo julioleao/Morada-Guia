@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { User } from '../_models/user';
+import { Imovel } from '../_models/imovel';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,10 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-registerImovel(model: any) {
-  return this.http.post(this.baseUrl + 'register-imovel', model);
-}
+  registerImovel(imovel: Imovel) {
+    return this.http.post(this.baseUrl + 'register-imovel', imovel);
+  }
+
   login(model: any) {
     return this.http.post(this.baseUrl + 'login', model)
     .pipe(
@@ -40,5 +42,4 @@ registerImovel(model: any) {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);
   }
-
 }

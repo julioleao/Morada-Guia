@@ -45,6 +45,20 @@ namespace MoradaGuia.API.Controllers
             return CreatedAtRoute("GetUser", new {controller = "Users", id = createdUser.Id}, userToReturn);
         }
 
+        [HttpPost("register-imovel")]
+        public async Task<IActionResult> RegisterImovel(ImovelForRegisterDto imovelForRegisterDto)
+        {
+            
+
+            var imovelToCreate = _mapper.Map<Imovel>(imovelForRegisterDto);
+
+            var createdImovel = await _repo.RegisterImovel(imovelToCreate);
+
+            var imovelToReturn = _mapper.Map<ImovelForDetailedDto>(createdImovel);
+
+            return CreatedAtRoute("GetImovel", new {controller = "Imoveis", id = createdImovel.Id}, imovelToReturn);
+        }
+
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
