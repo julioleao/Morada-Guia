@@ -10,5 +10,7 @@ namespace MoradaGuia.API.Dtos
         public int QtdQuarto { get; set; }
         public int QtdBanheiro { get; set; }
         public int Garagem { get; set; }
+        public int UserId { get; set; }
+
     }
 }

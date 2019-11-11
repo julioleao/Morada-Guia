@@ -14,6 +14,7 @@ import { UserEditComponent } from '../user/user-edit/user-edit.component';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  imoveis: Imovel[];
   model: any = {};
   @Input() imovel: Imovel;
   @Input() user: User;
@@ -21,9 +22,12 @@ export class NavComponent implements OnInit {
   userProfile = UserEditComponent;
   editImovel = ImovelEditComponent;
 
-  constructor(public authService: AuthService, private alertify: AlertifyService, private router: Router) { }
+  constructor(public authService: AuthService, private alertify: AlertifyService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.data.subscribe(data => {
+      this.imoveis = data['imoveis'];
+    });
   }
 
 

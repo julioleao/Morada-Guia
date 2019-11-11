@@ -18,6 +18,7 @@ namespace MoradaGuia.API.Dtos
         public DateTime Data { get; set; }
         public string UrlFoto { get; set; }
         public ICollection<PhotosForDetailedDto> Fotos { get; set; }
+        public int UserId { get; set; }
         public User User { get; set; }
     }
 }

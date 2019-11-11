@@ -2,7 +2,9 @@ import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angu
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+
 import { BsDropdownModule, TabsModule, CarouselModule, PaginationModule } from 'ngx-bootstrap';
+
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from 'ngx-gallery';
@@ -35,7 +37,7 @@ import { UserService } from './_services/user.service';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { IgxCardModule } from 'igniteui-angular';
+
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -83,8 +85,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
         blacklistedRoutes: ['localhost:5000/api/auth']
       }
     }),
-    BrowserAnimationsModule,
-    IgxCardModule
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,

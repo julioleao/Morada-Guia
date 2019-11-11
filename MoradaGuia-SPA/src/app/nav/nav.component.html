@@ -16,11 +16,13 @@
           <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" [routerLink]="['/messages']" routerLinkActive="router-link-active" >Messages</a>
           </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/members']" routerLinkActive="router-link-active" >Membros</a>
+          </li>
         </ul>
     
-        
         <ul class="navbar-nav ml-auto">
-          <div *ngIf="loggedIn()" class="dropdown ml-auto" dropdown>
+          <div *ngIf="loggedIn()" class="dropdown" dropdown>
             <a class="dropdown-toggle text-light" dropdownToggle>
               Bem vindo, {{authService.decodedToken.unique_name | titlecase}}
             </a>
@@ -38,7 +40,6 @@
             <button [disabled]="!loginForm.valid" class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
           </form>
         </ul>
-        
       </div>
   </div>
 </nav>

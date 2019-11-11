@@ -18,9 +18,11 @@ export class ImovelListComponent implements OnInit {
   imovelParams: any = {};
   pagination: Pagination; */
 
-  constructor(private imovelService: ImovelService, private alertify: AlertifyService, private route: ActivatedRoute) { }
+  constructor(private imovelService: ImovelService, private alertify: AlertifyService, private route: ActivatedRoute,
+              private authService: AuthService) { }
 
   ngOnInit() {
+    console.log('component');
     this.route.data.subscribe(data => {
       this.imoveis = data.imoveis; // .result;
       // this.pagination = data.imoveis.pagination;

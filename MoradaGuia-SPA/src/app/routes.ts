@@ -1,4 +1,4 @@
-import {Routes} from '@angular/router';
+import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ImovelListComponent } from './imoveis/imovel-list/imovel-list.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -9,6 +9,7 @@ import { ImovelDetailResolver } from './_resolvers/imovel-detail.resolver';
 import { ImovelListResolver } from './_resolvers/imovel-list.resolver';
 import { ImovelEditComponent } from './imoveis/imovel-edit/imovel-edit.component';
 import { ImovelEditResolver } from './_resolvers/imovel-edit.resolver';
+import { ImovelMyListResolver } from './_resolvers/imovel-mylist.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { ImovelFromUserResolver } from './_resolvers/imovel-from-user.resolver';
 import { ImovelFromUserComponent } from './imoveis/ImovelFromUser/ImovelFromUser.component';
