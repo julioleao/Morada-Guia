@@ -1,12 +1,15 @@
 import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BsDropdownModule, TabsModule, CarouselModule } from 'ngx-bootstrap';
+import { FormsModule } from '@angular/forms';
+
+import { BsDropdownModule, TabsModule, CarouselModule, PaginationModule } from 'ngx-bootstrap';
+
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -31,13 +34,9 @@ import { ImovelMyListResolver } from './_resolvers/imovel-mylist.resolver';
 import { MyimoveisComponent } from './imoveis/myimoveis/myimoveis.component';
 import { ImoveisCardUserComponent } from './imoveis/imoveis-card-user/imoveis-card-user.component';
 import { PhotoEditorComponent } from './imoveis/photo-editor/photo-editor.component';
-import { UserService } from './_services/user.service';
-import { MemberListComponent } from './members/member-list/member-list.component';
-import { MemberCardComponent } from './members/member-card/member-card.component';
-import { MemberDetailComponent } from './members/member-detail/member-detail.component';
-import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
-import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { RegisterImovelComponent } from './register/register-imovel/register-imovel.component';
+import { ImovelFromUserResolver } from './_resolvers/imovel-from-user.resolver';
+import { ImovelFromUserComponent } from './imoveis/ImovelFromUser/ImovelFromUser.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -58,26 +57,22 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       RegisterComponent,
       RegisterImovelComponent,
       ImovelListComponent,
-      MemberListComponent,
       ListsComponent,
       MessagesComponent,
       ImoveisCardComponent,
       ImovelDetailComponent,
       ImovelEditComponent,
-      MemberCardComponent,
-      MemberDetailComponent,
+      ImovelFromUserComponent,
       PhotoEditorComponent,
-      MyimoveisComponent,
-      ImoveisCardUserComponent,
-      PhotoEditorComponent,
+      TimeAgoPipe
    ],
    imports: [
       BrowserModule,
       HttpClientModule,
       FormsModule,
-      ReactiveFormsModule,
-      CarouselModule.forRoot(),
+      CarouselModule. forRoot(),
       BsDropdownModule.forRoot(),
+      PaginationModule.forRoot(),
       TabsModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       NgxGalleryModule,
@@ -98,10 +93,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       ImovelDetailResolver,
       ImovelListResolver,
       ImovelEditResolver,
-      MemberDetailResolver,
-      MemberListResolver,
-      UserService,
-      ImovelMyListResolver,
+      ImovelFromUserResolver,
       PreventUnsavedChanges,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],

@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using MoradaGuia.API.Models;
 
-namespace MoradaGuia.API.Models
+namespace MoradaGuia.API.Dtos
 {
-    public class Imovel
+    public class ImovelFromUserDto
     {
+        
         public int Id { get; set; }
         public string Tipo { get; set; }
         public string Rua { get; set; }
@@ -17,8 +17,10 @@ namespace MoradaGuia.API.Models
         public int QtdBanheiro { get; set; }
         public int Garagem { get; set; }
         public DateTime Data { get; set; }
-        public ICollection<Photo> Fotos { get; set; }
+        public string UrlFoto { get; set; }
+        public ICollection<PhotosForDetailedDto> Fotos { get; set; }
+        public User User { get; set; }
         public int UserId { get; set; }
-        public ICollection<Like> Liker { get; set; }
+        
     }
 }

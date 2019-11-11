@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using MoradaGuia.API.Helpers;
 using MoradaGuia.API.Models;
 
 namespace MoradaGuia.API.Data
@@ -23,12 +25,15 @@ namespace MoradaGuia.API.Data
             _context.Remove(entity);
         }
 
-        public async Task<IEnumerable<Imovel>> GetImoveis()
+        public async Task<PagedList<Imovel>> GetImoveis(ImovelParams imovelParams)
         {
-            var imoveis = await _context.Imovel.Include(p => p.Fotos).ToListAsync();
+            var imoveis = _context.Imovel.Include(p => p.Fotos).AsQueryable();
 
-            return imoveis;        
-            
+            //imoveis = imoveis.Where(i => i.Id != imovelParams.ImovelId);
+            imoveis = imoveis.Where(i => i.Tipo == imovelParams.Tipo);
+            imoveis = imoveis.Where(i => i.Valor >= imovelParams.ValorMin && i.Valor <= imovelParams.ValorMax);
+
+            return await PagedList<Imovel>.CreateAsync(imoveis, imovelParams.PageNumber, imovelParams.PageSize);        
         }
 
         public async Task<Imovel> GetImovel(int id)
@@ -36,6 +41,12 @@ namespace MoradaGuia.API.Data
             var imovel = await _context.Imovel.Include(p => p.Fotos).FirstOrDefaultAsync(u => u.Id == id);
             return imovel;
         }
+        // Mostar imoveis do usuário logado
+        public async Task<IEnumerable<Imovel>> GetImovelFromUser(int userId)
+        {
+            return await _context.Imovel.Where(i => i.UserId == userId).Include(i => i.Fotos).ToListAsync();
+        }
+
         // Função Where sendo utilizada
         public async Task<Photo> GetMainPhotoForImovel(int imovelId)
         {
@@ -66,6 +77,11 @@ namespace MoradaGuia.API.Data
         public async Task<bool> SaveAll()
         {
             return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<Like> GetLike(int userId, int imovelId)
+        {
+            return await _context.Likes.FirstOrDefaultAsync(i => i.LikerId == userId && i.ImovelLikeId == imovelId);
         }
     }
 }

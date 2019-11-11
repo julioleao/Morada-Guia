@@ -6,7 +6,7 @@
       </button>
     
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto">
           <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" [routerLink]="['/imoveis']">Imoveis</a>
           </li>
@@ -30,8 +30,10 @@
               Bem vindo, {{authService.decodedToken.unique_name | titlecase}}
             </a>
             <div class="dropdown-menu mt-3" *dropdownMenu>
-              <a class="dropdown-item"><i class="fa fa-user mr-1"></i>Editar perfil</a>
-              <a class="dropdown-item" [routerLink]="['/myimoveis']"><i class="fa fa-home mr-1"></i>Meus imóveis</a>
+
+              <a class="dropdown-item" [routerLink]="['/imoveis/user/1']"><i class="fa fa-user mr-1"></i>Editar perfil</a>
+              <a class="dropdown-item" [routerLink]="['/imovel/edit']"><i class="fa fa-home mr-1"></i>Meus Imóveis</a>
+              <a class="dropdown-item" [routerLink]="['/imoveis/user/1']"><i class="fa fa-home mr-1"></i>Meus Imóveis2</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i>Sair</a>
             </div>

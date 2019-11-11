@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MoradaGuia.API.Data;
 using MoradaGuia.API.Dtos;
+using MoradaGuia.API.Models;
 
 namespace MoradaGuia.API.Controllers
 {
@@ -36,6 +38,33 @@ namespace MoradaGuia.API.Controllers
             var user = await _repo.GetUser(id);
             var userToReturn = _mapper.Map<UserForDetailedDto>(user);
             return Ok(userToReturn);
+        }
+
+        [HttpPost("{id}/like/{imovelId}")]
+        public async Task<IActionResult> LikeUser(int id, int imovelId)
+        {
+             if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+            var like = await _repo.GetLike(id, imovelId);
+
+            if (like != null)
+                return BadRequest("Você já favoritou este imovel!");
+            
+            if (await _repo.GetUser(imovelId) == null)
+                return NotFound();
+
+            like = new Like
+            {
+                LikerId = id,
+                ImovelLikeId= imovelId
+            };
+
+            _repo.Add<Like>(like);
+
+            if(await _repo.SaveAll())
+                return Ok();
+
+            return BadRequest("Falha ao favoritar");
         }
 
     }

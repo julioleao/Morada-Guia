@@ -12318,17 +12318,20 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+
       "projectUniqueName": "C:\\Users\\alexa\\MoradaGuia\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
       "projectName": "MoradaGuia.API",
       "projectPath": "C:\\Users\\alexa\\MoradaGuia\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
       "packagesPath": "C:\\Users\\alexa\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\alexa\\MoradaGuia\\Morada-Guia\\MoradaGuia.API\\obj\\",
+
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
         "C:\\Users\\alexa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
