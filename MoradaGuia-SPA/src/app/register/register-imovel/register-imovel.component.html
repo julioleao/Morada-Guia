@@ -1,0 +1,20 @@
+<div class="jumbotron d-flex justify-content-center" style="text-align: center">
+  <form #registerForm="ngForm" (ngSubmit)="registerImovel()">
+    <h2 class="text-center text-primary">Registre seu Imóvel</h2>
+    <hr>
+    
+    <div class="form-group">
+      <input type="text" class="form-control" required name="endereco" [(ngModel)]="model.endereco" placeholder="Avenida/Rua">
+    </div>
+    
+    <div class="form-group">
+      <input type="number" class="form-control" required name="numero" [(ngModel)]="model.numero" placeholder="Numero do endereço">
+    </div>
+    
+    <div class="form-group text-center">
+      <button class="btn btn-success" type="submit">Register</button>
+      <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
+    </div>
+      
+  </form>
+</div>

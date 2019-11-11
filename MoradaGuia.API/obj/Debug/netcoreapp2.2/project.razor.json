@@ -2956,7 +2956,7 @@
         }
       }
     ],
-    "CSharpLanguageVersion": 703
+    "CSharpLanguageVersion": 800
   },
   "RootNamespace": "MoradaGuia.API",
   "Documents": [],

@@ -19,7 +19,6 @@ export class ImovelListComponent implements OnInit {
               private authService: AuthService) { }
 
   ngOnInit() {
-    console.log('component');
     this.route.data.subscribe(data => {
       this.imoveis = data.imoveis;
     });

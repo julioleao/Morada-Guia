@@ -16,6 +16,7 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { MyimoveisComponent } from './imoveis/myimoveis/myimoveis.component';
+import { RegisterImovelComponent } from './register/register-imovel/register-imovel.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -33,6 +34,7 @@ export const appRoutes: Routes = [
                 resolve: {imovel: ImovelEditResolver}, canDeactivate: [PreventUnsavedChanges]},
             { path: 'messages', component: MessagesComponent},
             { path: 'lists', component: ListsComponent},
+            { path: 'register-imovel', component: RegisterImovelComponent},
         ]
     },
    { path: '**', redirectTo: '', pathMatch: 'full'},

@@ -1,7 +1,7 @@
 import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule, TabsModule, CarouselModule } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './register/register-user/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
 import { ImovelListComponent } from './imoveis/imovel-list/imovel-list.component';
@@ -37,6 +37,7 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
+import { RegisterImovelComponent } from './register/register-imovel/register-imovel.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -55,6 +56,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       NavComponent,
       HomeComponent,
       RegisterComponent,
+      RegisterImovelComponent,
       ImovelListComponent,
       MemberListComponent,
       ListsComponent,
@@ -67,12 +69,13 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       PhotoEditorComponent,
       MyimoveisComponent,
       ImoveisCardUserComponent,
-      PhotoEditorComponent
+      PhotoEditorComponent,
    ],
    imports: [
       BrowserModule,
       HttpClientModule,
       FormsModule,
+      ReactiveFormsModule,
       CarouselModule.forRoot(),
       BsDropdownModule.forRoot(),
       TabsModule.forRoot(),
