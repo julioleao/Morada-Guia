@@ -20,6 +20,8 @@ namespace MoradaGuia.API.Helpers
                     src.Fotos.FirstOrDefault(p => p.Principal).Url));
             CreateMap<Photo, PhotosForDetailedDto>();
             CreateMap<ImovelForUpdateDto, Imovel>();
+            CreateMap<UserForUpdateDto, User>();
+            CreateMap<User, UserForDetailedDto>();
             CreateMap<Photo, PhotoForReturnDto>();
             CreateMap<PhotoForCreationDto, Photo>();
         }

@@ -6,15 +6,17 @@ import { AlertifyService } from '../_services/alertify.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from '../_services/auth.service';
+import { User } from '../_models/user';
+import { UserService } from '../_services/user.service';
 
 @Injectable()
-export class ImovelEditResolver implements Resolve<Imovel[]> {
-    constructor(private imovelService: ImovelService, private authService: AuthService,
+export class UserEditResolver implements Resolve<User> {
+    constructor(private userService: UserService, private authService: AuthService,
                 private router: Router, private alertify: AlertifyService) {}
-    resolve(route: ActivatedRouteSnapshot): Observable<Imovel[]> {
-        return this.imovelService.getImovel(route.params.id).pipe(
+    resolve(route: ActivatedRouteSnapshot): Observable<User> {
+        return this.userService.getUser(route.params.id).pipe(
             catchError(error => {
-                this.alertify.error('Problema para receber dados de imóveis');
+                this.alertify.error('Problema para receber dados de usuários');
                 this.router.navigate(['/imoveis']);
                 return of(null);
             })

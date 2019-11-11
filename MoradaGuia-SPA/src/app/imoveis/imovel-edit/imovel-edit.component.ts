@@ -32,7 +32,7 @@ export class ImovelEditComponent implements OnInit {
   }
 
   updateImovel() {
-    this.imovelService.updateImovel(1, this.imovel).subscribe(next => {
+    this.imovelService.updateImovel(this.imovel).subscribe(next => {
       this.alertify.success('Atualizado com sucesso');
       this.editForm.reset(this.imovel);
     }, error => {

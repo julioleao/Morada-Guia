@@ -1,0 +1,35 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-4">
+      <h1>{{authService.decodedToken.unique_name | titlecase}}</h1>
+    </div>
+    <div class="col-sm-8">
+      <div *ngIf="editForm.dirty" class="alert alert-info">
+        <strong>Informação:</strong> Voce editou seu perfil. Salve antes de sair!
+      </div>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-sm-12">
+          <div class="tab-panel">
+            <tabset class="member-tabset"> 
+              <tab heading="Editar perfil">
+                <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()">
+                  <div class="form">
+                    <label for="nome">Nome</label>
+                    <input class="form-control" type="text" name="nome" [(ngModel)]="user.username">
+                    <label for="email" class="mt-2">E-mail</label>
+                    <input class="form-control" type="email" name="email" [(ngModel)]="user.email">
+                    <label for="telefone" class="mt-2">Telefone</label>
+                    <input class="form-control" type="tel" name="telefone" [(ngModel)]="user.telefone">
+                  </div>      
+                </form>
+              </tab>
+              <div class="card-footer">
+                <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-primary btn-block">Salvar</button>
+              </div>
+            </tabset>
+          </div>
+      </div>
+    </div>
+  </div>

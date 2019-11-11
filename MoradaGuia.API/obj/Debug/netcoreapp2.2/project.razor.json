@@ -1,5 +1,5 @@
 {
-  "FilePath": "c:\\Users\\samue\\Documents\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
+  "FilePath": "c:\\Users\\julio\\Documents\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-2.1",
     "LanguageVersion": "2.1",
@@ -2956,7 +2956,7 @@
         }
       }
     ],
-    "CSharpLanguageVersion": 800
+    "CSharpLanguageVersion": 703
   },
   "RootNamespace": "MoradaGuia.API",
   "Documents": [],

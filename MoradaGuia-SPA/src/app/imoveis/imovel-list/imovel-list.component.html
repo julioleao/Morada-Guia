@@ -1,10 +1,10 @@
-<div class="text-center mt-3">
+<!-- <div class="text-center mt-3">
   <h2>{{pagination.totalItems}} moradia(s) encontra(s)</h2>
-</div>
+</div> -->
 
 
 <div class="container mt-3">
-  
+<!--   
   <form class="form-inline" #form="ngForm" (ngSubmit)="loadImoveis()" novalidate>
     <div class="form-group">
       <label for="valorMin">Valor MIN</label>
@@ -58,14 +58,14 @@
     
   </form>
 
-  <br>
+  <br> -->
   <div class="row">
     <div *ngFor="let imovel of imoveis" class="col-lg-2 col-md-3 col-sm-6">
       <app-imoveis-card [imovel]="imovel"></app-imoveis-card>
     </div>
   </div>
 </div>
-
+<!-- 
 <div class="d-flex justify-content-center">
   <pagination [boundaryLinks]="true"
   [totalItems]="pagination.totalItems"
@@ -74,4 +74,4 @@
   (pageChanged)="pageChanged($event)"
   previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"> 
 </pagination>
-</div>
+</div> -->

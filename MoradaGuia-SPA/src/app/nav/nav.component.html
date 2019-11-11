@@ -25,9 +25,9 @@
               Bem vindo, {{authService.decodedToken.unique_name | titlecase}}
             </a>
             <div class="dropdown-menu mt-3" *dropdownMenu>
-              <a class="dropdown-item" [routerLink]="['/imoveis/user/1']"><i class="fa fa-user mr-1"></i>Editar perfil</a>
-              <a class="dropdown-item" [routerLink]="['/imovel/edit']"><i class="fa fa-home mr-1"></i>Meus Imóveis</a>
-              <a class="dropdown-item" [routerLink]="['/imoveis/user/1']"><i class="fa fa-home mr-1"></i>Meus Imóveis2</a>
+              <a class="dropdown-item" [routerLink]="['/users/', authService.decodedToken.nameid]"><i class="fa fa-user mr-1" (click)="userProfile"></i>Editar perfil</a>
+              <!-- <a class="dropdown-item" [routerLink]="['/imovel/edit/4']"><i class="fa fa-home mr-1"></i>Editar Imóveis</a> -->
+              <a class="dropdown-item" [routerLink]="['/imoveis/user/', authService.decodedToken.nameid]"><i class="fa fa-home mr-1"></i>Meus Imóveis</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i>Sair</a>
             </div>
