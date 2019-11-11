@@ -27,7 +27,6 @@ export class ImovelEditComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.imovel = data.imovel;
-      console.log(this.imovel);
     });
   }
 

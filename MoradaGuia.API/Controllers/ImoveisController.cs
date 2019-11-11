@@ -17,8 +17,11 @@ namespace MoradaGuia.API.Controllers
     {
         private readonly IMoradaRepository _repo;
         private readonly IMapper _mapper;
-        public ImoveisController(IMoradaRepository repo, IMapper mapper)
+        private readonly IAuthRepository _repoauth;
+
+        public ImoveisController(IMoradaRepository repo, IMapper mapper, IAuthRepository repoauth)
         {
+            _repoauth = repoauth;
             _mapper = mapper;
             _repo = repo;
         }

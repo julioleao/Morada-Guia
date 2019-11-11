@@ -68,7 +68,8 @@ namespace MoradaGuia.API.Data
 
         public async Task<IEnumerable<User>> GetUsers()
         {
-            var users = await _context.Users.ToListAsync();
+               
+            var users = await _context.Users.Include(p => p.Imovels).ToListAsync();;
 
             return users;
         }

@@ -1,0 +1,248 @@
+diff --git a/MoradaGuia-SPA/src/app/app.module.ts b/MoradaGuia-SPA/src/app/app.module.ts
+index 2001713..9397387 100644
+--- a/MoradaGuia-SPA/src/app/app.module.ts
++++ b/MoradaGuia-SPA/src/app/app.module.ts
+@@ -28,6 +28,12 @@ import { ImovelEditComponent } from './imoveis/imovel-edit/imovel-edit.component
+ import { ImovelEditResolver } from './_resolvers/imovel-edit.resolver';
+ import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+ import { PhotoEditorComponent } from './imoveis/photo-editor/photo-editor.component';
++import { UserService } from './_services/user.service';
++import { MemberListComponent } from './members/member-list/member-list.component';
++import { MemberCardComponent } from './members/member-card/member-card.component';
++import { MemberDetailComponent } from './members/member-detail/member-detail.component';
++import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
++import { MemberListResolver } from './_resolvers/member-list.resolver';
+ 
+ export function tokenGetter() {
+    return localStorage.getItem('token');
+@@ -47,11 +53,14 @@ export class CustomHammerConfig extends HammerGestureConfig  {
+       HomeComponent,
+       RegisterComponent,
+       ImovelListComponent,
++      MemberListComponent,
+       ListsComponent,
+       MessagesComponent,
+       ImoveisCardComponent,
+       ImovelDetailComponent,
+       ImovelEditComponent,
++      MemberCardComponent,
++      MemberDetailComponent,
+       PhotoEditorComponent
+    ],
+    imports: [
+@@ -80,6 +89,9 @@ export class CustomHammerConfig extends HammerGestureConfig  {
+       ImovelDetailResolver,
+       ImovelListResolver,
+       ImovelEditResolver,
++      MemberDetailResolver,
++      MemberListResolver,
++      UserService,
+       PreventUnsavedChanges,
+       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
+    ],
+diff --git a/MoradaGuia-SPA/src/app/imoveis/photo-editor/photo-editor.component.ts b/MoradaGuia-SPA/src/app/imoveis/photo-editor/photo-editor.component.ts
+index 9510e60..9b4af2c 100644
+--- a/MoradaGuia-SPA/src/app/imoveis/photo-editor/photo-editor.component.ts
++++ b/MoradaGuia-SPA/src/app/imoveis/photo-editor/photo-editor.component.ts
+@@ -48,7 +48,7 @@ export class PhotoEditorComponent implements OnInit {
+         };
+         this.photos.push(photo);
+       }
+-    }
++    };
+   }
+ 
+ }
+diff --git a/MoradaGuia-SPA/src/app/nav/nav.component.html b/MoradaGuia-SPA/src/app/nav/nav.component.html
+index 80058d6..a3abd61 100644
+--- a/MoradaGuia-SPA/src/app/nav/nav.component.html
++++ b/MoradaGuia-SPA/src/app/nav/nav.component.html
+@@ -16,6 +16,9 @@
+           <li class="nav-item" routerLinkActive="active">
+             <a class="nav-link" [routerLink]="['/messages']" routerLinkActive="router-link-active" >Messages</a>
+           </li>
++          <li class="nav-item" routerLinkActive="active">
++            <a class="nav-link" [routerLink]="['/members']" routerLinkActive="router-link-active" >Membros</a>
++          </li>
+         </ul>
+     
+         
+diff --git a/MoradaGuia-SPA/src/app/routes.ts b/MoradaGuia-SPA/src/app/routes.ts
+index 83d2c43..24a3a20 100644
+--- a/MoradaGuia-SPA/src/app/routes.ts
++++ b/MoradaGuia-SPA/src/app/routes.ts
+@@ -1,4 +1,4 @@
+-import {Routes} from '@angular/router';
++import { Routes } from '@angular/router';
+ import { HomeComponent } from './home/home.component';
+ import { ImovelListComponent } from './imoveis/imovel-list/imovel-list.component';
+ import { MessagesComponent } from './messages/messages.component';
+@@ -10,6 +10,10 @@ import { ImovelListResolver } from './_resolvers/imovel-list.resolver';
+ import { ImovelEditComponent } from './imoveis/imovel-edit/imovel-edit.component';
+ import { ImovelEditResolver } from './_resolvers/imovel-edit.resolver';
+ import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
++import { MemberListComponent } from './members/member-list/member-list.component';
++import { MemberDetailComponent } from './members/member-detail/member-detail.component';
++import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
++import { MemberListResolver } from './_resolvers/member-list.resolver';
+ 
+ export const appRoutes: Routes = [
+     { path: '', component: HomeComponent},
+@@ -18,6 +22,8 @@ export const appRoutes: Routes = [
+         runGuardsAndResolvers: 'always',
+         canActivate: [AuthGuard],
+         children: [
++            { path: 'members', component: MemberListComponent, resolve: {users: MemberListResolver}},
++            { path: 'members/:id', component: MemberDetailComponent, resolve: {user: MemberDetailResolver}},
+             { path: 'imoveis', component: ImovelListComponent, resolve: {imoveis: ImovelListResolver}},
+             { path: 'imoveis/:id', component: ImovelDetailComponent, resolve: {imovel: ImovelDetailResolver}},
+             { path: 'imovel/edit', component: ImovelEditComponent,
+diff --git a/MoradaGuia.API/Dtos/ImovelForListDto.cs b/MoradaGuia.API/Dtos/ImovelForListDto.cs
+index ebdb194..5abf377 100644
+--- a/MoradaGuia.API/Dtos/ImovelForListDto.cs
++++ b/MoradaGuia.API/Dtos/ImovelForListDto.cs
+@@ -18,6 +18,7 @@ namespace MoradaGuia.API.Dtos
+         public DateTime Data { get; set; }
+         public string UrlFoto { get; set; }
+         public ICollection<PhotosForDetailedDto> Fotos { get; set; }
++        public int UserId { get; set; }
+         public User User { get; set; }
+     }
+ }
+\ No newline at end of file
+diff --git a/MoradaGuia.API/Dtos/ImovelForUpdateDto.cs b/MoradaGuia.API/Dtos/ImovelForUpdateDto.cs
+index 2b4e92b..459eb1c 100644
+--- a/MoradaGuia.API/Dtos/ImovelForUpdateDto.cs
++++ b/MoradaGuia.API/Dtos/ImovelForUpdateDto.cs
+@@ -10,5 +10,7 @@ namespace MoradaGuia.API.Dtos
+         public int QtdQuarto { get; set; }
+         public int QtdBanheiro { get; set; }
+         public int Garagem { get; set; }
++        public int UserId { get; set; }
++
+     }
+ }
+\ No newline at end of file
+diff --git a/MoradaGuia.API/Dtos/UserForListDto.cs b/MoradaGuia.API/Dtos/UserForListDto.cs
+index cb61d4d..668c921 100644
+--- a/MoradaGuia.API/Dtos/UserForListDto.cs
++++ b/MoradaGuia.API/Dtos/UserForListDto.cs
+@@ -1,4 +1,5 @@
+ using System;
++using System.Collections.Generic;
+ 
+ namespace MoradaGuia.API.Dtos
+ {
+@@ -6,8 +7,11 @@ namespace MoradaGuia.API.Dtos
+     {
+         public int Id { get; set; }
+         public string Username { get; set; }
+-        public string sobrenome { get; set; }
+         public string Email { get; set; }
+         public string telefone { get; set; }
++        public DateTime Criado { get; set; }
++        public DateTime UltimoLogin { get; set; }
++        public ICollection<ImovelForDetailedDto> Imovels { get; set; }
++
+     }
+ }
+\ No newline at end of file
+diff --git a/MoradaGuia.API/Helpers/AutoMapperProfiles.cs b/MoradaGuia.API/Helpers/AutoMapperProfiles.cs
+index c810c20..e4fafa1 100644
+--- a/MoradaGuia.API/Helpers/AutoMapperProfiles.cs
++++ b/MoradaGuia.API/Helpers/AutoMapperProfiles.cs
+@@ -15,6 +15,8 @@ namespace MoradaGuia.API.Helpers
+             CreateMap<Imovel, ImovelForDetailedDto>()
+                 .ForMember(dest => dest.UrlFoto, opt => opt.MapFrom(src =>
+                     src.Fotos.FirstOrDefault(p => p.Principal).Url));
++            CreateMap<User, UserForListDto>();
++            CreateMap<User, UserForDetailedDto>();
+             CreateMap<Photo, PhotosForDetailedDto>();
+             CreateMap<ImovelForUpdateDto, Imovel>();
+             CreateMap<Photo, PhotoForReturnDto>();
+diff --git a/MoradaGuia.API/Startup.cs b/MoradaGuia.API/Startup.cs
+index ff96dc6..68426f6 100644
+--- a/MoradaGuia.API/Startup.cs
++++ b/MoradaGuia.API/Startup.cs
+@@ -42,6 +42,7 @@ namespace MoradaGuia.API
+                         Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                 });
+             services.AddCors();
++            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
+             services.AddAutoMapper(typeof(MoradaRepository).Assembly);
+             services.AddScoped<IAuthRepository, AuthRepository>();
+diff --git a/MoradaGuia.API/bin/Debug/netcoreapp2.2/MoradaGuia.API.dll b/MoradaGuia.API/bin/Debug/netcoreapp2.2/MoradaGuia.API.dll
+index 5f23a36..667362e 100644
+Binary files a/MoradaGuia.API/bin/Debug/netcoreapp2.2/MoradaGuia.API.dll and b/MoradaGuia.API/bin/Debug/netcoreapp2.2/MoradaGuia.API.dll differ
+diff --git a/MoradaGuia.API/bin/Debug/netcoreapp2.2/MoradaGuia.API.pdb b/MoradaGuia.API/bin/Debug/netcoreapp2.2/MoradaGuia.API.pdb
+index e3356b4..ecc135e 100644
+Binary files a/MoradaGuia.API/bin/Debug/netcoreapp2.2/MoradaGuia.API.pdb and b/MoradaGuia.API/bin/Debug/netcoreapp2.2/MoradaGuia.API.pdb differ
+diff --git a/MoradaGuia.API/obj/Debug/netcoreapp2.2/MoradaGuia.API.csproj.CoreCompileInputs.cache b/MoradaGuia.API/obj/Debug/netcoreapp2.2/MoradaGuia.API.csproj.CoreCompileInputs.cache
+index 92e9be6..7077944 100644
+--- a/MoradaGuia.API/obj/Debug/netcoreapp2.2/MoradaGuia.API.csproj.CoreCompileInputs.cache
++++ b/MoradaGuia.API/obj/Debug/netcoreapp2.2/MoradaGuia.API.csproj.CoreCompileInputs.cache
+@@ -1 +1 @@
+-2af8f5a4538c5987253f4023676cb16f292524e0
++7de1a4f3fd65894d2e70f7d401e1cee8ad2ef1d0
+diff --git a/MoradaGuia.API/obj/Debug/netcoreapp2.2/MoradaGuia.API.csprojAssemblyReference.cache b/MoradaGuia.API/obj/Debug/netcoreapp2.2/MoradaGuia.API.csprojAssemblyReference.cache
+index 860f1a7..f05f90c 100644
+Binary files a/MoradaGuia.API/obj/Debug/netcoreapp2.2/MoradaGuia.API.csprojAssemblyReference.cache and b/MoradaGuia.API/obj/Debug/netcoreapp2.2/MoradaGuia.API.csprojAssemblyReference.cache differ
+diff --git a/MoradaGuia.API/obj/Debug/netcoreapp2.2/MoradaGuia.API.dll b/MoradaGuia.API/obj/Debug/netcoreapp2.2/MoradaGuia.API.dll
+index 5f23a36..667362e 100644
+Binary files a/MoradaGuia.API/obj/Debug/netcoreapp2.2/MoradaGuia.API.dll and b/MoradaGuia.API/obj/Debug/netcoreapp2.2/MoradaGuia.API.dll differ
+diff --git a/MoradaGuia.API/obj/Debug/netcoreapp2.2/MoradaGuia.API.pdb b/MoradaGuia.API/obj/Debug/netcoreapp2.2/MoradaGuia.API.pdb
+index e3356b4..ecc135e 100644
+Binary files a/MoradaGuia.API/obj/Debug/netcoreapp2.2/MoradaGuia.API.pdb and b/MoradaGuia.API/obj/Debug/netcoreapp2.2/MoradaGuia.API.pdb differ
+diff --git a/MoradaGuia.API/obj/MoradaGuia.API.csproj.nuget.cache b/MoradaGuia.API/obj/MoradaGuia.API.csproj.nuget.cache
+index fe285ad..6f811f4 100644
+--- a/MoradaGuia.API/obj/MoradaGuia.API.csproj.nuget.cache
++++ b/MoradaGuia.API/obj/MoradaGuia.API.csproj.nuget.cache
+@@ -1,5 +1,5 @@
+ {
+   "version": 1,
+-  "dgSpecHash": "fOxuz/xShmpS5GIMV2yx+TMfWYegXNnTKiVAq205sBfxaBAD7UcaaU3AkR5iU2vSdNDjhm25EgKtjgBr97U0ag==",
++  "dgSpecHash": "KV85ehc63XHCD61sxGPPdXncySMKakyJXgIiKQyg0WiyMWIaneqbGRD09I+04U8rwCGGbYKspcoU2Jw02lkJ0g==",
+   "success": true
+ }
+\ No newline at end of file
+diff --git a/MoradaGuia.API/obj/MoradaGuia.API.csproj.nuget.dgspec.json b/MoradaGuia.API/obj/MoradaGuia.API.csproj.nuget.dgspec.json
+index c6f8c7b..ac00b4e 100644
+--- a/MoradaGuia.API/obj/MoradaGuia.API.csproj.nuget.dgspec.json
++++ b/MoradaGuia.API/obj/MoradaGuia.API.csproj.nuget.dgspec.json
+@@ -17,12 +17,14 @@
+           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+         ],
+         "configFilePaths": [
+-          "C:\\Users\\julio\\AppData\\Roaming\\NuGet\\NuGet.Config"
++          "C:\\Users\\julio\\AppData\\Roaming\\NuGet\\NuGet.Config",
++          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+         ],
+         "originalTargetFrameworks": [
+           "netcoreapp2.2"
+         ],
+         "sources": {
++          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+           "https://api.nuget.org/v3/index.json": {}
+         },
+         "frameworks": {
+diff --git a/MoradaGuia.API/obj/project.assets.json b/MoradaGuia.API/obj/project.assets.json
+index 57b7a23..521f6d3 100644
+--- a/MoradaGuia.API/obj/project.assets.json
++++ b/MoradaGuia.API/obj/project.assets.json
+@@ -12331,12 +12331,14 @@
+         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+       ],
+       "configFilePaths": [
+-        "C:\\Users\\julio\\AppData\\Roaming\\NuGet\\NuGet.Config"
++        "C:\\Users\\julio\\AppData\\Roaming\\NuGet\\NuGet.Config",
++        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+       ],
+       "originalTargetFrameworks": [
+         "netcoreapp2.2"
+       ],
+       "sources": {
++        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+         "https://api.nuget.org/v3/index.json": {}
+       },
+       "frameworks": {

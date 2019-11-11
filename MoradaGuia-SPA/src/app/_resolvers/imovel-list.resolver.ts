@@ -13,7 +13,9 @@ export class ImovelListResolver implements Resolve<Imovel[]> {
 
     constructor(private imovelService: ImovelService, private router: Router, private alertify: AlertifyService) {}
     resolve(route: ActivatedRouteSnapshot): Observable<Imovel[]> {
+
         return this.imovelService.getImoveis(this.pageNumber, this.pageSize).pipe(
+
             catchError(error => {
                 this.alertify.error('Problema para receber dados da lista');
                 this.router.navigate(['/home']);

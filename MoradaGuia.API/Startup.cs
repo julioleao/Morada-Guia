@@ -42,6 +42,7 @@ namespace MoradaGuia.API
                         Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 });
             services.AddCors();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper(typeof(MoradaRepository).Assembly);
             services.AddScoped<IAuthRepository, AuthRepository>();

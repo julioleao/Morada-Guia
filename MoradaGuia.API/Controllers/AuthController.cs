@@ -53,6 +53,7 @@ namespace MoradaGuia.API.Controllers
             {
                 return Unauthorized();
             }
+            
 
             var claims = new[]
             {

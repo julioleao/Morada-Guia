@@ -10,12 +10,16 @@ import { User } from '../_models/user';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  imoveis: Imovel[];
   model: any = {};
   @Input() user: User;
 
-  constructor(public authService: AuthService, private alertify: AlertifyService, private router: Router) { }
+  constructor(public authService: AuthService, private alertify: AlertifyService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.data.subscribe(data => {
+      this.imoveis = data['imoveis'];
+    });
   }
 
 

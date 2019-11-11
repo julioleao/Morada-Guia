@@ -7,12 +7,12 @@ import { Imovel } from 'src/app/_models/imovel';
   styleUrls: ['./imoveis-card.component.css']
 })
 export class ImoveisCardComponent implements OnInit {
-
   @Input() imovel: Imovel;
 
   constructor() { }
 
   ngOnInit() {
+    console.log('card');
   }
 
 }

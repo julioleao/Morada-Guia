@@ -2,7 +2,9 @@ import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angu
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+
 import { BsDropdownModule, TabsModule, CarouselModule, PaginationModule } from 'ngx-bootstrap';
+
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from 'ngx-gallery';
@@ -28,9 +30,13 @@ import { ImovelListResolver } from './_resolvers/imovel-list.resolver';
 import { ImovelEditComponent } from './imoveis/imovel-edit/imovel-edit.component';
 import { ImovelEditResolver } from './_resolvers/imovel-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { ImovelMyListResolver } from './_resolvers/imovel-mylist.resolver';
+import { MyimoveisComponent } from './imoveis/myimoveis/myimoveis.component';
+import { ImoveisCardUserComponent } from './imoveis/imoveis-card-user/imoveis-card-user.component';
 import { PhotoEditorComponent } from './imoveis/photo-editor/photo-editor.component';
 import { ImovelFromUserResolver } from './_resolvers/imovel-from-user.resolver';
 import { ImovelFromUserComponent } from './imoveis/ImovelFromUser/ImovelFromUser.component';
+
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -50,6 +56,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       HomeComponent,
       RegisterComponent,
       ImovelListComponent,
+      MemberListComponent,
       ListsComponent,
       MessagesComponent,
       ImoveisCardComponent,

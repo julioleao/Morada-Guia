@@ -12,7 +12,7 @@ export class ImovelEditResolver implements Resolve<Imovel[]> {
     constructor(private imovelService: ImovelService, private authService: AuthService,
                 private router: Router, private alertify: AlertifyService) {}
     resolve(route: ActivatedRouteSnapshot): Observable<Imovel[]> {
-        return this.imovelService.getImovel(1).pipe(
+        return this.imovelService.getImovel(route.params.id).pipe(
             catchError(error => {
                 this.alertify.error('Problema para receber dados de imóveis');
                 this.router.navigate(['/imoveis']);
