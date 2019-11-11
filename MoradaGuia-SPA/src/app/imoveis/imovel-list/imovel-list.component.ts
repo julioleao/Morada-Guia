@@ -4,6 +4,7 @@ import { ImovelService } from '../../_services/imovel.service';
 import { AlertifyService } from '../../_services/alertify.service';
 import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 import { PaginatedResult, Pagination } from 'src/app/_models/pagination';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-imovel-list',

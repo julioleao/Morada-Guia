@@ -1,7 +1,7 @@
 import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BsDropdownModule, TabsModule, CarouselModule, PaginationModule } from 'ngx-bootstrap';
 
@@ -15,7 +15,6 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register-user/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
 import { ImovelListComponent } from './imoveis/imovel-list/imovel-list.component';
@@ -30,13 +29,11 @@ import { ImovelListResolver } from './_resolvers/imovel-list.resolver';
 import { ImovelEditComponent } from './imoveis/imovel-edit/imovel-edit.component';
 import { ImovelEditResolver } from './_resolvers/imovel-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
-import { ImovelMyListResolver } from './_resolvers/imovel-mylist.resolver';
-import { MyimoveisComponent } from './imoveis/myimoveis/myimoveis.component';
-import { ImoveisCardUserComponent } from './imoveis/imoveis-card-user/imoveis-card-user.component';
 import { PhotoEditorComponent } from './imoveis/photo-editor/photo-editor.component';
 import { RegisterImovelComponent } from './register/register-imovel/register-imovel.component';
 import { ImovelFromUserResolver } from './_resolvers/imovel-from-user.resolver';
 import { ImovelFromUserComponent } from './imoveis/ImovelFromUser/ImovelFromUser.component';
+import { RegisterComponent } from './register/register-user/register.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -64,7 +61,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       ImovelEditComponent,
       ImovelFromUserComponent,
       PhotoEditorComponent,
-      TimeAgoPipe
+      TimeAgoPipe,
    ],
    imports: [
       BrowserModule,
@@ -77,6 +74,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       RouterModule.forRoot(appRoutes),
       NgxGalleryModule,
       FileUploadModule,
+      ReactiveFormsModule,
       JwtModule.forRoot({
          config: {
             tokenGetter,
