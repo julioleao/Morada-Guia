@@ -1,0 +1,117 @@
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+  <h2 class="text-center text-primary">Sign Up</h2>
+  <hr>
+
+  <div class="form-group">
+    <!-- Input do campo usuário com validação -->
+    <label class="float-left" for="username">Nome de usuário</label>
+    <input type="text" id="username"
+      [ngClass]="{'is-invalid': registerForm.get('username').errors 
+                  && registerForm.get('username').touched}"
+      class="form-control" 
+      formControlName="username" 
+      placeholder="Username">
+    <!-- Mensagem de aviso/erro -->
+    <div class="invalid-feedback">
+      Insira seu nome de usuário
+    </div>
+  </div>
+
+  <div class="form-group">
+    <!-- Input do campo email com validação -->
+    <label class="float-left" for="email">E-mail</label>
+    <input type="text" id="email"
+      [ngClass]="{'is-invalid': registerForm.get('email').errors 
+                  && registerForm.get('email').touched}"
+      class="form-control" 
+      formControlName="email" 
+      placeholder="exemplo@email.com">
+    <!-- Verifica se o campo email foi preenchido -->
+    <div class="invalid-feedback"
+      *ngIf="registerForm.get('email').hasError('required') 
+            && registerForm.get('email').touched">
+      Insira seu e-mail
+    </div>
+    <!-- Verifica se o campo email é válido -->
+    <div class="invalid-feedback"
+      *ngIf="registerForm.get('email').hasError('email')
+            && registerForm.get('email').touched">
+      Seu email não é válido
+    </div>
+  </div>
+
+  <div class="form-group">
+    <!-- Input do campo telefone com validação -->
+    <label class="float-left" for="telefone">Telefone/Celular</label>
+    <input type="text" id="telefone"
+      [ngClass]="{'is-invalid': registerForm.get('telefone').errors 
+                  && registerForm.get('telefone').touched}"
+      class="form-control" 
+      formControlName="telefone" 
+      placeholder="(00) 0000-0000">
+    <!-- Mensagem de aviso/erro -->
+    <div class="invalid-feedback">
+      Insira um número de telefone/celular
+    </div>
+  </div>
+
+  <div class="form-group">
+    <!-- Input do campo password com validação -->
+    <label class="float-left" for="password">Senha</label>
+    <input type="password" id="password"
+      [ngClass]="{'is-invalid': registerForm.get('password').errors 
+                    && registerForm.get('password').touched}"
+      class="form-control" 
+      formControlName="password" 
+      placeholder="Password">
+    <!-- Verifica se o campo password foi preenchido -->
+    <div class="invalid-feedback" 
+      *ngIf="registerForm.get('password').hasError('required') 
+            && registerForm.get('password').touched">
+      Insira uma senha válida
+    </div>
+    <!-- Verifica se a senha tem no mínimo 4 digitos -->
+    <div class="invalid-feedback" 
+      *ngIf="registerForm.get('password').hasError('minlength') 
+            && registerForm.get('password').touched">
+      A senha precisa ter no mínimo 4 caracteres
+    </div>
+    <!-- Verifica se a senha tem no máximo 8 digitos -->
+    <div class="invalid-feedback" 
+      *ngIf="registerForm.get('password').hasError('maxlength') 
+            && registerForm.get('password').touched">
+      A senha não pode ultrapassar 8 caracteres
+    </div>
+  </div>
+
+  <div class="form-group">
+    <!-- Input do campo confirmPassword com validação -->
+    <label class="float-left" for="confirmPassword">Confirme sua senha</label>
+    <input type="password" id="confirmPassword"
+    [ngClass]="{'is-invalid': registerForm.get('confirmPassword').errors 
+                && registerForm.get('confirmPassword').touched
+                || registerForm.get('confirmPassword').touched
+                && registerForm.hasError('mismatch')}"
+      class="form-control" 
+      formControlName="confirmPassword" 
+      placeholder="Confirm Password">
+    <!-- Verifica se o campo confirmPassword foi preenchido -->
+    <div class="invalid-feedback" 
+      *ngIf="registerForm.get('confirmPassword').hasError('required') 
+            && registerForm.get('confirmPassword').touched">
+      É preciso confirmar sua senha
+    </div>
+    <!-- Verifica se as senhas identicas -->
+    <div class="invalid-feedback" 
+      *ngIf="registerForm.hasError('mismatch') 
+            && registerForm.get('confirmPassword').touched">
+      As senhas não são iguais
+    </div>
+  </div>
+
+  <div class="form-group text-center">
+    <button class="btn btn-success" type="submit">Cadastrar</button>
+    <button class="btn btn-default" type="button" (click)="cancel()">Cancelar</button>
+  </div>
+  
+</form>

@@ -1,8 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../_models/user';
+import { Imovel } from '../_models/imovel';
+import { ImovelFromUserComponent } from '../imoveis/ImovelFromUser/ImovelFromUser.component';
+import { ImovelEditComponent } from '../imoveis/imovel-edit/imovel-edit.component';
+import { UserEditComponent } from '../user/user-edit/user-edit.component';
 
 @Component({
   selector: 'app-nav',
@@ -12,7 +16,11 @@ import { User } from '../_models/user';
 export class NavComponent implements OnInit {
   imoveis: Imovel[];
   model: any = {};
+  @Input() imovel: Imovel;
   @Input() user: User;
+  imovelFromUser = ImovelFromUserComponent;
+  userProfile = UserEditComponent;
+  editImovel = ImovelEditComponent;
 
   constructor(public authService: AuthService, private alertify: AlertifyService, private router: Router, private route: ActivatedRoute) { }
 
@@ -21,7 +29,6 @@ export class NavComponent implements OnInit {
       this.imoveis = data['imoveis'];
     });
   }
-
 
   login() {
     this.authService.login(this.model).subscribe(next => {

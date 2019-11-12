@@ -15,6 +15,10 @@ export class ImovelService {
 
   constructor(private http: HttpClient) {}
 
+  getImoveis(): Observable<Imovel[]> {
+    return this.http.get<Imovel[]>(this.baseUrl + 'imoveis');
+  }
+  /*
   getImoveis(page?, itemsPerPage?, imovelParams?): Observable<PaginatedResult<Imovel[]>> {
     const paginatedResult: PaginatedResult<Imovel[]> = new PaginatedResult<Imovel[]>();
 
@@ -41,13 +45,13 @@ export class ImovelService {
         })
       );
   }
-
-  getImovel(id): Observable<Imovel> {
+  */
+  getImovel(id: number): Observable<Imovel> {
     return this.http.get<Imovel>(this.baseUrl + 'imoveis/' + id);
   }
 
-  updateImovel(id: number, imovel: Imovel) {
-    return this.http.put(this.baseUrl + 'imoveis/' + id, imovel);
+  updateImovel(imovel: Imovel) {
+    return this.http.put(this.baseUrl + 'imoveis/' + imovel.id, imovel);
   }
 
   setMainPhoto(imovelId: number, id: number) {
