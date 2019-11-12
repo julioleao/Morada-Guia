@@ -13,6 +13,7 @@ import { ImovelMyListResolver } from './_resolvers/imovel-mylist.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { ImovelFromUserResolver } from './_resolvers/imovel-from-user.resolver';
 import { ImovelFromUserComponent } from './imoveis/ImovelFromUser/ImovelFromUser.component';
+import { MessagesResolver } from './_resolvers/messages.resolver';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -28,7 +29,7 @@ export const appRoutes: Routes = [
                 resolve: {imoveis: ImovelFromUserResolver}},
             { path: 'imovel/edit', component: ImovelEditComponent,
                 resolve: {imovel: ImovelEditResolver}, canDeactivate: [PreventUnsavedChanges]},
-            { path: 'messages', component: MessagesComponent},
+            { path: 'messages', component: MessagesComponent, resolve: {messages: MessagesResolver}},
             { path: 'lists', component: ListsComponent},
         ]
     },

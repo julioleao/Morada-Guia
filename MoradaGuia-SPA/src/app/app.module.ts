@@ -36,6 +36,9 @@ import { ImoveisCardUserComponent } from './imoveis/imoveis-card-user/imoveis-ca
 import { PhotoEditorComponent } from './imoveis/photo-editor/photo-editor.component';
 import { ImovelFromUserResolver } from './_resolvers/imovel-from-user.resolver';
 import { ImovelFromUserComponent } from './imoveis/ImovelFromUser/ImovelFromUser.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberCardComponent } from './members/member-card/member-card.component';
+import { MessagesResolver } from './_resolvers/messages.resolver';
 
 
 export function tokenGetter() {
@@ -57,6 +60,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       RegisterComponent,
       ImovelListComponent,
       MemberListComponent,
+      MemberCardComponent,
       ListsComponent,
       MessagesComponent,
       ImoveisCardComponent,
@@ -83,7 +87,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
             whitelistedDomains: ['localhost:5000'],
             blacklistedRoutes: ['localhost:5000/api/auth']
          }
-      })
+      }),
    ],
    providers: [
       AuthService,
@@ -95,7 +99,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       ImovelEditResolver,
       ImovelFromUserResolver,
       PreventUnsavedChanges,
-      { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
+      { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig },
+      MessagesResolver
    ],
    bootstrap: [
       AppComponent

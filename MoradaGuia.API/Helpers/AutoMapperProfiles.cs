@@ -22,6 +22,8 @@ namespace MoradaGuia.API.Helpers
             CreateMap<ImovelForUpdateDto, Imovel>();
             CreateMap<Photo, PhotoForReturnDto>();
             CreateMap<PhotoForCreationDto, Photo>();
+            CreateMap<MessageForCreationDto, Messages>().ReverseMap();
+            CreateMap<Messages, MessagesToReturnDto>();
         }
     }
 }

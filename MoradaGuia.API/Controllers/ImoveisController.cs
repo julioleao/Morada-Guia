@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using MoradaGuia.API.Data;
 using MoradaGuia.API.Dtos;
 using MoradaGuia.API.Helpers;
+using MoradaGuia.API.Models;
 
 namespace MoradaGuia.API.Controllers
 {
@@ -65,6 +66,17 @@ namespace MoradaGuia.API.Controllers
             var imovelToReturn = _mapper.Map<IEnumerable<ImovelFromUserDto>>(imovel);
             return Ok(imovelToReturn);
         }
+
+        // [HttpGet("user/{id}/likes")]
+        // public async Task<IActionResult> GetLikesFromUser(int id, Like likes)
+        // {
+        //     if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+        //         return Unauthorized();
+                
+        //     var imovel = await _repo.GetLikesFromUser(id, likes);
+        //     var imovelToReturn = _mapper.Map<IEnumerable<ImovelLikeFromUser>>(imovel);
+        //      return Ok(imovelToReturn);
+        // }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateImovel(int id, ImovelForUpdateDto imovelForUpdateDto)
