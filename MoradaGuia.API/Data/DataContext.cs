@@ -10,32 +10,30 @@ namespace MoradaGuia.API.Data
         public DbSet<Imovel> Imovel { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Like> Likes { get; set; }
-        public DbSet<Messages> Messages { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<User>()
+        protected override void OnModelCreating(ModelBuilder builder){
+            builder.Entity<User>()
                 .HasIndex(u => u.Email)
                 .IsUnique();
-            modelBuilder.Entity<Like>()
+            builder.Entity<Like>()
                 .HasKey(k => new {k.LikerId, k.ImovelLikeId});
-            modelBuilder.Entity<Like>()
+            builder.Entity<Like>()
                 .HasOne(u => u.ImovelLike)
                 .WithMany(i => i.Liker)
                 .HasForeignKey(u => u.ImovelLikeId)
                 .OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<Like>()
+            builder.Entity<Like>()
                 .HasOne(i => i.Liker)
                 .WithMany(u => u.ImovelLike)
                 .HasForeignKey(i => i.LikerId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Messages>()
+            builder.Entity<Messages>()
                 .HasOne(u => u.Sender)
                 .WithMany(m => m.MessagesSent)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Messages>()
+            builder.Entity<Messages>()
                 .HasOne(u => u.Recipient)
                 .WithMany(m => m.MessagesReceived)
                 .OnDelete(DeleteBehavior.Restrict);
