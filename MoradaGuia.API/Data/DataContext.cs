@@ -10,6 +10,7 @@ namespace MoradaGuia.API.Data
         public DbSet<Imovel> Imovel { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Like> Likes { get; set; }
+        public DbSet<Messages> Messages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder){
             builder.Entity<User>()
