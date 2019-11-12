@@ -30,7 +30,8 @@ export class RegisterImovelComponent implements OnInit {
       valor: ['', Validators.required],
       qtdQuarto: ['', Validators.required],
       qtdBanheiro: ['', Validators.required],
-      garagem: ['', Validators.required]
+      garagem: ['', Validators.required],
+      userId: [this.authService.decodedToken.nameid, Validators.required]
     });
   }
 
@@ -46,7 +47,7 @@ export class RegisterImovelComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/imoveis']);
   }
 
 }
