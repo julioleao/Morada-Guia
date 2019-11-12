@@ -4,83 +4,102 @@
     <hr>
 
     <div class="form-group">
-      <input type="text" 
+      <label class="float-left" for="tipo">Tipo do Imóvel</label>
+      <select id="tipo"
         [ngClass]="{'is-invalid': registerForm.get('tipo').errors 
                     && registerForm.get('tipo').touched}"
         class="form-control" 
-        formControlName="tipo" 
-        placeholder="Tipo do imóvel">
+        formControlName="tipo">
+          <option value="" disabled selected>Selecione o tipo do imóvel</option>
+          <option value="Casa">Casa</option>
+          <option value="Pensionato">Pensionato</option>
+          <option value="República">República</option>
+          <option value="Apartamento">Apartamento</option>
+      </select>
         <div class="invalid-feedback">Informe o tipo do imóvel</div>
     </div>
     
-    <div class="form-group">
-      <input type="text" 
-        [ngClass]="{'is-invalid': registerForm.get('rua').errors 
-                    && registerForm.get('rua').touched}"
-        class="form-control" 
-        formControlName="rua" 
-        placeholder="Avenida/Rua">
-      <div class="invalid-feedback">Informe o endereço do imóvel</div>
-    </div>
-    
-    <div class="form-group">
-      <input type="number" 
-        [ngClass]="{'is-invalid': registerForm.get('numero').errors 
-                    && registerForm.get('numero').touched}"
-        class="form-control" 
-        formControlName="numero" 
-        placeholder="Numero do endereço">
-        <div class="invalid-feedback">Informe o numero do endereço</div>
-    </div>
-
-    <div class="form-group">
-      <input type="text" 
-        [ngClass]="{'is-invalid': registerForm.get('bairro').errors 
-                    && registerForm.get('bairro').touched}"
-        class="form-control" 
-        formControlName="bairro" 
-        placeholder="Bairro">
-        <div class="invalid-feedback">Informe o bairro</div>
+    <div class="form-row">
+      <div class="col-md-9 mb-3">
+        <label class="float-left" for="rua">Endereço</label>
+        <input type="text" id="rua"
+          [ngClass]="{'is-invalid': registerForm.get('rua').errors 
+                      && registerForm.get('rua').touched}"
+          class="form-control" 
+          formControlName="rua" 
+          placeholder="Avenida/Rua">
+        <div class="invalid-feedback">Informe o endereço do imóvel</div>
+      </div>
+      
+      <div class="col-md-3 mb-3">
+        <label class="float-left" for="numero">Numero</label>
+        <input type="number" id="numero"
+          [ngClass]="{'is-invalid': registerForm.get('numero').errors 
+                      && registerForm.get('numero').touched}"
+          class="form-control" 
+          formControlName="numero" 
+          placeholder="Numero">
+          <div class="invalid-feedback">Informe o numero do endereço</div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <input type="number" 
-        [ngClass]="{'is-invalid': registerForm.get('valor').errors 
-                    && registerForm.get('valor').touched}"
-        class="form-control" 
-        formControlName="valor" 
-        placeholder="R$ 0,00">
+    <div class="form-row">
+      <div class="col-md-7 mb-3">
+        <label class="float-left" for="bairro">Bairro</label>
+        <input type="text" id="bairro"
+          [ngClass]="{'is-invalid': registerForm.get('bairro').errors 
+                      && registerForm.get('bairro').touched}"
+          class="form-control" 
+          formControlName="bairro" 
+          placeholder="Bairro">
+          <div class="invalid-feedback">Informe o bairro</div>
+      </div>
+
+      <div class="col-md-3 mb-3">
+        <label class="float-left " for="valor">Valor: R$</label>
+          <input type="number" id="valor"
+            [ngClass]="{'is-invalid': registerForm.get('valor').errors 
+                        && registerForm.get('valor').touched}"
+            class="form-control" 
+            formControlName="valor" 
+            placeholder="0,00">
         <div class="invalid-feedback">Informe o valor do imóvel/aluguel</div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <input type="number" 
-        [ngClass]="{'is-invalid': registerForm.get('qtdQuarto').errors 
-                    && registerForm.get('qtdQuarto').touched}"
-        class="form-control" 
-        formControlName="qtdQuarto" 
-        placeholder="0">
-        <div class="invalid-feedback">Informe a quantidade de quartos</div>
-    </div>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label class="float-left" for="qtdQuarto">Quantidade de Quartos</label>
+        <input type="number" id="qtdQuarto"
+          [ngClass]="{'is-invalid': registerForm.get('qtdQuarto').errors 
+                      && registerForm.get('qtdQuarto').touched}"
+          class="form-control" 
+          formControlName="qtdQuarto" 
+          placeholder="0">
+          <div class="invalid-feedback">Informe a quantidade de quartos</div>
+      </div>
 
-    <div class="form-group">
-      <input type="number" 
-        [ngClass]="{'is-invalid': registerForm.get('qtdBanheiro').errors 
-                    && registerForm.get('qtdBanheiro').touched}"
-        class="form-control" 
-        formControlName="qtdBanheiro" 
-        placeholder="0">
-        <div class="invalid-feedback">Informe a quantidade de banheiros</div>
-    </div>
+      <div class="col-md-4 mb-3">
+        <label class="float-left" for="qtdBanheiro">Quantidade de Banheiros</label>
+        <input type="number" id="qtdBanheiro"
+          [ngClass]="{'is-invalid': registerForm.get('qtdBanheiro').errors 
+                      && registerForm.get('qtdBanheiro').touched}"
+          class="form-control" 
+          formControlName="qtdBanheiro" 
+          placeholder="0">
+          <div class="invalid-feedback">Informe a quantidade de banheiros</div>
+      </div>
 
-    <div class="form-group">
-      <input type="number" 
-        [ngClass]="{'is-invalid': registerForm.get('garagem').errors 
-                    && registerForm.get('garagem').touched}"
-        class="form-control" 
-        formControlName="garagem" 
-        placeholder="0">
-        <div class="invalid-feedback">Informe a quantidade de vagas na garagem</div>
+      <div class="col-md-4 mb-3">
+        <label class="float-left" for="garagem">Vagas na Garagem</label>
+        <input type="number" id="garagem"
+          [ngClass]="{'is-invalid': registerForm.get('garagem').errors 
+                      && registerForm.get('garagem').touched}"
+          class="form-control" 
+          formControlName="garagem" 
+          placeholder="0">
+          <div class="invalid-feedback">Informe a quantidade de vagas na garagem</div>
+      </div>
     </div>
     
     <div class="form-group text-center">
