@@ -48,6 +48,7 @@ export class RegisterImovelComponent implements OnInit {
 
   cancel() {
     this.router.navigate(['/imoveis']);
+    this.alertify.message('Cancelado');
   }
 
 }
