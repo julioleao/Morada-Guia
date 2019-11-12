@@ -1,7 +1,25 @@
 <div class="container mt-5">
   <div class="row">
     <div *ngFor="let imovel of imovel" class="col-lg-2 col-md-3 col-sm-6">
-      <app-imoveis-card [imovel]="imovel"></app-imoveis-card>
+      <!-- <app-imoveis-card [imovel]="imovel"></app-imoveis-card> -->
+      <div class="container-fluid">
+        <div class="card mb-4">
+            <div class="card-img-wrapper">
+              <img class="card-img-top" src="{{imovel.urlFoto}}" alt="{{imovel.tipo}}">
+              <ul class="list-inline imovel-icons animate text-center">
+                <li class="list-inline-item"><button class="btn btn-primary" [routerLink]="['/imovel/edit', imovel.id]"><i class="fa fa-edit"></i></button></li>
+              </ul>
+            </div>
+            <div class="card-body p-1">
+              <h6 class="card-title text-center mb-1"><i class="fa fa-home"></i>
+                 {{imovel.tipo}}, {{imovel.valor}}
+              </h6>
+              <p class="card-text text-muted text-center">{{imovel.rua}}</p>
+            </div>
+          </div>
+      </div>
     </div>
   </div>
 </div>
+
+

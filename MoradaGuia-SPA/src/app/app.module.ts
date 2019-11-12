@@ -34,16 +34,20 @@ import { RegisterImovelComponent } from './register/register-imovel/register-imo
 import { ImovelFromUserResolver } from './_resolvers/imovel-from-user.resolver';
 import { ImovelFromUserComponent } from './imoveis/ImovelFromUser/ImovelFromUser.component';
 import { RegisterComponent } from './register/register-user/register.component';
+import { UserService } from './_services/user.service';
+import { UserEditResolver } from './_resolvers/user-edit.resolver';
+import { UserEditComponent } from './user/user-edit/user-edit.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function tokenGetter() {
-   return localStorage.getItem('token');
+  return localStorage.getItem('token');
 }
 
-export class CustomHammerConfig extends HammerGestureConfig  {
-   overrides = {
-       pinch: { enable: false },
-       rotate: { enable: false }
-   };
+export class CustomHammerConfig extends HammerGestureConfig {
+  overrides = {
+    pinch: { enable: false },
+    rotate: { enable: false }
+  };
 }
 
 @NgModule({
@@ -60,6 +64,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       ImovelDetailComponent,
       ImovelEditComponent,
       ImovelFromUserComponent,
+      UserEditComponent,
       PhotoEditorComponent,
       TimeAgoPipe,
    ],
@@ -81,17 +86,21 @@ export class CustomHammerConfig extends HammerGestureConfig  {
             whitelistedDomains: ['localhost:5000'],
             blacklistedRoutes: ['localhost:5000/api/auth']
          }
-      })
+      }),
+      BrowserAnimationsModule
    ],
+
    providers: [
       AuthService,
       ErrorInterceptorProvider,
       AlertifyService,
+      UserService,
       ImovelService,
       ImovelDetailResolver,
       ImovelListResolver,
       ImovelEditResolver,
       ImovelFromUserResolver,
+      UserEditResolver,
       PreventUnsavedChanges,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],
@@ -99,4 +108,5 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       AppComponent
    ]
 })
-export class AppModule { }
+export class AppModule {
+}

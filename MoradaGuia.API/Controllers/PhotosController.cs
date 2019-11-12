@@ -14,8 +14,8 @@ using MoradaGuia.API.Models;
 
 namespace MoradaGuia.API.Controllers
 {
-    [Authorize]
-    [Route("api/[controller]")]
+    //[Authorize]
+    [Route("api/imoveis/{imovelId}/photos")]
     public class PhotosController : ControllerBase
     {
         private readonly IMoradaRepository _repo;
@@ -52,8 +52,8 @@ namespace MoradaGuia.API.Controllers
         public async Task<IActionResult> AddPhotoForImovel(int imovelId, [FromForm]PhotoForCreationDto photoForCreationDto)
         {
             {
-                if (imovelId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-                    return Unauthorized();
+                //if (imovelId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                //    return Unauthorized();
 
                 var imovelFromRepo = await _repo.GetImovel(imovelId);
 
@@ -97,8 +97,8 @@ namespace MoradaGuia.API.Controllers
         [HttpPost("{id}/principal")]
         public async Task<IActionResult> SetMainPhoto(int imovelId, int id)
         {
-            if (imovelId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            return Unauthorized();
+            //if (imovelId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            //return Unauthorized();
 
             var imovel = await _repo.GetImovel(imovelId);
 
@@ -126,8 +126,8 @@ namespace MoradaGuia.API.Controllers
 
         public async Task<IActionResult> DeletePhoto(int imovelId, int id)
         {
-            if (imovelId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            return Unauthorized();
+            // if (imovelId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            // return Unauthorized();
 
             var imovel = await _repo.GetImovel(imovelId);
 

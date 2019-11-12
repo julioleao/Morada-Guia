@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Imovel } from 'src/app/_models/imovel';
 import { ImovelService } from 'src/app/_services/imovel.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { PathLocationStrategy } from '@angular/common';
+import { User } from 'src/app/_models/user';
 
 @Component({
   selector: 'app-imovel-detail',
@@ -15,6 +16,7 @@ export class ImovelDetailComponent implements OnInit {
   imovel: Imovel;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+  @Input() user: User;
 
   constructor(private imovelService: ImovelService, private alertify: AlertifyService, private route: ActivatedRoute) { }
 
