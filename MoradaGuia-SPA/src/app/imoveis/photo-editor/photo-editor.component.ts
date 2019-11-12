@@ -5,8 +5,9 @@ import { AuthService } from 'src/app/_services/auth.service';
 import { environment } from 'src/environments/environment';
 import { ImovelService } from 'src/app/_services/imovel.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
-import { OutletContext } from '@angular/router';
+import { OutletContext, ActivatedRoute } from '@angular/router';
 import { EventEmitter } from '@angular/core';
+import { Imovel } from 'src/app/_models/imovel';
 
 @Component({
   selector: 'app-photo-editor',
@@ -15,15 +16,21 @@ import { EventEmitter } from '@angular/core';
 })
 export class PhotoEditorComponent implements OnInit {
   @Input() photos: Photo[];
+  @Input() imovel: Imovel;
   @Output() getImovelPhotoChange = new EventEmitter();
   uploader: FileUploader;
   hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
   currentMain: Photo;
 
-  constructor(private authService: AuthService, private imovelService: ImovelService, private alertify: AlertifyService) { }
+  constructor(private route: ActivatedRoute, private authService: AuthService,
+              private imovelService: ImovelService, private alertify: AlertifyService) { }
 
   ngOnInit() {
+    this.route.data.subscribe(data => {
+      this.imovel = data.imovel;
+      console.log(this.imovel);
+    });
     this.initializeUploader();
   }
 
@@ -33,7 +40,7 @@ export class PhotoEditorComponent implements OnInit {
   // Verificar rotas da imagem
   initializeUploader() {
     this.uploader = new FileUploader({
-      url: this.baseUrl + 'imoveis/' + this.authService.decodedToken.nameid + '/photos',
+      url: this.baseUrl + 'imoveis/' + this.imovel.id + '/photos',
       authToken: 'Bearer ' + localStorage.getItem('token'),
       isHTML5: true,
       allowedFileType: ['image'],
@@ -58,7 +65,7 @@ export class PhotoEditorComponent implements OnInit {
   }
 
   setMainPhoto(photo: Photo) {
-    this.imovelService.setMainPhoto(this.authService.decodedToken.nameid, photo.id).subscribe(() => {
+    this.imovelService.setMainPhoto(this.imovel.id, photo.id).subscribe(() => {
       this.currentMain = this.photos.filter(p => p.principal === true)[0];
       this.currentMain.principal = false;
       photo.principal = true;
@@ -70,7 +77,7 @@ export class PhotoEditorComponent implements OnInit {
 
   deletePhoto(id: number) {
     this.alertify.confirm('Tem certeza que deseja apagar a foto?', () => {
-      this.imovelService.deletePhoto(this.authService.decodedToken.nameid, id).subscribe(() => {
+      this.imovelService.deletePhoto(this.imovel.id, id).subscribe(() => {
         this.photos.splice(this.photos.findIndex(p => p.id === id), 1);
         this.alertify.success('Foto apagada com sucesso');
       }, error => {
