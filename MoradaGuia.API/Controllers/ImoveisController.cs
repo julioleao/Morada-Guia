@@ -28,11 +28,11 @@ namespace MoradaGuia.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetImoveis([FromQuery]ImovelParams imovelParams)
+        public async Task<IActionResult> GetImoveis(/* [FromQuery]ImovelParams imovelParams */)
         {
             //var currentImovelId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-
-            var imovelFromRepo = await _repo.GetImovel(2);
+            var imoveis = await _repo.GetImoveis();
+            /* var imovelFromRepo = await _repo.GetImovel(1);
             
             
             if (string.IsNullOrEmpty(imovelParams.Tipo))
@@ -40,11 +40,11 @@ namespace MoradaGuia.API.Controllers
                 imovelParams.Tipo = imovelFromRepo.Tipo == "Pensionato" ? "Casa" : "Casa";
             }
 
-            var imoveis = await _repo.GetImoveis(imovelParams);
+            var imoveis = await _repo.GetImoveis(imovelParams); */
             var imoveisToReturn = _mapper.Map<IEnumerable<ImovelForListDto>>(imoveis);
 
-            Response.AddPagination(imoveis.CurrentPage, imoveis.PageSize,
-                imoveis.TotalCount, imoveis.TotalPages);
+            /* Response.AddPagination(imoveis.CurrentPage, imoveis.PageSize,
+                imoveis.TotalCount, imoveis.TotalPages); */
 
             return Ok(imoveisToReturn);
         }
@@ -81,8 +81,9 @@ namespace MoradaGuia.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateImovel(int id, ImovelForUpdateDto imovelForUpdateDto)
         {
-            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-                return Unauthorized();
+            
+            // if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            //     return Unauthorized();
 
             var imovelFromRepo = await _repo.GetImovel(id);
 

@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
-import {TimeAgoPipe} from 'time-ago-pipe';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -30,80 +30,84 @@ import { ImovelListResolver } from './_resolvers/imovel-list.resolver';
 import { ImovelEditComponent } from './imoveis/imovel-edit/imovel-edit.component';
 import { ImovelEditResolver } from './_resolvers/imovel-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
-import { ImovelMyListResolver } from './_resolvers/imovel-mylist.resolver';
-import { MyimoveisComponent } from './imoveis/myimoveis/myimoveis.component';
-import { ImoveisCardUserComponent } from './imoveis/imoveis-card-user/imoveis-card-user.component';
 import { PhotoEditorComponent } from './imoveis/photo-editor/photo-editor.component';
 import { ImovelFromUserResolver } from './_resolvers/imovel-from-user.resolver';
 import { ImovelFromUserComponent } from './imoveis/ImovelFromUser/ImovelFromUser.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { MessagesResolver } from './_resolvers/messages.resolver';
+import { UserService } from './_services/user.service';
+import { UserEditResolver } from './_resolvers/user-edit.resolver';
+import { UserEditComponent } from './user/user-edit/user-edit.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 export function tokenGetter() {
-   return localStorage.getItem('token');
+  return localStorage.getItem('token');
 }
 
-export class CustomHammerConfig extends HammerGestureConfig  {
-   overrides = {
-       pinch: { enable: false },
-       rotate: { enable: false }
-   };
+export class CustomHammerConfig extends HammerGestureConfig {
+  overrides = {
+    pinch: { enable: false },
+    rotate: { enable: false }
+  };
 }
 
 @NgModule({
-   declarations: [
-      AppComponent,
-      NavComponent,
-      HomeComponent,
-      RegisterComponent,
-      ImovelListComponent,
-      MemberListComponent,
-      MemberCardComponent,
-      ListsComponent,
-      MessagesComponent,
-      ImoveisCardComponent,
-      ImovelDetailComponent,
-      ImovelEditComponent,
-      ImovelFromUserComponent,
-      PhotoEditorComponent,
-      TimeAgoPipe
-   ],
-   imports: [
-      BrowserModule,
-      HttpClientModule,
-      FormsModule,
-      CarouselModule. forRoot(),
-      BsDropdownModule.forRoot(),
-      PaginationModule.forRoot(),
-      TabsModule.forRoot(),
-      RouterModule.forRoot(appRoutes),
-      NgxGalleryModule,
-      FileUploadModule,
-      JwtModule.forRoot({
-         config: {
-            tokenGetter,
-            whitelistedDomains: ['localhost:5000'],
-            blacklistedRoutes: ['localhost:5000/api/auth']
-         }
-      }),
-   ],
-   providers: [
-      AuthService,
-      ErrorInterceptorProvider,
-      AlertifyService,
-      ImovelService,
-      ImovelDetailResolver,
-      ImovelListResolver,
-      ImovelEditResolver,
-      ImovelFromUserResolver,
-      PreventUnsavedChanges,
-      { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig },
-      MessagesResolver
-   ],
-   bootstrap: [
-      AppComponent
-   ]
+  declarations: [
+    AppComponent,
+    NavComponent,
+    HomeComponent,
+    RegisterComponent,
+    ImovelListComponent,
+    ListsComponent,
+    MessagesComponent,
+    ImoveisCardComponent,
+    ImovelDetailComponent,
+    ImovelEditComponent,
+    ImovelFromUserComponent,
+    UserEditComponent,
+    PhotoEditorComponent,
+    TimeAgoPipe
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    CarouselModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    PaginationModule.forRoot(),
+    TabsModule.forRoot(),
+    RouterModule.forRoot(appRoutes),
+    NgxGalleryModule,
+    FileUploadModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        whitelistedDomains: ['localhost:5000'],
+        blacklistedRoutes: ['localhost:5000/api/auth']
+      }
+    }),
+    BrowserAnimationsModule
+  ],
+  providers: [
+    AuthService,
+    ErrorInterceptorProvider,
+    AlertifyService,
+    UserService,
+    ImovelService,
+    ImovelDetailResolver,
+    ImovelListResolver,
+    ImovelEditResolver,
+    ImovelFromUserResolver,
+    UserEditResolver,
+    PreventUnsavedChanges,
+    { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig },
+    MessagesResolver
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
-export class AppModule { }
+export class AppModule {
+}

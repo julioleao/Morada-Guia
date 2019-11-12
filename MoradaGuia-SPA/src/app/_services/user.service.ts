@@ -8,7 +8,6 @@ import { PaginatedResult } from '../_models/pagination';
 import { Message } from '../_models/Message';
 import { map } from 'rxjs/operators';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -17,12 +16,12 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.baseUrl + 'users');
+  getUser(id: number): Observable<User> {
+    return this.http.get<User>(this.baseUrl + 'users/' + id);
   }
 
-  getUser(id): Observable<User> {
-    return this.http.get<User>(this.baseUrl + 'users/' + id);
+  updateUser(user: User) {
+    return this.http.put(this.baseUrl + 'users/' + user.id, user);
   }
 
   getMessages(id: number, page?, itemsPerPage?, messageContainer?) {
@@ -51,3 +50,5 @@ export class UserService {
   }
 
 }
+
+

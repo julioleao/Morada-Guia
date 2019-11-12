@@ -25,7 +25,12 @@ namespace MoradaGuia.API.Data
             _context.Remove(entity);
         }
 
-        public async Task<PagedList<Imovel>> GetImoveis(ImovelParams imovelParams)
+        public async Task<IEnumerable<Imovel>> GetImoveis()
+        {
+            var imoveis = await _context.Imovel.Include(p => p.Fotos).ToListAsync();
+            return imoveis;
+        }
+        /* public async Task<PagedList<Imovel>> GetImoveis(ImovelParams imovelParams)
         {
             var imoveis = _context.Imovel.Include(p => p.Fotos).AsQueryable();
 
@@ -34,7 +39,7 @@ namespace MoradaGuia.API.Data
             imoveis = imoveis.Where(i => i.Valor >= imovelParams.ValorMin && i.Valor <= imovelParams.ValorMax);
 
             return await PagedList<Imovel>.CreateAsync(imoveis, imovelParams.PageNumber, imovelParams.PageSize);        
-        }
+        } */
 
 
         public async Task<Imovel> GetImovel(int id)
