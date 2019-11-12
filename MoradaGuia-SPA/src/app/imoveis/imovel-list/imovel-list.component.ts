@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Imovel } from '../../_models/imovel';
 import { ImovelService } from '../../_services/imovel.service';
 import { AlertifyService } from '../../_services/alertify.service';
 import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 import { PaginatedResult, Pagination } from 'src/app/_models/pagination';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-imovel-list',
@@ -12,8 +13,8 @@ import { PaginatedResult, Pagination } from 'src/app/_models/pagination';
 })
 export class ImovelListComponent implements OnInit {
   imoveis: Imovel[];
-  /* imovel: Imovel = JSON.parse(localStorage.getItem('imovel'));
-  tipo = [{value: 'casa', display: 'Casa'}, {value: 'pensionato', display: 'Pensionato'},
+  imovel: Imovel = JSON.parse(localStorage.getItem('imovel'));
+  /* tipo = [{value: 'casa', display: 'Casa'}, {value: 'pensionato', display: 'Pensionato'},
           {value: 'apartamento', display: 'Apartamento'}, {value: 'quitinete', display: 'Quitinete'}];
   imovelParams: any = {};
   pagination: Pagination; */
