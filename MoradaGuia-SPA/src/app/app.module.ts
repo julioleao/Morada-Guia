@@ -33,6 +33,9 @@ import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './imoveis/photo-editor/photo-editor.component';
 import { ImovelFromUserResolver } from './_resolvers/imovel-from-user.resolver';
 import { ImovelFromUserComponent } from './imoveis/ImovelFromUser/ImovelFromUser.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberCardComponent } from './members/member-card/member-card.component';
+import { MessagesResolver } from './_resolvers/messages.resolver';
 import { UserService } from './_services/user.service';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
@@ -101,7 +104,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
     ImovelFromUserResolver,
     UserEditResolver,
     PreventUnsavedChanges,
-    { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
+    { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig },
+    MessagesResolver
   ],
   bootstrap: [
     AppComponent

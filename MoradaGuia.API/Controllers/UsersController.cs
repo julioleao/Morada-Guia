@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using MoradaGuia.API.Data;
 using MoradaGuia.API.Dtos;
 using MoradaGuia.API.Models;
+using MoradaGuia.API.Helpers;
 
 namespace MoradaGuia.API.Controllers
 {
@@ -31,6 +32,7 @@ namespace MoradaGuia.API.Controllers
             var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
             return Ok(usersToReturn);
         }
+
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(int id)
