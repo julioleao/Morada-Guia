@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
+using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MoradaGuia.API.Data;
@@ -81,6 +82,22 @@ namespace MoradaGuia.API.Controllers
                 return NoContent();
 
             throw new System.Exception($"Updating imovel {id} failed on save");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteImovel(int id)
+        {
+            // if (imovelId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            // return Unauthorized();
+
+            var imovelFromRepo = await _repo.GetImovel(id);
+            
+            _repo.Delete(imovelFromRepo);
+
+            if (await _repo.SaveAll())
+                return Ok();
+
+            return BadRequest("Falha ao deletar o imóvel!");
         }
     }
 }
