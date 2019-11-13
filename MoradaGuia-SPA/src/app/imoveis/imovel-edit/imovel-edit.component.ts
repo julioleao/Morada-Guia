@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, HostListener, EventEmitter, Output, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Imovel } from 'src/app/_models/imovel';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { NgForm } from '@angular/forms';
@@ -22,7 +22,7 @@ export class ImovelEditComponent implements OnInit {
       $event.returnValue = true;
     }
   }
-  constructor(private route: ActivatedRoute, private alertify: AlertifyService,
+  constructor(private router: Router, private route: ActivatedRoute, private alertify: AlertifyService,
               private imovelService: ImovelService, private authService: AuthService) { }
 
   ngOnInit() {
@@ -48,9 +48,10 @@ export class ImovelEditComponent implements OnInit {
   deleteImovel(id: number) {
     this.alertify.confirm('Tem certeza que deseja apagar o imóvel?', () => {
       this.imovelService.deleteImovel(this.imovel.id).subscribe(() => {
-        this.imoveis.splice(this.imoveis.findIndex(p => p.id === id), 1);
+        
         this.alertify.success('Imóvel apagado com sucesso');
         this.editForm.reset(this.imovel);
+        this.router.navigate(['/imoveis/user/' + this.authService.decodedToken.nameid]);
       }, error => {
         this.alertify.error('Falha ao apagar o Imóvel');
       });

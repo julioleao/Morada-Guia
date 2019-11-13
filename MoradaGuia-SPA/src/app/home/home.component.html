@@ -28,7 +28,7 @@
   <p class="lead">Casas, repúblicas, pensionatos, apartamentos e quitinetes.</p>
   <hr class="my-4">
   <p>Encontre o melhor preço, o melhor lugar e as melhores pessoas.</p>
-  <p class="lead">
+  <p *ngIf="!loggedIn()" class="lead">
     <button class="btn btn-primary btn-lg" (click)="registerToggle()">Cadastre-se aqui</button>
   </p>
 </div>
