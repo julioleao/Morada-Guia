@@ -12321,12 +12321,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-
-      "projectUniqueName": "C:\\Users\\alexa\\MoradaGuia\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
+      "projectUniqueName": "c:\\Users\\julio\\Documents\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
       "projectName": "MoradaGuia.API",
-      "projectPath": "C:\\Users\\alexa\\MoradaGuia\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
-      "packagesPath": "C:\\Users\\alexa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alexa\\MoradaGuia\\Morada-Guia\\MoradaGuia.API\\obj\\",
+      "projectPath": "c:\\Users\\julio\\Documents\\Morada-Guia\\MoradaGuia.API\\MoradaGuia.API.csproj",
+      "packagesPath": "C:\\Users\\julio\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\julio\\Documents\\Morada-Guia\\MoradaGuia.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

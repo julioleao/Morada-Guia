@@ -18,5 +18,6 @@ namespace MoradaGuia.API.Helpers
         public int QtdQuarto { get; set; } = 1;
         public int QtdBanheiro { get; set; } = 1;
         public int Garagem { get; set; } = 0;
+        public bool Likers { get; set; } = false;
     }
 }
