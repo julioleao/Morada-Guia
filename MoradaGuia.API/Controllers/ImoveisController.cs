@@ -50,13 +50,14 @@ namespace MoradaGuia.API.Controllers
             return Ok(imoveisToReturn);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetImovel")]
         public async Task<IActionResult> GetImovel(int id)
         {
             var imovel = await _repo.GetImovel(id);
             var imovelToReturn = _mapper.Map<ImovelForDetailedDto>(imovel);
             return Ok(imovelToReturn);
         }
+        
         [HttpGet("user/{id}")]
         public async Task<IActionResult> GetImovelFromUser(int id)
         {

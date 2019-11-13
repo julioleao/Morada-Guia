@@ -11,6 +11,7 @@ import { ImovelEditComponent } from './imoveis/imovel-edit/imovel-edit.component
 import { ImovelEditResolver } from './_resolvers/imovel-edit.resolver';
 import { ImovelMyListResolver } from './_resolvers/imovel-mylist.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { RegisterImovelComponent } from './register/register-imovel/register-imovel.component';
 import { ImovelFromUserResolver } from './_resolvers/imovel-from-user.resolver';
 import { ImovelFromUserComponent } from './imoveis/ImovelFromUser/ImovelFromUser.component';
 import { MessagesResolver } from './_resolvers/messages.resolver';
@@ -35,6 +36,7 @@ export const appRoutes: Routes = [
             { path: 'users/:id', component: UserEditComponent,
             resolve: {user: UserEditResolver}, canDeactivate: [PreventUnsavedChanges]},
             { path: 'lists', component: ListsComponent},
+            { path: 'register-imovel', component: RegisterImovelComponent},
         ]
     },
    { path: '**', redirectTo: '', pathMatch: 'full'},
