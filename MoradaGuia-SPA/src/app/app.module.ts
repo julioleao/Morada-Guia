@@ -1,9 +1,9 @@
 import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { BsDropdownModule, TabsModule, CarouselModule, PaginationModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, CarouselModule, PaginationModule, AccordionModule, CollapseModule } from 'ngx-bootstrap';
 
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -15,7 +15,6 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
 import { ImovelListComponent } from './imoveis/imovel-list/imovel-list.component';
@@ -31,8 +30,10 @@ import { ImovelEditComponent } from './imoveis/imovel-edit/imovel-edit.component
 import { ImovelEditResolver } from './_resolvers/imovel-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './imoveis/photo-editor/photo-editor.component';
+import { RegisterImovelComponent } from './register/register-imovel/register-imovel.component';
 import { ImovelFromUserResolver } from './_resolvers/imovel-from-user.resolver';
 import { ImovelFromUserComponent } from './imoveis/ImovelFromUser/ImovelFromUser.component';
+import { RegisterComponent } from './register/register-user/register.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { MessagesResolver } from './_resolvers/messages.resolver';
@@ -41,7 +42,6 @@ import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ImovelMessagesComponent } from './imoveis/imovel-messages/imovel-messages.component';
-
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -60,6 +60,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
     NavComponent,
     HomeComponent,
     RegisterComponent,
+    RegisterImovelComponent,
     ImovelListComponent,
     ListsComponent,
     MessagesComponent,
@@ -76,6 +77,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    CollapseModule.forRoot(),
+    AccordionModule.forRoot(),
     CarouselModule.forRoot(),
     BsDropdownModule.forRoot(),
     PaginationModule.forRoot(),
@@ -83,6 +86,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
     RouterModule.forRoot(appRoutes),
     NgxGalleryModule,
     FileUploadModule,
+    ReactiveFormsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter,

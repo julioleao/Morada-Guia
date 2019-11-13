@@ -12,7 +12,6 @@ export class ImoveisCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('card');
   }
 
 }

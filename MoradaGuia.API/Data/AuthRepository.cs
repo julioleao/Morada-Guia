@@ -58,6 +58,15 @@ namespace MoradaGuia.API.Data
             return user;
         }
 
+        public async Task<Imovel> RegisterImovel(Imovel imovel)
+        {
+
+            await _context.Imovel.AddAsync(imovel);
+            await _context.SaveChangesAsync();
+
+            return imovel;
+        }
+
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())

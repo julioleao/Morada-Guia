@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using MoradaGuia.API.Data;
 using MoradaGuia.API.Dtos;
 using MoradaGuia.API.Models;
+using AutoMapper;
 
 namespace MoradaGuia.API.Controllers
 {
@@ -17,10 +18,12 @@ namespace MoradaGuia.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthRepository _repo;
+        private readonly IMapper _mapper;
         private readonly IConfiguration _config;
-        public AuthController(IAuthRepository repo, IConfiguration config)
+        public AuthController(IAuthRepository repo, IMapper mapper, IConfiguration config)
         {
             _config = config;
+            _mapper = mapper;
             _repo = repo;
 
         }
@@ -33,14 +36,27 @@ namespace MoradaGuia.API.Controllers
             if (await _repo.UserExists(userForRegisterDto.Username))
                 return BadRequest("Usuário já existe!");
 
-            var userToCreate = new User
-            {
-                Username = userForRegisterDto.Username
-            };
+            var userToCreate = _mapper.Map<User>(userForRegisterDto);
 
             var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
 
-            return StatusCode(201);
+            var userToReturn = _mapper.Map<UserForDetailedDto>(createdUser);
+
+            return CreatedAtRoute("GetUser", new {controller = "Users", id = createdUser.Id}, userToReturn);
+        }
+
+        [HttpPost("register-imovel")]
+        public async Task<IActionResult> RegisterImovel(ImovelForRegisterDto imovelForRegisterDto)
+        {
+            
+
+            var imovelToCreate = _mapper.Map<Imovel>(imovelForRegisterDto);
+
+            var createdImovel = await _repo.RegisterImovel(imovelToCreate);
+
+            var imovelToReturn = _mapper.Map<ImovelForDetailedDto>(createdImovel);
+
+            return CreatedAtRoute("GetImovel", new {controller = "Imoveis", id = createdImovel.Id}, imovelToReturn);
         }
 
         [HttpPost("login")]

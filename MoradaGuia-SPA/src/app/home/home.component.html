@@ -1,4 +1,4 @@
-<carousel>
+<carousel *ngIf="!registerMode">
   <slide>
     <img src="https://res.cloudinary.com/dpyt7xsiy/image/upload/v1572813405/carousel1_qtpuiu.png" alt="first slide" style="display: block; width: 100%;">
     <div class="carousel-caption d-none d-md-block">
@@ -29,7 +29,7 @@
   <hr class="my-4">
   <p>Encontre o melhor preço, o melhor lugar e as melhores pessoas.</p>
   <p class="lead">
-    <button class="btn btn-primary btn-lg" (click)="registerToggle()">Cadastra-se aqui</button>
+    <button class="btn btn-primary btn-lg" (click)="registerToggle()">Cadastre-se aqui</button>
   </p>
 </div>
 

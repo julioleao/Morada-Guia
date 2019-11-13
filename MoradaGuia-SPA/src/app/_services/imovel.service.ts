@@ -66,4 +66,8 @@ export class ImovelService {
     return this.http.get<Imovel[]>(this.baseUrl + 'imoveis/user/' + userId);
   }
 
+  deleteImovel(imovelId: number) {
+    return this.http.delete(this.baseUrl + 'imoveis/' + imovelId);
+  }
+
 }
