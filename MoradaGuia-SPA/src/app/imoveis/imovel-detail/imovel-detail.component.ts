@@ -16,14 +16,16 @@ export class ImovelDetailComponent implements OnInit {
   imovel: Imovel;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
-  @Input() user: User;
+  user: User;
 
-  constructor(private imovelService: ImovelService, private alertify: AlertifyService, private route: ActivatedRoute) { }
+  constructor(private imovelService: ImovelService, private alertify: AlertifyService,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.imovel = data.imovel;
     });
+    console.log(this.imovel.userId);
 
     this.galleryOptions = [
     {

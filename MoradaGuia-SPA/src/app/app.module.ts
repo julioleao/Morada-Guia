@@ -40,6 +40,7 @@ import { UserService } from './_services/user.service';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ImovelMessagesComponent } from './imoveis/imovel-messages/imovel-messages.component';
 
 
 export function tokenGetter() {
@@ -68,7 +69,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
     ImovelFromUserComponent,
     UserEditComponent,
     PhotoEditorComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    ImovelMessagesComponent
   ],
   imports: [
     BrowserModule,
