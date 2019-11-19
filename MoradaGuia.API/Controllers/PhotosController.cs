@@ -140,7 +140,7 @@ namespace MoradaGuia.API.Controllers
             if (photoFromRepo.Principal)
                 return BadRequest ("Foto principal não pode ser apagada!");
 
-            if (photoFromRepo.Principal != null)
+            if (photoFromRepo.Principal != true)
             {
                 var deleteParams = new DeletionParams(photoFromRepo.PublicId);
 
