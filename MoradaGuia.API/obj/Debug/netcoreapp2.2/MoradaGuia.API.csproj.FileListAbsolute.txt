@@ -52,3 +52,17 @@ C:\Users\julio\Documents\Morada-Guia\MoradaGuia.API\bin\Debug\netcoreapp2.2\apps
 C:\Users\julio\Documents\Morada-Guia\MoradaGuia.API\bin\Debug\netcoreapp2.2\appsettings.json
 C:\Users\julio\Documents\Morada-Guia\MoradaGuia.API\bin\Debug\netcoreapp2.2\Data\UserSeedData.json
 C:\Users\julio\Documents\Morada-Guia\MoradaGuia.API\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\bin\Debug\netcoreapp2.2\MoradaGuia.API.deps.json
+C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\bin\Debug\netcoreapp2.2\MoradaGuia.API.runtimeconfig.json
+C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\bin\Debug\netcoreapp2.2\MoradaGuia.API.runtimeconfig.dev.json
+C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\bin\Debug\netcoreapp2.2\MoradaGuia.API.dll
+C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\bin\Debug\netcoreapp2.2\MoradaGuia.API.pdb
+C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.csprojAssemblyReference.cache
+C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.csproj.CoreCompileInputs.cache
+C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.RazorAssemblyInfo.cache
+C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.RazorAssemblyInfo.cs
+C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.AssemblyInfoInputs.cache
+C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.AssemblyInfo.cs
+C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.RazorTargetAssemblyInfo.cache
+C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.dll
+C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.pdb

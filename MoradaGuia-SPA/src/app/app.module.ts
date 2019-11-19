@@ -19,7 +19,6 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
 import { ImovelListComponent } from './imoveis/imovel-list/imovel-list.component';
 import { ListsComponent } from './lists/lists.component';
-import { MessagesComponent } from './messages/messages.component';
 import { appRoutes } from './routes';
 import { ImoveisCardComponent } from './imoveis/imoveis-card/imoveis-card.component';
 import { ImovelDetailComponent } from './imoveis/imovel-detail/imovel-detail.component';
@@ -60,7 +59,6 @@ export class CustomHammerConfig extends HammerGestureConfig {
     RegisterImovelComponent,
     ImovelListComponent,
     ListsComponent,
-    MessagesComponent,
     ImoveisCardComponent,
     ImovelDetailComponent,
     ImovelEditComponent,
@@ -104,8 +102,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
     ImovelFromUserResolver,
     UserEditResolver,
     PreventUnsavedChanges,
-    { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig },
-    MessagesResolver
+    { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
   ],
   bootstrap: [
     AppComponent

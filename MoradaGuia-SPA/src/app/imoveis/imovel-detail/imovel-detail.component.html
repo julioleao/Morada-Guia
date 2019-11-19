@@ -17,12 +17,19 @@
             <p>{{imovel.data | date: 'medium'}}</p>
           </div>
         </div>
-        <div class="card-footer">
-          <div class="btn-group d-flex">
+        <!-- <div class="card-footer">
+          <div class="btn d-flex">
+              
+
               <button class="btn btn-primary w-100">Favoritar</button>
-              <button class="btn btn-success w-100">Mensagem</button>
+              <button class="btn btn-success w-100">
+                <a href="https://wa.me/55{{user.telefone}}?text=Olá!" target="_blank">Chamar no WhatsApp</a>
+              </button>
           </div>
-        </div>
+        </div> -->
+        <a href="https://api.whatsapp.com/send?phone=55{{user.telefone}}&text=Queria uma informação sobre sua moradia" target="_blank">
+          <img class="whatsapp" src="https://static.wixstatic.com/media/aff363_34808f62f1f648d488ce32597d36973e~mv2.png/v1/fill/w_209,h_86,al_c,q_80,usm_0.66_1.00_0.01/whatsapp.webp" />
+        </a>
       </div>
     </div>
     <div class="col-sm-8">
@@ -40,9 +47,9 @@
             <tab heading="Fotos">
                 <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
             </tab>
-            <tab heading="Mensagens">
-              <p>Mensagens aqui</p>
-            </tab>
+            <!-- <tab heading="Contato">
+              <app-imovel-messages [recipientId]="imovel.userId"></app-imovel-messages>
+            </tab> -->
           </tabset>
         </div>
     </div>

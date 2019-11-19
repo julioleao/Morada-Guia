@@ -7,6 +7,7 @@ import { Imovel } from '../_models/imovel';
 import { ImovelFromUserComponent } from '../imoveis/ImovelFromUser/ImovelFromUser.component';
 import { ImovelEditComponent } from '../imoveis/imovel-edit/imovel-edit.component';
 import { UserEditComponent } from '../user/user-edit/user-edit.component';
+import { RegisterImovelComponent } from '../register/register-imovel/register-imovel.component';
 
 @Component({
   selector: 'app-nav',
@@ -22,6 +23,7 @@ export class NavComponent implements OnInit {
   userProfile = UserEditComponent;
   editImovel = ImovelEditComponent;
   isCollapsed = true;
+  regImovel = RegisterImovelComponent;
 
   constructor(public authService: AuthService, private alertify: AlertifyService, private router: Router, private route: ActivatedRoute) { }
 
@@ -37,7 +39,7 @@ export class NavComponent implements OnInit {
     }, error => {
       this.alertify.error(error);
     }, () => {
-      this.router.navigate(['/imoveis']);
+      this.router.navigate(['/home']);
     });
   }
 

@@ -19,6 +19,5 @@ namespace MoradaGuia.API.Models
         public DateTime Data { get; set; }
         public ICollection<Photo> Fotos { get; set; }
         public int UserId { get; set; }
-        public ICollection<Like> Liker { get; set; }
     }
 }
