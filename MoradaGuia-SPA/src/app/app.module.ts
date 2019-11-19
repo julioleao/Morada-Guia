@@ -33,7 +33,6 @@ import { RegisterImovelComponent } from './register/register-imovel/register-imo
 import { ImovelFromUserResolver } from './_resolvers/imovel-from-user.resolver';
 import { ImovelFromUserComponent } from './imoveis/ImovelFromUser/ImovelFromUser.component';
 import { RegisterComponent } from './register/register-user/register.component';
-import { MessagesResolver } from './_resolvers/messages.resolver';
 import { UserService } from './_services/user.service';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
