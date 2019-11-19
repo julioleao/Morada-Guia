@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MoradaGuia.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191110182326_AddedLikeEntity")]
-    partial class AddedLikeEntity
+    [Migration("20191119224935_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,19 +51,6 @@ namespace MoradaGuia.API.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Imovel");
-                });
-
-            modelBuilder.Entity("MoradaGuia.API.Models.Like", b =>
-                {
-                    b.Property<int>("LikerId");
-
-                    b.Property<int>("ImovelLikeId");
-
-                    b.HasKey("LikerId", "ImovelLikeId");
-
-                    b.HasIndex("ImovelLikeId");
-
-                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("MoradaGuia.API.Models.Photo", b =>
@@ -107,28 +94,18 @@ namespace MoradaGuia.API.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Email")
+                        .IsUnique();
+
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("MoradaGuia.API.Models.Imovel", b =>
                 {
-                    b.HasOne("MoradaGuia.API.Models.User", "User")
+                    b.HasOne("MoradaGuia.API.Models.User")
                         .WithMany("Imovels")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MoradaGuia.API.Models.Like", b =>
-                {
-                    b.HasOne("MoradaGuia.API.Models.Imovel", "ImovelLike")
-                        .WithMany("Liker")
-                        .HasForeignKey("ImovelLikeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("MoradaGuia.API.Models.User", "Liker")
-                        .WithMany("ImovelLike")
-                        .HasForeignKey("LikerId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("MoradaGuia.API.Models.Photo", b =>

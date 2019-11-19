@@ -44,7 +44,7 @@ namespace MoradaGuia.API
         public void ConfigureProductionServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(x => {
-                x.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
+                x.UseMySql(Configuration.GetConnectionString("DefaultConnection"));
             });
 
             ConfigureServices(services);
