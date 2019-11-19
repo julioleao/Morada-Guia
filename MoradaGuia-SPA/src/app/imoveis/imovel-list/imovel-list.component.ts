@@ -16,16 +16,16 @@ export class ImovelListComponent implements OnInit {
   imovel: Imovel = JSON.parse(localStorage.getItem('imovel'));
   /* tipo = [{value: 'casa', display: 'Casa'}, {value: 'pensionato', display: 'Pensionato'},
           {value: 'apartamento', display: 'Apartamento'}, {value: 'quitinete', display: 'Quitinete'}];
-  imovelParams: any = {};
-  pagination: Pagination; */
+  imovelParams: any = {};*/
+  pagination: Pagination;
 
   constructor(private imovelService: ImovelService, private alertify: AlertifyService, private route: ActivatedRoute,
               private authService: AuthService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.imoveis = data.imoveis; // .result;
-      // this.pagination = data.imoveis.pagination;
+      this.imoveis = data.imoveis.result;
+      this.pagination = data.imoveis.pagination;
     });
 
     /* this.imovelParams.tipo = this.imovel.tipo === 'casa' ? 'pensionato'
@@ -37,12 +37,12 @@ export class ImovelListComponent implements OnInit {
     this.imovelParams.valorMax = 5000; */
   }
 
-  /* pageChanged(event: any): void {
+  pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
     this.loadImoveis();
   }
 
-  resetFilters() {
+  /*resetFilters() {
     this.imovelParams.tipo = this.imovel.tipo === 'casa' ? 'pensionato'
     : 'casa' ? 'apartamento'
     : 'casa' ? 'apartamento'
@@ -51,11 +51,11 @@ export class ImovelListComponent implements OnInit {
     this.imovelParams.valorMin = 0;
     this.imovelParams.valorMax = 5000;
     this.loadImoveis();
-  }
+  } */
 
   loadImoveis() {
     this.imovelService
-      .getImoveis(this.pagination.currentPage, this.pagination.itemsPerPage, this.imovelParams)
+      .getImoveis(this.pagination.currentPage, this.pagination.itemsPerPage)
       .subscribe(
         (res: PaginatedResult<Imovel[]>) => {
           this.imoveis = res.result;
@@ -65,5 +65,5 @@ export class ImovelListComponent implements OnInit {
           this.alertify.error(error);
         }
       );
-  } */
+  }
 }

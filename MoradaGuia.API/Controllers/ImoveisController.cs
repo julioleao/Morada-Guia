@@ -29,23 +29,23 @@ namespace MoradaGuia.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetImoveis(/* [FromQuery]ImovelParams imovelParams */)
+        public async Task<IActionResult> GetImoveis([FromQuery]ImovelParams imovelParams)
         {
-            //var currentImovelId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            var imoveis = await _repo.GetImoveis();
+            // var currentImovelId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            // var imoveis = await _repo.GetImoveis();
             /* var imovelFromRepo = await _repo.GetImovel(1);
             
             
             if (string.IsNullOrEmpty(imovelParams.Tipo))
             {
                 imovelParams.Tipo = imovelFromRepo.Tipo == "Pensionato" ? "Casa" : "Casa";
-            }
+            } */
 
-            var imoveis = await _repo.GetImoveis(imovelParams); */
+            var imoveis = await _repo.GetImoveis(imovelParams);
             var imoveisToReturn = _mapper.Map<IEnumerable<ImovelForListDto>>(imoveis);
 
-            /* Response.AddPagination(imoveis.CurrentPage, imoveis.PageSize,
-                imoveis.TotalCount, imoveis.TotalPages); */
+            Response.AddPagination(imoveis.CurrentPage, imoveis.PageSize,
+                imoveis.TotalCount, imoveis.TotalPages);
 
             return Ok(imoveisToReturn);
         }
