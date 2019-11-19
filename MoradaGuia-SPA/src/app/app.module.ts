@@ -19,7 +19,6 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
 import { ImovelListComponent } from './imoveis/imovel-list/imovel-list.component';
 import { ListsComponent } from './lists/lists.component';
-import { MessagesComponent } from './messages/messages.component';
 import { appRoutes } from './routes';
 import { ImoveisCardComponent } from './imoveis/imoveis-card/imoveis-card.component';
 import { ImovelDetailComponent } from './imoveis/imovel-detail/imovel-detail.component';
@@ -36,12 +35,10 @@ import { ImovelFromUserComponent } from './imoveis/ImovelFromUser/ImovelFromUser
 import { RegisterComponent } from './register/register-user/register.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberCardComponent } from './members/member-card/member-card.component';
-import { MessagesResolver } from './_resolvers/messages.resolver';
 import { UserService } from './_services/user.service';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ImovelMessagesComponent } from './imoveis/imovel-messages/imovel-messages.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -63,15 +60,13 @@ export class CustomHammerConfig extends HammerGestureConfig {
     RegisterImovelComponent,
     ImovelListComponent,
     ListsComponent,
-    MessagesComponent,
     ImoveisCardComponent,
     ImovelDetailComponent,
     ImovelEditComponent,
     ImovelFromUserComponent,
     UserEditComponent,
     PhotoEditorComponent,
-    TimeAgoPipe,
-    ImovelMessagesComponent
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,
@@ -108,8 +103,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
     ImovelFromUserResolver,
     UserEditResolver,
     PreventUnsavedChanges,
-    { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig },
-    MessagesResolver
+    { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
   ],
   bootstrap: [
     AppComponent
