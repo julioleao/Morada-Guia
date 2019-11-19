@@ -20,8 +20,6 @@ C:\Users\julio\Documents\Morada-Guia\MoradaGuia.API\bin\Debug\netcoreapp2.2\Mora
 C:\Users\julio\Documents\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.csprojAssemblyReference.cache
 C:\Users\julio\Documents\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.RazorAssemblyInfo.cache
 C:\Users\julio\Documents\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.RazorAssemblyInfo.cs
-C:\Users\julio\Documents\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.AssemblyInfoInputs.cache
-C:\Users\julio\Documents\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.AssemblyInfo.cs
 C:\Users\julio\Documents\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.RazorTargetAssemblyInfo.cache
 C:\Users\julio\Documents\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.dll
 C:\Users\julio\Documents\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.pdb

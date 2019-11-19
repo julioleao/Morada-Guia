@@ -21,6 +21,7 @@ export class NavComponent implements OnInit {
   imovelFromUser = ImovelFromUserComponent;
   userProfile = UserEditComponent;
   editImovel = ImovelEditComponent;
+  isCollapsed = true;
 
   constructor(public authService: AuthService, private alertify: AlertifyService, private router: Router, private route: ActivatedRoute) { }
 
