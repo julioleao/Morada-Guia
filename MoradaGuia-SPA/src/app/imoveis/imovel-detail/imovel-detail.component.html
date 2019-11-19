@@ -20,7 +20,7 @@
         <div class="card-footer">
           <div class="btn-group d-flex">
               <button class="btn btn-primary w-100">Favoritar</button>
-              <button class="btn btn-success w-100">Mensagem</button>
+              <button class="btn btn-success w-100" [routerLink]="['/routePath']">Mensagem</button>
           </div>
         </div>
       </div>
@@ -39,9 +39,6 @@
             </tab>
             <tab heading="Fotos">
                 <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
-            </tab>
-            <tab heading="Mensagens">
-              <app-imovel-messages [recipientId]="imovel.userId"></app-imovel-messages>
             </tab>
           </tabset>
         </div>

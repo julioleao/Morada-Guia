@@ -53,11 +53,6 @@ namespace MoradaGuia.API.Data
             return await _context.Imovel.Where(i => i.UserId == userId).Include(i => i.Fotos).ToListAsync();
         }
         
-        // public async Task<IEnumerable<Imovel>> GetLikesFromUser(int userId, Like like)
-        // {
-        //     //await _context.Likes.Where(i => i.LikerId == userId).Include(i => i.ImovelLikeId).ToListAsync();
-        //     return await _context.Imovel.Where(i => i.Id == _context.Like && userId == _context.Like.Where).Include(i => i.Fotos).ToListAsync();
-        // }
 
         // Função Where sendo utilizada
         public async Task<Photo> GetMainPhotoForImovel(int imovelId)
@@ -83,6 +78,7 @@ namespace MoradaGuia.API.Data
                
             var users = await _context.Users.Include(p => p.Imovels).ToListAsync();;
 
+            
             return users;
         }
 
@@ -95,50 +91,6 @@ namespace MoradaGuia.API.Data
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public async Task<Like> GetLike(int userId, int imovelId)
-        {
-            return await _context.Likes.FirstOrDefaultAsync(i => i.LikerId == userId && i.ImovelLikeId == imovelId);
-        }
-
-        public async Task<Messages> GetMessage(int id)
-        {
-            return await _context.Messages.FirstOrDefaultAsync(m => m.Id == id);
-        }
-
-        public async Task<PagedList<Messages>> GetMessagesForUser(MessageParams messageParams) 
-         {
-             var messages = _context.Messages.Include(u => u.Sender)
-             .Include(u => u.Recipient)
-             .AsQueryable();
-
-             switch (messageParams.MessageContainer)
-             {
-                case "Inbox":
-                    messages = messages.Where(u => u.RecipientId == messageParams.UserId);
-                    break;
-                    case "Outbox":
-                    messages = messages.Where(u => u.SenderId == messageParams.UserId);
-                    break;
-                    default:
-                    messages = messages.Where(u => u.RecipientId == messageParams.UserId && u.IsRead == false);
-                    break;
-             }
-
-             messages = messages.OrderByDescending(d => d.MessageSent);
-             return await PagedList<Messages>.CreateAsync(messages, messageParams.PageNumber, messageParams.PageSize);
-         }
-
-        public async Task<IEnumerable<Messages>> GetMessageThread(int userId, int recipientId)
-         {
-             var messages = await _context.Messages
-                .Include(u => u.Sender)
-                .Include(u => u.Recipient)
-                .Where(m => m.RecipientId == userId && m.SenderId == recipientId
-                    || m.RecipientId == recipientId && m.SenderId == userId)
-                .OrderByDescending(m => m.MessageSent)
-                .ToListAsync();
-
-                return messages;
-         }
+        
     }
 }
