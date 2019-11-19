@@ -11,7 +11,7 @@ using MoradaGuia.API.Helpers;
 
 namespace MoradaGuia.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/users/{userId}/[controller]")]
     [ApiController]
     public class MessagesController : ControllerBase

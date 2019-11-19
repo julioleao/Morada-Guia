@@ -48,7 +48,6 @@ export class ImovelEditComponent implements OnInit {
   deleteImovel(id: number) {
     this.alertify.confirm('Tem certeza que deseja apagar o imóvel?', () => {
       this.imovelService.deleteImovel(this.imovel.id).subscribe(() => {
-        
         this.alertify.success('Imóvel apagado com sucesso');
         this.editForm.reset(this.imovel);
         this.router.navigate(['/imoveis/user/' + this.authService.decodedToken.nameid]);
