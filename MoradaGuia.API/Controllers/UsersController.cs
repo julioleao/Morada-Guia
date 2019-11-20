@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using MoradaGuia.API.Data;
 using MoradaGuia.API.Dtos;
 using MoradaGuia.API.Models;
+using MoradaGuia.API.Helpers;
 
 namespace MoradaGuia.API.Controllers
 {

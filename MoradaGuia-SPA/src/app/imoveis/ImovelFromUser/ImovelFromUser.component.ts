@@ -13,6 +13,7 @@ import { User } from 'src/app/_models/user';
 })
 export class ImovelFromUserComponent implements OnInit {
   imovel: Imovel[];
+  imoveis: Imovel;
   user: User;
   alertify: any;
   constructor(private authService: AuthService, private imovelService: ImovelService, private route: ActivatedRoute) { }
@@ -25,4 +26,6 @@ export class ImovelFromUserComponent implements OnInit {
       this.alertify.error(error);
     });
   }
+
+
 }

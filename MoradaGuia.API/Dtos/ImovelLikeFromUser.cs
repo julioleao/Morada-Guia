@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using MoradaGuia.API.Models;
 
 namespace MoradaGuia.API.Dtos
-
 {
-    public class ImovelForDetailedDto
+    public class ImovelLikeFromUser
     {
+        
         public int Id { get; set; }
         public string Tipo { get; set; }
         public string Rua { get; set; }
@@ -21,5 +21,6 @@ namespace MoradaGuia.API.Dtos
         public ICollection<PhotosForDetailedDto> Fotos { get; set; }
         public User User { get; set; }
         public int UserId { get; set; }
+        
     }
 }

@@ -3,8 +3,9 @@
   <hr>
 
   <div class="form-group">
-      <!-- Input do campo usuário com validação -->
-    <input type="text" 
+    <!-- Input do campo usuário com validação -->
+    <label class="float-left" for="username">Nome de usuário</label>
+    <input type="text" id="username"
       [ngClass]="{'is-invalid': registerForm.get('username').errors 
                   && registerForm.get('username').touched}"
       class="form-control" 
@@ -17,14 +18,15 @@
   </div>
 
   <div class="form-group">
-      <!-- Input do campo email com validação -->
-    <input type="text" 
+    <!-- Input do campo email com validação -->
+    <label class="float-left" for="email">E-mail</label>
+    <input type="text" id="email"
       [ngClass]="{'is-invalid': registerForm.get('email').errors 
                   && registerForm.get('email').touched}"
       class="form-control" 
       formControlName="email" 
       placeholder="exemplo@email.com">
-      <!-- Verifica se o campo email foi preenchido -->
+    <!-- Verifica se o campo email foi preenchido -->
     <div class="invalid-feedback"
       *ngIf="registerForm.get('email').hasError('required') 
             && registerForm.get('email').touched">
@@ -40,7 +42,8 @@
 
   <div class="form-group">
     <!-- Input do campo telefone com validação -->
-    <input type="text" 
+    <label class="float-left" for="telefone">Telefone/Celular</label>
+    <input type="text" id="telefone"
       [ngClass]="{'is-invalid': registerForm.get('telefone').errors 
                   && registerForm.get('telefone').touched}"
       class="form-control" 
@@ -54,7 +57,8 @@
 
   <div class="form-group">
     <!-- Input do campo password com validação -->
-    <input type="password"
+    <label class="float-left" for="password">Senha</label>
+    <input type="password" id="password"
       [ngClass]="{'is-invalid': registerForm.get('password').errors 
                     && registerForm.get('password').touched}"
       class="form-control" 
@@ -81,8 +85,9 @@
   </div>
 
   <div class="form-group">
-      <!-- Input do campo confirmPassword com validação -->
-    <input type="password" 
+    <!-- Input do campo confirmPassword com validação -->
+    <label class="float-left" for="confirmPassword">Confirme sua senha</label>
+    <input type="password" id="confirmPassword"
     [ngClass]="{'is-invalid': registerForm.get('confirmPassword').errors 
                 && registerForm.get('confirmPassword').touched
                 || registerForm.get('confirmPassword').touched
@@ -110,6 +115,3 @@
   </div>
   
 </form>
-
-<p>Form value: {{registerForm.value | json}}</p>
-<p>Form status: {{registerForm.status | json}}</p>

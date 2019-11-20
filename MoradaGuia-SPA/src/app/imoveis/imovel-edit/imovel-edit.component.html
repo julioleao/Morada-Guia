@@ -29,6 +29,7 @@
           </div>
           <div class="card-footer">
             <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-primary btn-block">Salvar</button>
+            <button class="btn btn-primary btn-block btn-danger" (click)="deleteImovel(imovel.id)">Apagar</button>
           </div>
         </div>
       </div>

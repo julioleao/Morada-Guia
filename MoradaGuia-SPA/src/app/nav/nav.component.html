@@ -1,25 +1,24 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
       <a class="navbar-brand" [routerLink]="['/home']">Morada Guia</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation"> -->
+      <button type="button" class="navbar-toggler" (click)="isCollapsed = !isCollapsed" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
     
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <div class="collapse navbar-collapse" [collapse]=!isCollapsed id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" [routerLink]="['/imoveis']">Imoveis</a>
           </li>
           <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" [routerLink]="['/lists']" routerLinkActive="router-link-active" >Lists</a>
+            <a class="nav-link" [routerLink]="['/lists']" routerLinkActive="router-link-active" >Favoritos</a>
           </li>
           <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" [routerLink]="['/messages']" routerLinkActive="router-link-active" >Messages</a>
+            <a class="nav-link" [routerLink]="['/messages']" routerLinkActive="router-link-active" >Mensagens</a>
           </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" [routerLink]="['/members']" routerLinkActive="router-link-active" >Membros</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
+          <li *ngIf="loggedIn()" class="nav-item" routerLinkActive="active">
             <a class="nav-link" [routerLink]="['/register-imovel']">Registrar imóvel</a>
           </li>
         </ul>

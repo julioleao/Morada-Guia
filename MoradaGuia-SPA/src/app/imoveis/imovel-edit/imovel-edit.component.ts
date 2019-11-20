@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, HostListener, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, EventEmitter, Output, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Imovel } from 'src/app/_models/imovel';
 import { AlertifyService } from 'src/app/_services/alertify.service';
@@ -15,6 +15,7 @@ export class ImovelEditComponent implements OnInit {
   @ViewChild('editForm', {static: true}) editForm: NgForm;
   @Output() getImovelEdit = new EventEmitter();
   imovel: Imovel;
+  @Input() imoveis: Imovel[];
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
     if (this.editForm.dirty) {
@@ -27,6 +28,7 @@ export class ImovelEditComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.imovel = data.imovel;
+      console.log(this.imovel);
     });
   }
 
@@ -43,4 +45,15 @@ export class ImovelEditComponent implements OnInit {
     this.imovel.urlFoto = photoUrl;
   }
 
+  deleteImovel(id: number) {
+    this.alertify.confirm('Tem certeza que deseja apagar o imóvel?', () => {
+      this.imovelService.deleteImovel(this.imovel.id).subscribe(() => {
+        this.imoveis.splice(this.imoveis.findIndex(p => p.id === id), 1);
+        this.alertify.success('Imóvel apagado com sucesso');
+        this.editForm.reset(this.imovel);
+      }, error => {
+        this.alertify.error('Falha ao apagar o Imóvel');
+      });
+    });
+  }
 }

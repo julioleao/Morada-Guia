@@ -19,5 +19,7 @@ namespace MoradaGuia.API.Models
         public DateTime UltimoLogin { get; set; }
         public ICollection<Imovel> Imovels { get; set; }
         public ICollection<Like> ImovelLike { get; set; }
+        public ICollection<Messages> MessagesSent { get; set; }
+        public ICollection<Messages> MessagesReceived { get; set; }
     }
 }

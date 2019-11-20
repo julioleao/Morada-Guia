@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Imovel } from '../../_models/imovel';
 import { ImovelService } from '../../_services/imovel.service';
 import { AlertifyService } from '../../_services/alertify.service';
@@ -13,41 +13,31 @@ import { AuthService } from 'src/app/_services/auth.service';
 })
 export class ImovelListComponent implements OnInit {
   imoveis: Imovel[];
-  /* imovel: Imovel = JSON.parse(localStorage.getItem('imovel'));
-  tipo = [{value: 'casa', display: 'Casa'}, {value: 'pensionato', display: 'Pensionato'},
-          {value: 'apartamento', display: 'Apartamento'}, {value: 'quitinete', display: 'Quitinete'}];
+  imovel: Imovel = JSON.parse(localStorage.getItem('imovel'));
+  tipoList = [{value: 'Casa', display: 'Casas'}, {value: 'pensionato', display: 'Pensionatos'}];
   imovelParams: any = {};
-  pagination: Pagination; */
+  pagination: Pagination;
 
   constructor(private imovelService: ImovelService, private alertify: AlertifyService, private route: ActivatedRoute,
               private authService: AuthService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.imoveis = data.imoveis; // .result;
-      // this.pagination = data.imoveis.pagination;
+      this.imoveis = data.imoveis.result;
+      this.pagination = data.imoveis.pagination;
     });
 
-    /* this.imovelParams.tipo = this.imovel.tipo === 'casa' ? 'pensionato'
-    : 'casa' ? 'apartamento'
-    : 'casa' ? 'apartamento'
-    : 'casa' ? 'quitinete'
-    : 'casa';
     this.imovelParams.valorMin = 0;
-    this.imovelParams.valorMax = 5000; */
+    this.imovelParams.valorMax = 5000;
   }
 
-  /* pageChanged(event: any): void {
+  pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
     this.loadImoveis();
   }
 
   resetFilters() {
-    this.imovelParams.tipo = this.imovel.tipo === 'casa' ? 'pensionato'
-    : 'casa' ? 'apartamento'
-    : 'casa' ? 'apartamento'
-    : 'casa' ? 'quitinete'
-    : 'casa';
+    this.imovelParams.tipo = 'undefined';
     this.imovelParams.valorMin = 0;
     this.imovelParams.valorMax = 5000;
     this.loadImoveis();
@@ -65,5 +55,5 @@ export class ImovelListComponent implements OnInit {
           this.alertify.error(error);
         }
       );
-  } */
+  }
 }

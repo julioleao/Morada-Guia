@@ -15,8 +15,31 @@ export class ImovelService {
 
   constructor(private http: HttpClient) {}
 
-  getImoveis(): Observable<Imovel[]> {
-    return this.http.get<Imovel[]>(this.baseUrl + 'imoveis');
+  getImoveis(page?, itemsPerPage?, imovelParams?): Observable<PaginatedResult<Imovel[]>> {
+    const paginatedResult: PaginatedResult<Imovel[]> = new PaginatedResult<Imovel[]>();
+
+    let params = new HttpParams();
+    if (page != null && itemsPerPage != null) {
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemsPerPage);
+    }
+
+    if (imovelParams != null) {
+      params = params.append('valorMin', imovelParams.valorMin);
+      params = params.append('valorMax', imovelParams.valorMax);
+      params = params.append('tipo', imovelParams.tipo);
+    }
+
+    return this.http.get<Imovel[]>(this.baseUrl + 'imoveis', { observe: 'response', params })
+    .pipe(
+      map(response => {
+        paginatedResult.result = response.body;
+        if (response.headers.get('Pagination') != null) {
+          paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+        }
+        return paginatedResult;
+      })
+    );
   }
   /*
   getImoveis(page?, itemsPerPage?, imovelParams?): Observable<PaginatedResult<Imovel[]>> {
@@ -64,6 +87,10 @@ export class ImovelService {
 
   getImoveisFromUser(userId: number): Observable<Imovel[]> {
     return this.http.get<Imovel[]>(this.baseUrl + 'imoveis/user/' + userId);
+  }
+
+  deleteImovel(imovelId: number) {
+    return this.http.delete(this.baseUrl + 'imoveis/' + imovelId);
   }
 
 }
