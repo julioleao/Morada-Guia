@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { PathLocationStrategy } from '@angular/common';
 import { User } from 'src/app/_models/user';
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-imovel-detail',
@@ -16,15 +17,20 @@ export class ImovelDetailComponent implements OnInit {
   imovel: Imovel;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
-  @Input() user: User;
+  user: User;
 
-  constructor(private imovelService: ImovelService, private alertify: AlertifyService, private route: ActivatedRoute) { }
+  constructor(private imovelService: ImovelService, private alertify: AlertifyService,
+              private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.imovel = data.imovel;
     });
-
+    this.userService.getUser(this.imovel.userId).subscribe((user: User) => {
+      this.user = user;
+    });
+    // console.log(this.imovel.userId);
+    // console.log(this.user.telefone);
     this.galleryOptions = [
     {
       width: '500px',

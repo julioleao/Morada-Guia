@@ -11,7 +11,7 @@ using MoradaGuia.API.Helpers;
 
 namespace MoradaGuia.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -56,33 +56,6 @@ namespace MoradaGuia.API.Controllers
                 return NoContent();
 
             throw new System.Exception($"Updating user {id} failed on save");
-        }
-
-        [HttpPost("{id}/like/{imovelId}")]
-        public async Task<IActionResult> LikeUser(int id, int imovelId)
-        {
-             if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-                return Unauthorized();
-            var like = await _repo.GetLike(id, imovelId);
-
-            if (like != null)
-                return BadRequest("Você já favoritou este imovel!");
-            
-            if (await _repo.GetUser(imovelId) == null)
-                return NotFound();
-
-            like = new Like
-            {
-                LikerId = id,
-                ImovelLikeId= imovelId
-            };
-
-            _repo.Add<Like>(like);
-
-            if(await _repo.SaveAll())
-                return Ok();
-
-            return BadRequest("Falha ao favoritar");
         }
 
     }

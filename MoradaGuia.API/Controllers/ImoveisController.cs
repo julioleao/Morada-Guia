@@ -76,17 +76,6 @@ namespace MoradaGuia.API.Controllers
             return Ok(imovelToReturn);
         }
 
-        // [HttpGet("user/{id}/likes")]
-        // public async Task<IActionResult> GetLikesFromUser(int id, Like likes)
-        // {
-        //     if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-        //         return Unauthorized();
-                
-        //     var imovel = await _repo.GetLikesFromUser(id, likes);
-        //     var imovelToReturn = _mapper.Map<IEnumerable<ImovelLikeFromUser>>(imovel);
-        //      return Ok(imovelToReturn);
-        // }
-
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateImovel(int id, ImovelForUpdateDto imovelForUpdateDto)
         {
