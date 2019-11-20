@@ -2958,7 +2958,7 @@
     ],
     "CSharpLanguageVersion": 703
   },
-  "RootNamespace": "MoradaGuia.API",
+  "RootNamespace": null,
   "Documents": [],
   "SerializationFormat": "0.2"
 }
