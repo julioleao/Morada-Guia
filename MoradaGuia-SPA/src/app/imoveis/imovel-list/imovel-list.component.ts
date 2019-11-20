@@ -14,9 +14,8 @@ import { AuthService } from 'src/app/_services/auth.service';
 export class ImovelListComponent implements OnInit {
   imoveis: Imovel[];
   imovel: Imovel = JSON.parse(localStorage.getItem('imovel'));
-  /* tipo = [{value: 'casa', display: 'Casa'}, {value: 'pensionato', display: 'Pensionato'},
-          {value: 'apartamento', display: 'Apartamento'}, {value: 'quitinete', display: 'Quitinete'}];
-  imovelParams: any = {};*/
+  tipoList = [{value: 'Casa', display: 'Casas'}, {value: 'pensionato', display: 'Pensionatos'}];
+  imovelParams: any = {};
   pagination: Pagination;
 
   constructor(private imovelService: ImovelService, private alertify: AlertifyService, private route: ActivatedRoute,
@@ -28,13 +27,8 @@ export class ImovelListComponent implements OnInit {
       this.pagination = data.imoveis.pagination;
     });
 
-    /* this.imovelParams.tipo = this.imovel.tipo === 'casa' ? 'pensionato'
-    : 'casa' ? 'apartamento'
-    : 'casa' ? 'apartamento'
-    : 'casa' ? 'quitinete'
-    : 'casa';
     this.imovelParams.valorMin = 0;
-    this.imovelParams.valorMax = 5000; */
+    this.imovelParams.valorMax = 5000;
   }
 
   pageChanged(event: any): void {
@@ -42,20 +36,16 @@ export class ImovelListComponent implements OnInit {
     this.loadImoveis();
   }
 
-  /*resetFilters() {
-    this.imovelParams.tipo = this.imovel.tipo === 'casa' ? 'pensionato'
-    : 'casa' ? 'apartamento'
-    : 'casa' ? 'apartamento'
-    : 'casa' ? 'quitinete'
-    : 'casa';
+  resetFilters() {
+    this.imovelParams.tipo = 'undefined';
     this.imovelParams.valorMin = 0;
     this.imovelParams.valorMax = 5000;
     this.loadImoveis();
-  } */
+  }
 
   loadImoveis() {
     this.imovelService
-      .getImoveis(this.pagination.currentPage, this.pagination.itemsPerPage)
+      .getImoveis(this.pagination.currentPage, this.pagination.itemsPerPage, this.imovelParams)
       .subscribe(
         (res: PaginatedResult<Imovel[]>) => {
           this.imoveis = res.result;

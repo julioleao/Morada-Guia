@@ -33,11 +33,13 @@ namespace MoradaGuia.API.Data
         // }
         public async Task<PagedList<Imovel>> GetImoveis(ImovelParams imovelParams)
         {
-            var imoveis = _context.Imovel.Include(p => p.Fotos);
+            var imoveis = _context.Imovel.Include(p => p.Fotos).AsQueryable();
 
-            //imoveis = imoveis.Where(i => i.Id != imovelParams.ImovelId);
-            //imoveis = imoveis.Where(i => i.Tipo == imovelParams.Tipo);
-            //imoveis = imoveis.Where(i => i.Valor >= imovelParams.ValorMin && i.Valor <= imovelParams.ValorMax);
+            if(imovelParams.Tipo != null && imovelParams.Tipo != "undefined") {
+                imoveis = imoveis.Where(i => i.Tipo == imovelParams.Tipo);
+            }
+
+            imoveis = imoveis.Where(i => i.Valor >= imovelParams.ValorMin && i.Valor <= imovelParams.ValorMax);
 
             return await PagedList<Imovel>.CreateAsync(imoveis, imovelParams.PageNumber, imovelParams.PageSize);        
         }

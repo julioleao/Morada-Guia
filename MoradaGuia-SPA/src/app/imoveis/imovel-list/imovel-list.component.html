@@ -1,15 +1,15 @@
-<!-- <div class="text-center mt-3">
+<div class="text-center mt-3">
   <h2>{{pagination.totalItems}} moradia(s) encontra(s)</h2>
-</div> -->
+</div>
 
 
 <div class="container mt-3">
-<!--   
+  
   <form class="form-inline" #form="ngForm" (ngSubmit)="loadImoveis()" novalidate>
     <div class="form-group">
       <label for="valorMin">Valor MIN</label>
       <input type="number" class="form-control ml-1" style="width: 70px" id="valorMin"
-      [(ngModel)]="imovelParams.valorMin" name="valorMin">
+        [(ngModel)]="imovelParams.valorMin" name="valorMin">
     </div>
     
     <div class="form-group px-2">
@@ -21,44 +21,19 @@
     <div class="form-group px-2">
       <label for="tipo">Tipo: </label>
       <select class="form-control ml-1" style="width: 130px" id="tipo"
-      [(ngModel)]="imovelParams.tipo" name="tipo">
-        <option *ngFor="let tipo of tipo" [value]="tipo.value">
+        [(ngModel)]="imovelParams.tipo" name="tipo">
+        <option *ngFor="let tipo of tipoList" [value]="tipo.value">
           {{tipo.display}}
         </option>
       </select>
     </div>
-    <div class="form-group px-2">
-      <label for="quarto">Quartos: </label>
-      <select class="form-control ml-1" style="width: 130px" id="quarto" name="quarto">
-        <option>
-          
-        </option>
-      </select>
-    </div>
-    <div class="form-group px-2">
-      <label for="banheiro">Banheiros: </label>
-      <select class="form-control ml-1" style="width: 130px" id="banheiro" name="banheiro">
-        <option>
-          
-        </option>
-      </select>
-    </div>
-    <div class="form-group px-2">
-      <label for="garagem">Garagem: </label>
-      <select class="form-control ml-1" style="width: 130px" id="garagem" name="garagem">
-        <option>
-          
-        </option>
-      </select>
-    </div>
-  
 
       <button type="submit" class="btn btn-primary" style="margin-left:10px">Aplicar</button>
       <button type="button" class="btn btn-info" (click)="resetFilters()" style="margin-left:10px">Resetar</button>
     
   </form>
 
-  <br> -->
+  <br>
   <div class="row">
     <div *ngFor="let imovel of imoveis" class="col-lg-4 d-flex align-items-stretch py-2 text-center">
         <app-imoveis-card [imovel]="imovel"></app-imoveis-card>

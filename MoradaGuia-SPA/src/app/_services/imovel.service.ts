@@ -15,13 +15,19 @@ export class ImovelService {
 
   constructor(private http: HttpClient) {}
 
-  getImoveis(page?, itemsPerPage?): Observable<PaginatedResult<Imovel[]>> {
+  getImoveis(page?, itemsPerPage?, imovelParams?): Observable<PaginatedResult<Imovel[]>> {
     const paginatedResult: PaginatedResult<Imovel[]> = new PaginatedResult<Imovel[]>();
 
     let params = new HttpParams();
     if (page != null && itemsPerPage != null) {
       params = params.append('pageNumber', page);
       params = params.append('pageSize', itemsPerPage);
+    }
+
+    if (imovelParams != null) {
+      params = params.append('valorMin', imovelParams.valorMin);
+      params = params.append('valorMax', imovelParams.valorMax);
+      params = params.append('tipo', imovelParams.tipo);
     }
 
     return this.http.get<Imovel[]>(this.baseUrl + 'imoveis', { observe: 'response', params })

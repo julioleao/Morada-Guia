@@ -15,9 +15,9 @@ namespace MoradaGuia.API.Helpers
         public string Tipo { get; set; }
         public float ValorMin { get; set; } = 0;
         public float ValorMax { get; set; } = 5000;
-        public int QtdQuarto { get; set; } = 1;
-        public int QtdBanheiro { get; set; } = 1;
-        public int Garagem { get; set; } = 0;
-        public bool Likers { get; set; } = false;
+        // public int QtdQuarto { get; set; } = 1;
+        // public int QtdBanheiro { get; set; } = 1;
+        // public int Garagem { get; set; } = 0;
+        // public bool Likers { get; set; } = false;
     }
 }
