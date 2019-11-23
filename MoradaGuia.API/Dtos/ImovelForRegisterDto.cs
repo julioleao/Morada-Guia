@@ -14,7 +14,7 @@ namespace MoradaGuia.API.Dtos
         [Required]
         public string Bairro { get; set; }
         [Required]
-        public int Valor { get; set; }
+        public float Valor { get; set; }
         [Required]
         public int qtdQuarto { get; set; }
         [Required]

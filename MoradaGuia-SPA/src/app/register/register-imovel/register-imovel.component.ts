@@ -40,6 +40,7 @@ export class RegisterImovelComponent implements OnInit {
       this.imovel = Object.assign({}, this.registerForm.value);
       this.authService.registerImovel(this.imovel).subscribe(() => {
         this.alertify.success('Imovel registrado com sucesso');
+        this.registerForm.reset();
       }, error => {
         this.alertify.error(error);
       });

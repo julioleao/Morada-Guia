@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="card">
-        <img class="card-img-top img-thumbnail" src="{{imovel.urlFoto}}" alt="{{imovel.tipo}}">
+        <img class="card-img-top img-thumbnail" src="{{imovel.urlFoto?imovel.urlFoto: 'https://zenit.org/wp-content/uploads/2018/05/no-image-icon.png'}}" alt="{{imovel.tipo}}">
         <div class="card-body">
           <div>
             <strong>Localização: </strong>
@@ -27,8 +27,8 @@
               </button>
           </div>
         </div> -->
-        <a href="https://api.whatsapp.com/send?phone=55{{user.telefone}}&text=Queria uma informação sobre sua moradia" target="_blank">
-          <img class="whatsapp" src="https://static.wixstatic.com/media/aff363_34808f62f1f648d488ce32597d36973e~mv2.png/v1/fill/w_209,h_86,al_c,q_80,usm_0.66_1.00_0.01/whatsapp.webp" />
+        <a href="https://api.whatsapp.com/send?phone=55{{user?.telefone}}&text=Queria uma informação sobre sua moradia" target="_blank">
+          <img class="whatsapp" src="../../../assets/whatsapp-icone-2.png" />
         </a>
       </div>
     </div>

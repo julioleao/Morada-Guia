@@ -13,8 +13,8 @@
           <option value="" disabled selected>Selecione o tipo do imóvel</option>
           <option value="Casa">Casa</option>
           <option value="Pensionato">Pensionato</option>
-          <option value="República">República</option>
-          <option value="Apartamento">Apartamento</option>
+          <!-- <option value="República">República</option>
+          <option value="Apartamento">Apartamento</option> -->
       </select>
         <div class="invalid-feedback">Informe o tipo do imóvel</div>
     </div>
@@ -33,7 +33,7 @@
       
       <div class="col-md-3 mb-3">
         <label class="float-left" for="numero">Numero</label>
-        <input type="number" id="numero"
+        <input type="number" min="0" id="numero"
           [ngClass]="{'is-invalid': registerForm.get('numero').errors 
                       && registerForm.get('numero').touched}"
           class="form-control" 
@@ -57,7 +57,7 @@
 
       <div class="col-md-3 mb-3">
         <label class="float-left " for="valor">Valor: R$</label>
-          <input type="number" id="valor"
+          <input type="number" step="2" min="0" id="valor"
             [ngClass]="{'is-invalid': registerForm.get('valor').errors 
                         && registerForm.get('valor').touched}"
             class="form-control" 
@@ -70,7 +70,7 @@
     <div class="form-row">
       <div class="col-md-4 mb-3">
         <label class="float-left" for="qtdQuarto">Quantidade de Quartos</label>
-        <input type="number" id="qtdQuarto"
+        <input type="number" min="0" id="qtdQuarto"
           [ngClass]="{'is-invalid': registerForm.get('qtdQuarto').errors 
                       && registerForm.get('qtdQuarto').touched}"
           class="form-control" 
@@ -81,7 +81,7 @@
 
       <div class="col-md-4 mb-3">
         <label class="float-left" for="qtdBanheiro">Quantidade de Banheiros</label>
-        <input type="number" id="qtdBanheiro"
+        <input type="number" min="0" id="qtdBanheiro"
           [ngClass]="{'is-invalid': registerForm.get('qtdBanheiro').errors 
                       && registerForm.get('qtdBanheiro').touched}"
           class="form-control" 
@@ -92,7 +92,7 @@
 
       <div class="col-md-4 mb-3">
         <label class="float-left" for="garagem">Vagas na Garagem</label>
-        <input type="number" id="garagem"
+        <input type="number" min="0" id="garagem"
           [ngClass]="{'is-invalid': registerForm.get('garagem').errors 
                       && registerForm.get('garagem').touched}"
           class="form-control" 
@@ -103,8 +103,8 @@
     </div>
     
     <div class="form-group text-center">
-      <button class="btn btn-success" type="submit">Register</button>
-      <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
+      <button class="btn btn-success" type="submit">Registrar</button>
+      <button class="btn btn-default" type="button" (click)="cancel()">Cancelar</button>
     </div>
       
   </form>

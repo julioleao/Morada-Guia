@@ -9,11 +9,13 @@ import { catchError } from 'rxjs/operators';
 @Injectable()
 export class ImovelListResolver implements Resolve<Imovel[]> {
     pageNumber = 1;
-    pageSize = 5;
+    pageSize = 6;
 
-    constructor(private imovelService: ImovelService, private router: Router, private alertify: AlertifyService) {}
+    constructor(private imovelService: ImovelService, 
+                private router: Router, private alertify: AlertifyService) {}
+
     resolve(route: ActivatedRouteSnapshot): Observable<Imovel[]> {
-        return this.imovelService.getImoveis(/* this.pageNumber, this.pageSize */).pipe(
+        return this.imovelService.getImoveis(this.pageNumber, this.pageSize).pipe(
             catchError(error => {
                 this.alertify.error('Problema para receber dados da lista');
                 this.router.navigate(['/home']);
