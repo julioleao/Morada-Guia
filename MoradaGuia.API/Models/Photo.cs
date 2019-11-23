@@ -11,6 +11,6 @@ namespace MoradaGuia.API.Models
         public string PublicId { get; set; }
         public int ImovelId { get; set; }
         [ForeignKey("ImovelId")]
-        public Imovel Imovel { get; set; }
+        public virtual Imovel Imovel { get; set; }
     }
 }

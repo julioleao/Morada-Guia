@@ -17,7 +17,7 @@ namespace MoradaGuia.API.Models
         public int QtdBanheiro { get; set; }
         public int Garagem { get; set; }
         public DateTime Data { get; set; }
-        public ICollection<Photo> Fotos { get; set; }
+        public virtual ICollection<Photo> Fotos { get; set; }
         public int UserId { get; set; }
     }
 }

@@ -27,7 +27,7 @@ namespace MoradaGuia.API.Data
 
         public async Task<IEnumerable<Imovel>> GetImoveis()
         {
-            var imoveis = await _context.Imovel.Include(p => p.Fotos).ToListAsync();
+            var imoveis = await _context.Imovel.ToListAsync();
             return imoveis;
         }
         /* public async Task<PagedList<Imovel>> GetImoveis(ImovelParams imovelParams)
@@ -44,13 +44,13 @@ namespace MoradaGuia.API.Data
 
         public async Task<Imovel> GetImovel(int id)
         {
-            var imovel = await _context.Imovel.Include(p => p.Fotos).FirstOrDefaultAsync(u => u.Id == id);
+            var imovel = await _context.Imovel.FirstOrDefaultAsync(u => u.Id == id);
             return imovel;
         }
         // Mostar imoveis do usuário logado
         public async Task<IEnumerable<Imovel>> GetImovelFromUser(int userId)
         {
-            return await _context.Imovel.Where(i => i.UserId == userId).Include(i => i.Fotos).ToListAsync();
+            return await _context.Imovel.Where(i => i.UserId == userId).ToListAsync();
         }
         
 
@@ -76,7 +76,7 @@ namespace MoradaGuia.API.Data
         public async Task<IEnumerable<User>> GetUsers()
         {
                
-            var users = await _context.Users.Include(p => p.Imovels).ToListAsync();;
+            var users = await _context.Users.ToListAsync();;
 
             
             return users;
