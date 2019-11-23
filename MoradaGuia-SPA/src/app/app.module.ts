@@ -34,7 +34,6 @@ import { ImovelFromUserResolver } from './_resolvers/imovel-from-user.resolver';
 import { ImovelFromUserComponent } from './imoveis/ImovelFromUser/ImovelFromUser.component';
 import { RegisterComponent } from './register/register-user/register.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
-import { MemberCardComponent } from './members/member-card/member-card.component';
 import { UserService } from './_services/user.service';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { UserEditComponent } from './user/user-edit/user-edit.component';

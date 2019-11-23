@@ -50,10 +50,6 @@ C:\Users\alexa\MoradaGuia\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\Mor
 C:\Users\alexa\MoradaGuia\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.AssemblyInfo.cs
 C:\Users\alexa\MoradaGuia\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.dll
 C:\Users\alexa\MoradaGuia\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.pdb
-C:\Users\julio\Documents\Morada-Guia\MoradaGuia.API\bin\Debug\netcoreapp2.2\appsettings.Development.json
-C:\Users\julio\Documents\Morada-Guia\MoradaGuia.API\bin\Debug\netcoreapp2.2\appsettings.json
-C:\Users\julio\Documents\Morada-Guia\MoradaGuia.API\bin\Debug\netcoreapp2.2\Data\UserSeedData.json
-C:\Users\julio\Documents\Morada-Guia\MoradaGuia.API\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
 C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\bin\Debug\netcoreapp2.2\MoradaGuia.API.deps.json
 C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\bin\Debug\netcoreapp2.2\MoradaGuia.API.runtimeconfig.json
 C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\bin\Debug\netcoreapp2.2\MoradaGuia.API.runtimeconfig.dev.json
@@ -68,3 +64,4 @@ C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\Mora
 C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.RazorTargetAssemblyInfo.cache
 C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.dll
 C:\Users\Aluno\Downloads\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.pdb
+C:\Users\julio\Documents\Morada-Guia\MoradaGuia.API\obj\Debug\netcoreapp2.2\MoradaGuia.API.csproj.CoreCompileInputs.cache

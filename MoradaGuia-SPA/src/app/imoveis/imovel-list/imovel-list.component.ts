@@ -14,7 +14,7 @@ import { AuthService } from 'src/app/_services/auth.service';
 export class ImovelListComponent implements OnInit {
   imoveis: Imovel[];
   imovel: Imovel = JSON.parse(localStorage.getItem('imovel'));
-  tipoList = [{value: 'Casa', display: 'Casas'}, {value: 'pensionato', display: 'Pensionatos'}];
+  tipoList = [{value: 'Casa', display: 'Casas'}, {value: 'Pensionato', display: 'Pensionatos'}];
   imovelParams: any = {};
   pagination: Pagination;
 

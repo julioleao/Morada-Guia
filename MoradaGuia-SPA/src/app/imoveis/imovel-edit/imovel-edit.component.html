@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-sm-4">
         <div class="card">
-          <img class="card-img-top img-thumbnail" src="{{imovel.urlFoto}}" alt="{{imovel.tipo}}">
+          <img class="card-img-top img-thumbnail" src="{{imovel.urlFoto?imovel.urlFoto: 'https://zenit.org/wp-content/uploads/2018/05/no-image-icon.png'}}" alt="{{imovel.tipo}}">
           <div class="card-body">
             <div>
               <strong>Localização: </strong>

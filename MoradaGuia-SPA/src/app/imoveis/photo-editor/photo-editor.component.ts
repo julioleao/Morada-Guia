@@ -60,6 +60,7 @@ export class PhotoEditorComponent implements OnInit {
           principal: res.principal
         };
         this.photos.push(photo);
+        window.location.reload();
       }
     };
   }
